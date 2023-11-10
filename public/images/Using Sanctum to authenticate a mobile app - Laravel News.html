@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="csrf-token" content="nEonK4dvimaS0AsUDFmnN4DtNRYAMj9Ct8pzqsHS" />
+
+        <title>Using Sanctum to authenticate a mobile app - Laravel News</title>
+                <meta name="description" content="Sanctum is Laravel&amp;#8217;s lightweight API authentication package. In my last article, we looked at authenticating a React SPA with a Laravel API via Sanctum. This tutorial will go over using Laravel Sanctum to authenticate a mobile app. The app will be built in Flutter, Google&amp;#8217;s cross-platform app development toolkit.
+" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Using Sanctum to authenticate a mobile app - Laravel News" />
+        <meta property="og:description" content="Sanctum is Laravel&amp;#8217;s lightweight API authentication package. In my last article, we looked at authenticating a React SPA with a Laravel API via Sanctum. This tutorial will go over using Laravel Sanctum to authenticate a mobile app. The app will be built in Flutter, Google&amp;#8217;s cross-platform app development toolkit.
+" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Using Sanctum to authenticate a mobile app - Laravel News" />
+        <meta property="og:image" content="https://picperf.dev/https://laravelnews.s3.amazonaws.com/images/sanctum-leader.jpg" />
+        <meta property="og:description" content="Sanctum is Laravel&amp;#8217;s lightweight API authentication package. In my last article, we looked at authenticating a React SPA with a Laravel API via Sanctum. This tutorial will go over using Laravel Sanctum to authenticate a mobile app. The app will be built in Flutter, Google&amp;#8217;s cross-platform app development toolkit.
+" />
+        <meta property="og:url" content="https://laravel-news.com/using-sanctum-to-authenticate-a-mobile-app" />
+        <meta property="og:site_name" content="Laravel News" />
+        <meta property="og:locale" content="en_US" />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@laravelnews" />
+        <meta name="twitter:title" content="Using Sanctum to authenticate a mobile app - Laravel News" />
+        <meta property="twitter:image" content="https://picperf.dev/https://laravelnews.s3.amazonaws.com/images/sanctum-leader.jpg">
+        <meta name="twitter:description" content="Sanctum is Laravel&amp;#8217;s lightweight API authentication package. In my last article, we looked at authenticating a React SPA with a Laravel API via Sanctum. This tutorial will go over using Laravel Sanctum to authenticate a mobile app. The app will be built in Flutter, Google&amp;#8217;s cross-platform app development toolkit.
+" />
+
+        <link href="https://laravel-news.com/using-sanctum-to-authenticate-a-mobile-app" rel="canonical" />
+        <link href="https://laravel-news.com/" rel="home" />
+
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="Laravel News &raquo; Feed"
+            href="https://feed.laravel-news.com/"
+        />
+        <link
+            rel="alternate"
+            title="Laravel News Feed"
+            type="application/json"
+            href="https://laravel-news.com/feed/json"
+        />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta property="fb:admins" content="100007722642618" />
+        <meta property="fb:app_id" content="440569919467159" />
+
+        
+        <link rel="preconnect" href="https://use.typekit.net" />
+        <link rel="stylesheet" href="https://use.typekit.net/ltt3ltm.css" />
+        <link rel="preconnect" href="https://fonts.bunny.net" />
+        <link href="https://fonts.bunny.net/css?family=jetbrains-mono:400,400i" rel="stylesheet" />
+
+        
+        <script src="https://cdn.usefathom.com/script.js" data-site="BYASFNCM" defer></script>
+                    <meta property="fb:admins" content="100007722642618">
+            <meta property="fb:app_id" content="440569919467159">
+        
+        <link rel="preload" as="style" href="https://laravel-news.com/build/assets/app-56cf5b4d.css" /><link rel="modulepreload" href="https://laravel-news.com/build/assets/app-83fd8ba8.js" /><link rel="stylesheet" href="https://laravel-news.com/build/assets/app-56cf5b4d.css" data-navigate-track="reload" /><script type="module" src="https://laravel-news.com/build/assets/app-83fd8ba8.js" data-navigate-track="reload"></script>
+        
+        <!-- Livewire Styles --><style >[wire\:loading], [wire\:loading\.delay], [wire\:loading\.inline-block], [wire\:loading\.inline], [wire\:loading\.block], [wire\:loading\.flex], [wire\:loading\.table], [wire\:loading\.grid], [wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.none], [wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short], [wire\:loading\.delay\.default], [wire\:loading\.delay\.long], [wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest] {display:none;}[wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}:root {--livewire-progress-bar-color: #2299dd;}[x-cloak] {display: none;}</style>
+    </head>
+    <body class="antialised min-h-screen bg-white font-sans text-black">
+        <div x-persist="header">
+            <header
+    x-data="{
+        mobileMenuIsOpen: false,
+        searchModalIsOpen: false,
+        init() {
+            document.addEventListener('livewire:navigating', () => {
+                this.mobileMenuIsOpen = false;
+                this.searchModalIsOpen = false;
+            });
+        },
+    }"
+    class="absolute inset-x-0 top-0 z-10"
+>
+    
+    <div class="flex items-center justify-center bg-red-600 p-2 text-center text-sm text-white">
+        <div wire:snapshot="{&quot;data&quot;:[],&quot;memo&quot;:{&quot;id&quot;:&quot;VTbjJqlVFDpI2WQRuLba&quot;,&quot;name&quot;:&quot;components.top-ad&quot;,&quot;path&quot;:&quot;using-sanctum-to-authenticate-a-mobile-app&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;89a37daa6204e915696066a11646318d780016461a5db1ea40457a90d92d6966&quot;}" wire:effects="[]" wire:id="VTbjJqlVFDpI2WQRuLba">
+        <!--[if BLOCK]><![endif]-->            <p onclick="fathom.trackGoal('UPKMRAIG', 0);">
+                <a href="https://ohdear.app?via=laravelnews">Oh Dear is the best all-in-one monitoring tool for all your Laravel apps.</a>
+            </p>
+         <!--[if ENDBLOCK]><![endif]-->
+    </div>    </div>
+    <div
+        class="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-6 py-6 md:gap-8 md:py-10"
+    >
+        <div class="xl:gap-18 flex items-center gap-16">
+            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 hover:-translate-y-1 hover:opacity-70 focus-visible:ring-offset-2" href="/"
+            wire:navigate.hover
+    >
+    <img
+    class="lg:h-18 lg:w-18 h-12 w-12 sm:h-16 sm:w-16"
+    width="87"
+    height="86"
+    src="https://picperf.dev/https://laravel-news.com/images/logo.svg"
+    alt="Laravel News"
+/>
+                <span class="sr-only">Laravel News</span>
+</a>
+            <div class="hidden items-center gap-4 sm:flex md:gap-8">
+                <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 font-bold hover:text-gray-600" href="/blog"
+            wire:navigate.hover
+    >
+    Blog
+</a>
+                <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 font-bold hover:text-gray-600" href="/category/tutorials"
+            wire:navigate.hover
+    >
+    Tutorials
+</a>
+                <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 font-bold hover:text-gray-600" href="/category/packages"
+            wire:navigate.hover
+    >
+    Packages
+</a>
+                <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 !hidden p-1 font-bold hover:text-gray-600 md:!inline-flex" href="/newsletter"
+            wire:navigate.hover
+    >
+    Newsletter
+</a>
+                <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 !hidden p-1 font-bold hover:text-gray-600 md:!inline-flex" href="https://podcast.laravel-news.com/"
+    >
+    Podcast
+</a>
+            </div>
+        </div>
+        <div class="xl:gap-18 flex items-center gap-16">
+            <div class="hidden items-center gap-4 md:gap-8 lg:flex">
+
+
+
+
+
+
+
+                <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 font-bold hover:text-gray-600" href="/partners"
+            wire:navigate.hover
+    >
+    Partners
+</a>
+                <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 font-bold hover:text-gray-600" href="/links"
+            wire:navigate.hover
+    >
+    Links
+</a>
+                <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 font-bold hover:text-gray-600" href="/login"
+            wire:navigate.hover
+    >
+    Your Account
+</a>
+            </div>
+            <div class="-mr-1 flex items-center gap-2">
+                <button
+                    class="inline-flex rounded-sm p-1 leading-none text-black transition duration-300 hover:text-gray-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 focus-visible:ring-offset-4 focus-visible:ring-offset-white"
+                    @click.prevent="searchModalIsOpen = true"
+                >
+                    <img
+                        src="https://picperf.dev/https://laravel-news.com/images/icons/search.svg"
+                        class="h-6 w-6"
+                        alt="Search"
+                    />
+                    <span class="sr-only">Search</span>
+                </button>
+                <button
+                    class="inline-flex rounded-sm p-1 leading-none text-black transition duration-300 hover:text-gray-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 focus-visible:ring-offset-4 focus-visible:ring-offset-white lg:hidden"
+                    @click.prevent="mobileMenuIsOpen = true"
+                >
+                    <img src="https://picperf.dev/https://laravel-news.com/images/icons/menu.svg" class="h-6 w-6" alt="Menu" />
+                    <span class="sr-only">Menu</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <template x-teleport="body">
+    <div
+        x-dialog
+        x-model="mobileMenuIsOpen"
+        x-cloak
+        class="fixed inset-0 z-50 overflow-hidden lg:hidden"
+    >
+        
+        <div x-dialog:overlay x-transition.opacity class="fixed inset-0 bg-black/50"></div>
+
+        
+        <div class="fixed inset-y-0 right-0 w-full max-w-lg">
+            <div
+                x-dialog:panel
+                x-transition:enter="transition duration-300 ease-out"
+                x-transition:enter-start="translate-x-full"
+                x-transition:enter-end="translate-x-0"
+                x-transition:leave="transition duration-300 ease-in"
+                x-transition:leave-start="translate-x-0"
+                x-transition:leave-end="translate-x-full"
+                class="h-full w-full"
+            >
+                <div
+                    class="flex h-full flex-col justify-between overflow-y-auto bg-white shadow-card"
+                >
+                    <div class="p-6 md:p-10">
+                        <div class="flex items-center justify-between">
+                            
+                            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 hover:-translate-y-1 hover:opacity-70 focus-visible:ring-offset-2" href="/"
+            wire:navigate.hover
+    >
+    <img
+    class="h-12 w-12 sm:h-16 sm:w-16"
+    width="87"
+    height="86"
+    src="https://picperf.dev/https://laravel-news.com/images/logo.svg"
+    alt="Laravel News"
+/>
+                                <h2 x-dialog:title class="sr-only">Laravel News</h2>
+</a>
+
+                            
+                            <button
+                                type="button"
+                                @click="$dialog.close()"
+                                class="rounded-sm p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 focus-visible:ring-offset-4"
+                            >
+                                <span class="sr-only">Close menu</span>
+
+                                <img
+                                    src="https://picperf.dev/https://laravel-news.com/images/icons/close.svg"
+                                    class="h-6 w-6"
+                                    alt="Close menu"
+                                />
+                            </button>
+                        </div>
+                        <div class="-mx-1 mt-12 flex flex-col gap-4">
+                            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 hover:text-gray-600" href="/blog"
+            wire:navigate.hover
+    >
+    Blog
+</a>
+                            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 hover:text-gray-600" href="/category/tutorials"
+            wire:navigate.hover
+    >
+    Tutorials
+</a>
+                            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 hover:text-gray-600" href="/category/packages"
+            wire:navigate.hover
+    >
+    Packages
+</a>
+                            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 hover:text-gray-600" href="https://podcast.laravel-news.com/"
+    >
+    Podcast
+</a>
+                            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 hover:text-gray-600" href="/newsletter"
+            wire:navigate.hover
+    >
+    Newsletter
+</a>
+                            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 hover:text-gray-600" href="/links"
+            wire:navigate.hover
+    >
+    Community Links
+</a>
+                            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 hover:text-gray-600" href="/partners"
+            wire:navigate.hover
+    >
+    Partners
+</a>
+                            <div class="px-1 py-3">
+                                <hr class="border-gray-600/30" />
+                            </div>
+                            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 hover:text-gray-600" href="/login"
+            wire:navigate.hover
+    >
+    Your Account
+</a>
+                            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 hover:text-gray-600" href="/advertising"
+            wire:navigate.hover
+    >
+    Advertising
+</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+    <template x-teleport="body">
+    <div
+        x-data="{
+            initialized: false,
+            init() {
+                $watch('searchModalIsOpen', (value) => {
+                    if (! this.initialized) {
+                        search.start();
+
+                        this.initialized = true;
+                    }
+
+                    if (value) {
+                        setTimeout(() => {
+                            this.$el.querySelector('input').focus();
+                        }, 100);
+                    }
+                });
+            },
+        }"
+        x-dialog
+        x-model="searchModalIsOpen"
+        x-cloak
+        class="fixed inset-0 z-10"
+        @keydown.slash.meta.window="searchModalIsOpen = !searchModalIsOpen"
+        @keydown.k.meta.window="searchModalIsOpen = !searchModalIsOpen"
+        @keydown.escape.window="searchModalIsOpen = false"
+    >
+        <div
+            x-dialog:overlay
+            x-transition.opacity
+            class="fixed inset-0 bg-black/60 backdrop-blur-sm"
+        ></div>
+
+        <div class="relative flex min-h-screen items-center justify-center p-4">
+            <div
+                x-dialog:panel
+                x-transition.opacity.duration.400ms
+                class="relative h-[88vh] w-full max-w-3xl overflow-y-auto rounded-lg border border-gray-100 bg-white shadow-card"
+            >
+                <div class="p-6 lg:p-12">
+                    <div class="flex items-center justify-between gap-4">
+                        <h2 x-dialog:title class="text-2xl font-bold">Search Articles</h2>
+                        <button
+                            type="button"
+                            @click="$dialog.close()"
+                            class="rounded-sm p-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 focus-visible:ring-offset-4"
+                        >
+                            <span class="sr-only">Close search</span>
+
+                            <img
+                                src="https://picperf.dev/https://laravel-news.com/images/icons/close.svg"
+                                class="h-6 w-6"
+                                alt="Close menu"
+                            />
+                        </button>
+                    </div>
+
+                    <div class="ais-InstantSearch mt-10">
+                        <div id="searchbox"></div>
+                        <div id="hits"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+</header>
+        </div>
+
+        <div>
+            <div wire:snapshot="{&quot;data&quot;:{&quot;article&quot;:[null,{&quot;class&quot;:&quot;App\\Models\\Article&quot;,&quot;key&quot;:2402,&quot;s&quot;:&quot;mdl&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;2eX1oVW51AwbrOOq6TbR&quot;,&quot;name&quot;:&quot;article-show&quot;,&quot;path&quot;:&quot;using-sanctum-to-authenticate-a-mobile-app&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:{&quot;GDM8IvL&quot;:[&quot;div&quot;,&quot;0knrRWvcXzSrXTeHdEOu&quot;],&quot;FYvZkgV&quot;:[&quot;div&quot;,&quot;g8IFu1zGv06lQy6Htrya&quot;],&quot;IrWkZcU&quot;:[&quot;section&quot;,&quot;oidFVJ42MBSqmbGdQ791&quot;],&quot;FHAhHE7&quot;:[&quot;section&quot;,&quot;AEGi4YBTxc6OSbId4svZ&quot;]},&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;76f834e23ad7d94bab1fdee1796f17512c3bd3f24e3c2c267738d9b7613c3868&quot;}" wire:effects="[]" wire:id="2eX1oVW51AwbrOOq6TbR">
+    <!--[if BLOCK]><![endif]-->        <link
+            rel="preload"
+            fetchpriority="high"
+            as="image"
+            href="https://picperf.dev/https://laravelnews.s3.amazonaws.com/images/sanctum-leader.jpg"
+        />
+     <!--[if ENDBLOCK]><![endif]-->
+
+    <article>
+        <div class="relative bg-gradient-to-r from-gray-100 to-white">
+            <div class="h-[160px] sm:h-[148px] md:h-[180px]"></div>
+            
+            <div class="absolute inset-x-0 bottom-0 h-1/4 w-full bg-white"></div>
+
+            <div
+                class=" relative mx-auto w-full max-w-4xl px-6 pt-10"
+            >
+                <h1 class="text-4xl font-bold sm:text-5xl md:text-6xl">Using Sanctum to authenticate a mobile app</h1>
+                <div class="mt-6 flex items-center gap-3">
+                    
+                    
+                    
+
+                    <p class="text-xs text-gray-600">
+                        <!--[if BLOCK]><![endif]-->                            Published on
+                            <time
+                                itemprop="dateModified"
+                                datetime="2020-10-08T09:00:00"
+                            >
+                                October 8th, 2020
+                            </time>
+                         <!--[if ENDBLOCK]><![endif]-->
+                        <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 hover:text-red-600" href="/@unlikenesses" rel="author"
+            wire:navigate.hover
+    >
+    by Alex Pestell
+</a>
+                    </p>
+                </div>
+                <!--[if BLOCK]><![endif]-->                    <img
+                        src="https://picperf.dev/https://laravelnews.s3.amazonaws.com/images/sanctum-leader.jpg"
+                        alt="Using Sanctum to authenticate a mobile app image"
+                        class="mt-12 aspect-[2/1] w-full overflow-hidden rounded-xl object-cover shadow-card"
+                    />
+                 <!--[if ENDBLOCK]><![endif]-->
+            </div>
+        </div>
+        <div class="mx-auto w-full max-w-4xl px-6 py-20">
+            <div
+                class="prose max-w-4xl prose-a:text-red-600 prose-a:transition prose-a:hover:text-red-700 prose-pre:rounded-lg prose-pre:bg-gray-100/50 prose-pre:p-6 prose-img:mx-auto prose-img:rounded-lg prose-img:border prose-img:border-gray-100"
+            >
+                <p><a href="https://laravel.com/docs/8.x/sanctum">Sanctum</a> is Laravel’s lightweight API authentication package. In <a href="https://laravel-news.com/using-sanctum-to-authenticate-a-react-spa">my last article</a>, I looked at authenticating a React SPA with a Laravel API via Sanctum. This tutorial will go over using Laravel Sanctum to authenticate a mobile app. The app will be built in <a href="https://flutter.dev">Flutter</a>, Google’s cross-platform app development toolkit. I may skip some implementation details of the mobile app since that is not the focus of this tutorial.</p>
+<p>Links to the final code are at the end of this article.</p>
+<h2>The backend</h2>
+<p>I’ve set up Homestead to provision a domain name, <code>api.sanctum-mobile.test</code>, where my backend will be served, as well as a MySQL database.</p>
+<p>First, create the Laravel app:</p>
+<pre><code data-theme="github-light" data-lang="bash" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #6F42C1;">laravel</span><span style="color: #24292E;"> </span><span style="color: #032F62;">new</span><span style="color: #24292E;"> </span><span style="color: #032F62;">sanctum_mobile</span></div></code></pre>
+<p>At the time of writing, it gives me a new Laravel project (v8.6.0). As with the SPA tutorial, the API will provide a list of books, so I’ll create the same resources:</p>
+<pre><code data-theme="github-light" data-lang="bash" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #6F42C1;">php</span><span style="color: #24292E;"> </span><span style="color: #032F62;">artisan</span><span style="color: #24292E;"> </span><span style="color: #032F62;">make:model</span><span style="color: #24292E;"> </span><span style="color: #032F62;">Book</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">-mr</span></div></code></pre>
+<p>The <code>mr</code> flags create the migration and controller too. Before we mess with the migrations, let’s first install the Sanctum package, since we’ll need its migrations again.</p>
+<pre><code data-theme="github-light" data-lang="bash" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #6F42C1;">composer</span><span style="color: #24292E;"> </span><span style="color: #032F62;">require</span><span style="color: #24292E;"> </span><span style="color: #032F62;">laravel/sanctum</span></div><div class='line'><span style="color: #6F42C1;">php</span><span style="color: #24292E;"> </span><span style="color: #032F62;">artisan</span><span style="color: #24292E;"> </span><span style="color: #032F62;">vendor:publish</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">--provider=</span><span style="color: #032F62;">&quot;Laravel\Sanctum\SanctumServiceProvider&quot;</span></div></code></pre>
+<p>Now, create the <code>books</code> migration:</p>
+<pre><code data-theme="github-light" data-lang="php" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #005CC5;">Schema</span><span style="color: #D73A49;">::</span><span style="color: #6F42C1;">create</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;books&#39;</span><span style="color: #24292E;">, </span><span style="color: #D73A49;">function</span><span style="color: #24292E;"> (</span><span style="color: #005CC5;">Blueprint</span><span style="color: #24292E;"> $table) {</span></div><div class='line'><span style="color: #24292E;">    $table</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">id</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #24292E;">    $table</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">string</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;title&#39;</span><span style="color: #24292E;">);</span></div><div class='line'><span style="color: #24292E;">    $table</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">string</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;author&#39;</span><span style="color: #24292E;">);</span></div><div class='line'><span style="color: #24292E;">    $table</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">timestamps</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #24292E;">});</span></div></code></pre>
+<p>Next, run your app’s migrations:</p>
+<pre><code data-theme="github-light" data-lang="bash" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #6F42C1;">php</span><span style="color: #24292E;"> </span><span style="color: #032F62;">artisan</span><span style="color: #24292E;"> </span><span style="color: #032F62;">migrate</span></div></code></pre>
+<p>If you now take a look in the database, you’ll see the Sanctum migration has created a <code>personal_access_tokens</code> table, which we’ll use later when authenticating the mobile app.</p>
+<p>Let’s update <code>DatabaseSeeder.php</code> to give us some books (and a user for later):</p>
+<pre><code data-theme="github-light" data-lang="php" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #005CC5;">Book</span><span style="color: #D73A49;">::</span><span style="color: #6F42C1;">truncate</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #24292E;">$faker </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">\Faker\Factory</span><span style="color: #D73A49;">::</span><span style="color: #6F42C1;">create</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #D73A49;">for</span><span style="color: #24292E;"> ($i </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">0</span><span style="color: #24292E;">; $i </span><span style="color: #D73A49;">&lt;</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">50</span><span style="color: #24292E;">; $i</span><span style="color: #D73A49;">++</span><span style="color: #24292E;">) {</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #005CC5;">Book</span><span style="color: #D73A49;">::</span><span style="color: #6F42C1;">create</span><span style="color: #24292E;">([</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #032F62;">&#39;title&#39;</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">=&gt;</span><span style="color: #24292E;"> $faker</span><span style="color: #D73A49;">-&gt;</span><span style="color: #24292E;">sentence,</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #032F62;">&#39;author&#39;</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">=&gt;</span><span style="color: #24292E;"> $faker</span><span style="color: #D73A49;">-&gt;</span><span style="color: #24292E;">name,</span></div><div class='line'><span style="color: #24292E;">    ]);</span></div><div class='line'><span style="color: #24292E;">}</span></div><div class='line'><span style="color: #005CC5;">User</span><span style="color: #D73A49;">::</span><span style="color: #6F42C1;">truncate</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #005CC5;">User</span><span style="color: #D73A49;">::</span><span style="color: #6F42C1;">create</span><span style="color: #24292E;">([</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #032F62;">&#39;name&#39;</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">=&gt;</span><span style="color: #24292E;"> </span><span style="color: #032F62;">&#39;Alex&#39;</span><span style="color: #24292E;">,</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #032F62;">&#39;email&#39;</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">=&gt;</span><span style="color: #24292E;"> </span><span style="color: #032F62;">&#39;alex@alex.com&#39;</span><span style="color: #24292E;">,</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #032F62;">&#39;password&#39;</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">=&gt;</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">Hash</span><span style="color: #D73A49;">::</span><span style="color: #6F42C1;">make</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;pwdpwd&#39;</span><span style="color: #24292E;">),</span></div><div class='line'><span style="color: #24292E;">]);</span></div></code></pre>
+<p>Now seed the database: <code>php artisan db:seed</code>. Finally, create the route and the controller action. Add this to the <code>routes/api.php</code> file:</p>
+<pre><code data-theme="github-light" data-lang="php" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #005CC5;">Route</span><span style="color: #D73A49;">::</span><span style="color: #6F42C1;">get</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;book&#39;</span><span style="color: #24292E;">, [</span><span style="color: #005CC5;">BookController</span><span style="color: #D73A49;">::class</span><span style="color: #24292E;">, </span><span style="color: #032F62;">&#39;index&#39;</span><span style="color: #24292E;">]);</span></div></code></pre>
+<p>and then in the <code>index</code> method of <code>BookController</code>, return all the books:</p>
+<pre><code data-theme="github-light" data-lang="php" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #D73A49;">return</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">response</span><span style="color: #24292E;">()</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">json</span><span style="color: #24292E;">(</span><span style="color: #005CC5;">Book</span><span style="color: #D73A49;">::</span><span style="color: #6F42C1;">all</span><span style="color: #24292E;">());</span></div></code></pre>
+<p>After checking that the endpoint works — <code>curl https://api.sanctum-mobile.test/api/book</code> — it’s time to start the mobile app.</p>
+<h2>The mobile app</h2>
+<p>For the mobile app, we’ll be using Android Studio and <a href="https://flutter.dev">Flutter</a>. Flutter allows you to create cross-platform apps that re-use the same code for Android and iPhone devices. First, follow <a href="https://flutter.dev/docs/get-started/install">the instructions to install Flutter</a> and to <a href="https://flutter.dev/docs/get-started/editor">set up Android Studio</a>, then launch Android Studio and click “Create a new Flutter project.”</p>
+<p>Follow the recipe in Flutter’s cookbook to <a href="https://flutter.dev/docs/cookbook/networking/fetch-data">fetch data from the internet</a> to create a page that fetches a list of books from the API. A quick and easy way to expose our API to the Android Studio device is to use Homestead’s <a href="https://laravel.com/docs/8.x/homestead#sharing-your-environment"><code>share</code></a> command:</p>
+<pre><code data-theme="github-light" data-lang="bash" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #6F42C1;">share</span><span style="color: #24292E;"> </span><span style="color: #032F62;">api.sanctum-mobile.test</span></div></code></pre>
+<p>The console will output an <a href="https://ngrok.com">ngrok</a> page, which will give you a URL (something like <code>https://0c9775bd.ngrok.io</code>) exposing your local server to the public. (An alternative to ngrok is Beyond Code’s <a href="https://beyondco.de/docs/expose">Expose</a>.) So let’s create a <code>utils/constants.dart</code> file to put that in:</p>
+<pre><code data-theme="github-light" data-lang="dart" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #D73A49;">const</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">API_URL</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #032F62;">&#39;http://191b43391926.ngrok.io&#39;</span><span style="color: #24292E;">;</span></div></code></pre>
+<p>Now, back to the Flutter cookbook. Create a file <code>books.dart</code> which will contain the classes required for our book list. First, a <code>Book</code> class to hold the data from the API request:</p>
+<pre><code data-theme="github-light" data-lang="dart" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #D73A49;">class</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">Book</span><span style="color: #24292E;"> {</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">final</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">int</span><span style="color: #24292E;"> id;</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">final</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">String</span><span style="color: #24292E;"> title;</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">final</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">String</span><span style="color: #24292E;"> author;</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #005CC5;">Book</span><span style="color: #24292E;">({</span><span style="color: #005CC5;">this</span><span style="color: #24292E;">.id, </span><span style="color: #005CC5;">this</span><span style="color: #24292E;">.title, </span><span style="color: #005CC5;">this</span><span style="color: #24292E;">.author});</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">factory</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">Book</span><span style="color: #24292E;">.</span><span style="color: #6F42C1;">fromJson</span><span style="color: #24292E;">(</span><span style="color: #005CC5;">Map</span><span style="color: #D73A49;">&lt;</span><span style="color: #005CC5;">String</span><span style="color: #24292E;">, </span><span style="color: #005CC5;">dynamic</span><span style="color: #D73A49;">&gt;</span><span style="color: #24292E;"> json) {</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #D73A49;">return</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">Book</span><span style="color: #24292E;">(</span></div><div class='line'><span style="color: #24292E;">            id</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> json[</span><span style="color: #032F62;">&#39;id&#39;</span><span style="color: #24292E;">],</span></div><div class='line'><span style="color: #24292E;">            title</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> json[</span><span style="color: #032F62;">&#39;title&#39;</span><span style="color: #24292E;">],</span></div><div class='line'><span style="color: #24292E;">            author</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> json[</span><span style="color: #032F62;">&#39;author&#39;</span><span style="color: #24292E;">],</span></div><div class='line'><span style="color: #24292E;">        );</span></div><div class='line'><span style="color: #24292E;">    }</span></div><div class='line'><span style="color: #24292E;">}</span></div></code></pre>
+<p>Second, a <code>BookList</code> class to fetch the books and call the builder to display them:</p>
+<pre><code data-theme="github-light" data-lang="dart" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #D73A49;">class</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">BookList</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">extends</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">StatefulWidget</span><span style="color: #24292E;"> {</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">@override</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #005CC5;">_BookListState</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">createState</span><span style="color: #24292E;">() </span><span style="color: #D73A49;">=&gt;</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">_BookListState</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #24292E;">}</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #D73A49;">class</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">_BookListState</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">extends</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">State</span><span style="color: #D73A49;">&lt;</span><span style="color: #005CC5;">BookList</span><span style="color: #D73A49;">&gt;</span><span style="color: #24292E;"> {</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #005CC5;">Future</span><span style="color: #D73A49;">&lt;</span><span style="color: #005CC5;">List</span><span style="color: #D73A49;">&lt;</span><span style="color: #005CC5;">Book</span><span style="color: #D73A49;">&gt;&gt;</span><span style="color: #24292E;"> futureBooks;</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">@override</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">void</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">initState</span><span style="color: #24292E;">() {</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #005CC5;">super</span><span style="color: #24292E;">.</span><span style="color: #6F42C1;">initState</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #24292E;">        futureBooks </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">fetchBooks</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #24292E;">    }</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #24292E;">    </span><span style="color: #005CC5;">Future</span><span style="color: #D73A49;">&lt;</span><span style="color: #005CC5;">List</span><span style="color: #D73A49;">&lt;</span><span style="color: #005CC5;">Book</span><span style="color: #D73A49;">&gt;&gt;</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">fetchBooks</span><span style="color: #24292E;">() </span><span style="color: #D73A49;">async</span><span style="color: #24292E;"> {</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #005CC5;">List</span><span style="color: #D73A49;">&lt;</span><span style="color: #005CC5;">Book</span><span style="color: #D73A49;">&gt;</span><span style="color: #24292E;"> books </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">new</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">List</span><span style="color: #D73A49;">&lt;</span><span style="color: #005CC5;">Book</span><span style="color: #D73A49;">&gt;</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #D73A49;">final</span><span style="color: #24292E;"> response </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">await</span><span style="color: #24292E;"> http.</span><span style="color: #D73A49;">get</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;$</span><span style="color: #005CC5;">API_URL</span><span style="color: #032F62;">/api/book&#39;</span><span style="color: #24292E;">);</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #D73A49;">if</span><span style="color: #24292E;"> (response.statusCode </span><span style="color: #D73A49;">==</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">200</span><span style="color: #24292E;">) {</span></div><div class='line'><span style="color: #24292E;">            </span><span style="color: #005CC5;">List</span><span style="color: #D73A49;">&lt;</span><span style="color: #005CC5;">dynamic</span><span style="color: #D73A49;">&gt;</span><span style="color: #24292E;"> data </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> json.</span><span style="color: #6F42C1;">decode</span><span style="color: #24292E;">(response.body);</span></div><div class='line'><span style="color: #24292E;">            </span><span style="color: #D73A49;">for</span><span style="color: #24292E;"> (</span><span style="color: #005CC5;">int</span><span style="color: #24292E;"> i </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">0</span><span style="color: #24292E;">; i </span><span style="color: #D73A49;">&lt;</span><span style="color: #24292E;"> data.length; i</span><span style="color: #D73A49;">++</span><span style="color: #24292E;">) {</span></div><div class='line'><span style="color: #24292E;">                books.</span><span style="color: #6F42C1;">add</span><span style="color: #24292E;">(</span><span style="color: #005CC5;">Book</span><span style="color: #24292E;">.</span><span style="color: #6F42C1;">fromJson</span><span style="color: #24292E;">(data[i]));</span></div><div class='line'><span style="color: #24292E;">            }</span></div><div class='line'><span style="color: #24292E;">            </span><span style="color: #D73A49;">return</span><span style="color: #24292E;"> books;</span></div><div class='line'><span style="color: #24292E;">        } </span><span style="color: #D73A49;">else</span><span style="color: #24292E;"> {</span></div><div class='line'><span style="color: #24292E;">            </span><span style="color: #D73A49;">throw</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">Exception</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;Problem loading books&#39;</span><span style="color: #24292E;">);</span></div><div class='line'><span style="color: #24292E;">        }</span></div><div class='line'><span style="color: #24292E;">    }</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">@override</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #005CC5;">Widget</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">build</span><span style="color: #24292E;">(</span><span style="color: #005CC5;">BuildContext</span><span style="color: #24292E;"> context) {</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #D73A49;">return</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">Column</span><span style="color: #24292E;">(</span></div><div class='line'><span style="color: #24292E;">            children</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">&lt;</span><span style="color: #005CC5;">Widget</span><span style="color: #D73A49;">&gt;</span><span style="color: #24292E;">[</span></div><div class='line'><span style="color: #24292E;">                </span><span style="color: #005CC5;">BookListBuilder</span><span style="color: #24292E;">(futureBooks</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> futureBooks),</span></div><div class='line'><span style="color: #24292E;">            ],</span></div><div class='line'><span style="color: #24292E;">        );</span></div><div class='line'><span style="color: #24292E;">    }</span></div><div class='line'><span style="color: #24292E;">}</span></div></code></pre>
+<p>And last, a <code>BookListBuilder</code> to display the books:</p>
+<pre><code data-theme="github-light" data-lang="dart" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #D73A49;">class</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">BookListBuilder</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">extends</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">StatelessWidget</span><span style="color: #24292E;"> {</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">const</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">BookListBuilder</span><span style="color: #24292E;">({</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #005CC5;">Key</span><span style="color: #24292E;"> key,</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #D73A49;">@required</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">this</span><span style="color: #24292E;">.futureBooks,</span></div><div class='line'><span style="color: #24292E;">    }) </span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">super</span><span style="color: #24292E;">(key</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> key);</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">final</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">Future</span><span style="color: #D73A49;">&lt;</span><span style="color: #005CC5;">List</span><span style="color: #D73A49;">&lt;</span><span style="color: #005CC5;">Book</span><span style="color: #D73A49;">&gt;&gt;</span><span style="color: #24292E;"> futureBooks;</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">@override</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #005CC5;">Widget</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">build</span><span style="color: #24292E;">(</span><span style="color: #005CC5;">BuildContext</span><span style="color: #24292E;"> context) {</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #D73A49;">return</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">FutureBuilder</span><span style="color: #D73A49;">&lt;</span><span style="color: #005CC5;">List</span><span style="color: #D73A49;">&lt;</span><span style="color: #005CC5;">Book</span><span style="color: #D73A49;">&gt;&gt;</span><span style="color: #24292E;">(</span></div><div class='line'><span style="color: #24292E;">            future</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> futureBooks,</span></div><div class='line'><span style="color: #24292E;">            builder</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> (context, snapshot) {</span></div><div class='line'><span style="color: #24292E;">                </span><span style="color: #D73A49;">if</span><span style="color: #24292E;"> (snapshot.hasData) {</span></div><div class='line'><span style="color: #24292E;">                    </span><span style="color: #D73A49;">return</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">Expanded</span><span style="color: #24292E;">(child</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">ListView</span><span style="color: #24292E;">.</span><span style="color: #6F42C1;">builder</span><span style="color: #24292E;">(</span></div><div class='line'><span style="color: #24292E;">                        itemCount</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> snapshot.data.length,</span></div><div class='line'><span style="color: #24292E;">                        itemBuilder</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> (context, index) {</span></div><div class='line'><span style="color: #24292E;">                            </span><span style="color: #005CC5;">Book</span><span style="color: #24292E;"> book </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> snapshot.data[index];</span></div><div class='line'><span style="color: #24292E;">                            </span><span style="color: #D73A49;">return</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">ListTile</span><span style="color: #24292E;">(</span></div><div class='line'><span style="color: #24292E;">                                title</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">Text</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;${</span><span style="color: #005CC5;">book</span><span style="color: #032F62;">.</span><span style="color: #005CC5;">title</span><span style="color: #032F62;">}&#39;</span><span style="color: #24292E;">),</span></div><div class='line'><span style="color: #24292E;">                                subtitle</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">Text</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;${</span><span style="color: #005CC5;">book</span><span style="color: #032F62;">.</span><span style="color: #005CC5;">author</span><span style="color: #032F62;">}&#39;</span><span style="color: #24292E;">),</span></div><div class='line'><span style="color: #24292E;">                            );</span></div><div class='line'><span style="color: #24292E;">                        },</span></div><div class='line'><span style="color: #24292E;">                    ));</span></div><div class='line'><span style="color: #24292E;">                } </span><span style="color: #D73A49;">else</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">if</span><span style="color: #24292E;"> (snapshot.hasError) {</span></div><div class='line'><span style="color: #24292E;">                    </span><span style="color: #D73A49;">return</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">Text</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&quot;${</span><span style="color: #005CC5;">snapshot</span><span style="color: #032F62;">.</span><span style="color: #005CC5;">error</span><span style="color: #032F62;">}&quot;</span><span style="color: #24292E;">);</span></div><div class='line'><span style="color: #24292E;">                }</span></div><div class='line'><span style="color: #24292E;">                </span><span style="color: #D73A49;">return</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">CircularProgressIndicator</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #24292E;">            }</span></div><div class='line'><span style="color: #24292E;">        );</span></div><div class='line'><span style="color: #24292E;">    }</span></div><div class='line'><span style="color: #24292E;">}</span></div></code></pre>
+<p>Now we just need to modify the <code>MyApp</code> class in <code>main.dart</code> to load the <code>BookList</code>:</p>
+<pre><code data-theme="github-light" data-lang="dart" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #D73A49;">class</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">MyApp</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">extends</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">StatelessWidget</span><span style="color: #24292E;"> {</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">@override</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #005CC5;">Widget</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">build</span><span style="color: #24292E;">(</span><span style="color: #005CC5;">BuildContext</span><span style="color: #24292E;"> context) {</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #D73A49;">return</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">MaterialApp</span><span style="color: #24292E;">(</span></div><div class='line'><span style="color: #24292E;">            title</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #032F62;">&#39;Sanctum Books&#39;</span><span style="color: #24292E;">,</span></div><div class='line'><span style="color: #24292E;">            home</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">new</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">Scaffold</span><span style="color: #24292E;">(</span></div><div class='line'><span style="color: #24292E;">                body</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">BookList</span><span style="color: #24292E;">(),</span></div><div class='line'><span style="color: #24292E;">            )</span></div><div class='line'><span style="color: #24292E;">        );</span></div><div class='line'><span style="color: #24292E;">    }</span></div><div class='line'><span style="color: #24292E;">}</span></div></code></pre>
+<p>Now launch this in your test device or the emulator, and you should see a list of books.</p>
+<h2>Authentication with Sanctum</h2>
+<p>Great, so we know the API is working and that we can fetch books from it. The next step is to set up authentication.</p>
+<p>I’m going to use the <a href="https://pub.dev/packages/provider">provider</a> package, and follow the guidelines in the official documentation for setting up <a href="https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple">simple state management</a>. I want to create an authentication provider that keeps track of the logged-in status and eventually communicates with the server. Create a new file, <code>auth.dart</code>. Here’s where the authentication functionality will go. For the moment, we’ll return <code>true</code> so we can test the process works:</p>
+<pre><code data-theme="github-light" data-lang="dart" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #D73A49;">class</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">AuthProvider</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">extends</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">ChangeNotifier</span><span style="color: #24292E;"> {</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #005CC5;">bool</span><span style="color: #24292E;"> _isAuthenticated </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">false</span><span style="color: #24292E;">;</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #24292E;">    </span><span style="color: #005CC5;">bool</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">get</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">isAuthenticated</span><span style="color: #24292E;"> =&gt; _isAuthenticated;</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #24292E;">    </span><span style="color: #005CC5;">Future</span><span style="color: #D73A49;">&lt;</span><span style="color: #005CC5;">bool</span><span style="color: #D73A49;">&gt;</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">login</span><span style="color: #24292E;">(</span><span style="color: #005CC5;">String</span><span style="color: #24292E;"> email, </span><span style="color: #005CC5;">String</span><span style="color: #24292E;"> password) </span><span style="color: #D73A49;">async</span><span style="color: #24292E;"> {</span></div><div class='line'><span style="color: #24292E;">       </span><span style="color: #6F42C1;">print</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;logging in with email $</span><span style="color: #005CC5;">email</span><span style="color: #032F62;"> and password $</span><span style="color: #005CC5;">password</span><span style="color: #032F62;">&#39;</span><span style="color: #24292E;">);</span></div><div class='line'><span style="color: #24292E;">        _isAuthenticated </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">true</span><span style="color: #24292E;">;</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #6F42C1;">notifyListeners</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #D73A49;">return</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">true</span><span style="color: #24292E;">;</span></div><div class='line'><span style="color: #24292E;">    }</span></div><div class='line'><span style="color: #24292E;">}</span></div></code></pre>
+<p>With this provider, we can now check whether we’re authenticated and display the correct page accordingly. Modify you <code>main</code> function to include the provider:</p>
+<pre><code data-theme="github-light" data-lang="dart" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #D73A49;">void</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">main</span><span style="color: #24292E;">() {</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #6F42C1;">runApp</span><span style="color: #24292E;">(</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #005CC5;">ChangeNotifierProvider</span><span style="color: #24292E;">(</span></div><div class='line'><span style="color: #24292E;">            create</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> (</span><span style="color: #005CC5;">BuildContext</span><span style="color: #24292E;"> context) </span><span style="color: #D73A49;">=&gt;</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">AuthProvider</span><span style="color: #24292E;">(),</span></div><div class='line'><span style="color: #24292E;">            child</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">MyApp</span><span style="color: #24292E;">(),</span></div><div class='line'><span style="color: #24292E;">        )</span></div><div class='line'><span style="color: #24292E;">    );</span></div><div class='line'><span style="color: #24292E;">}</span></div></code></pre>
+<p>… and modify the <code>MyApp</code> class to show the <code>BookList</code> widget if we’re logged-in, or a <code>LoginForm</code> widget otherwise:</p>
+<pre><code data-theme="github-light" data-lang="dart" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #24292E;">body</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">Center</span><span style="color: #24292E;">(</span></div><div class='line'><span style="color: #24292E;">    child</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">Consumer</span><span style="color: #D73A49;">&lt;</span><span style="color: #005CC5;">AuthProvider</span><span style="color: #D73A49;">&gt;</span><span style="color: #24292E;">(</span></div><div class='line'><span style="color: #24292E;">        builder</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> (context, auth, child) {</span></div><div class='line'><span style="color: #24292E;">            </span><span style="color: #D73A49;">switch</span><span style="color: #24292E;"> (auth.isAuthenticated) {</span></div><div class='line'><span style="color: #24292E;">                </span><span style="color: #D73A49;">case</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">true</span><span style="color: #D73A49;">:</span></div><div class='line'><span style="color: #24292E;">                    </span><span style="color: #D73A49;">return</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">BookList</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #24292E;">                </span><span style="color: #D73A49;">default:</span></div><div class='line'><span style="color: #24292E;">                    </span><span style="color: #D73A49;">return</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">LoginForm</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #24292E;">            }</span></div><div class='line'><span style="color: #24292E;">        },</span></div><div class='line'><span style="color: #24292E;">    )</span></div><div class='line'><span style="color: #24292E;">),</span></div></code></pre>
+<p>The <code>LoginForm</code> classes contain a lot of “widgety” cruft, so I’ll refer you to <a href="https://github.com/unlikenesses/sanctum-flutter-app/blob/master/lib/login.dart">the GitHub repo</a> if you’re interested in looking at it. Anyway, if you load the app in your test device, you should see a login form. Fill in a random email and password, submit the form, and you’ll see a list of books.</p>
+<p>Ok, let’s set up the backend to handle the authentication. The docs <a href="https://laravel.com/docs/8.x/sanctum#mobile-application-authentication">tell us</a> to create a route that will accept the username and password, as well as a device name, and return a token. So let’s create a route in the <code>api.php</code> file:</p>
+<pre><code data-theme="github-light" data-lang="php" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #005CC5;">Route</span><span style="color: #D73A49;">::</span><span style="color: #6F42C1;">post</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;token&#39;</span><span style="color: #24292E;">, [</span><span style="color: #005CC5;">AuthController</span><span style="color: #D73A49;">::class</span><span style="color: #24292E;">, </span><span style="color: #032F62;">&#39;requestToken&#39;</span><span style="color: #24292E;">]);</span></div></code></pre>
+<p>and a controller: <code>php artisan make:controller AuthController</code>. This will contain the code from the docs:</p>
+<pre><code data-theme="github-light" data-lang="php" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #D73A49;">public</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">function</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">requestToken</span><span style="color: #24292E;">(</span><span style="color: #005CC5;">Request</span><span style="color: #24292E;"> $request)</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">string</span></div><div class='line'><span style="color: #24292E;">{</span></div><div class='line'><span style="color: #24292E;">    $request</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">validate</span><span style="color: #24292E;">([</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #032F62;">&#39;email&#39;</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">=&gt;</span><span style="color: #24292E;"> </span><span style="color: #032F62;">&#39;required|email&#39;</span><span style="color: #24292E;">,</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #032F62;">&#39;password&#39;</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">=&gt;</span><span style="color: #24292E;"> </span><span style="color: #032F62;">&#39;required&#39;</span><span style="color: #24292E;">,</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #032F62;">&#39;device_name&#39;</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">=&gt;</span><span style="color: #24292E;"> </span><span style="color: #032F62;">&#39;required&#39;</span><span style="color: #24292E;">,</span></div><div class='line'><span style="color: #24292E;">    ]);</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #24292E;">    $user </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">User</span><span style="color: #D73A49;">::</span><span style="color: #6F42C1;">where</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;email&#39;</span><span style="color: #24292E;">, $request</span><span style="color: #D73A49;">-&gt;</span><span style="color: #24292E;">email)</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">first</span><span style="color: #24292E;">();</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">if</span><span style="color: #24292E;"> (</span><span style="color: #D73A49;">!</span><span style="color: #24292E;"> $user </span><span style="color: #D73A49;">||</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">!</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">Hash</span><span style="color: #D73A49;">::</span><span style="color: #6F42C1;">check</span><span style="color: #24292E;">($request</span><span style="color: #D73A49;">-&gt;</span><span style="color: #24292E;">password, $user</span><span style="color: #D73A49;">-&gt;</span><span style="color: #24292E;">password)) {</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #D73A49;">throw</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">ValidationException</span><span style="color: #D73A49;">::</span><span style="color: #6F42C1;">withMessages</span><span style="color: #24292E;">([</span></div><div class='line'><span style="color: #24292E;">            </span><span style="color: #032F62;">&#39;email&#39;</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">=&gt;</span><span style="color: #24292E;"> [</span><span style="color: #032F62;">&#39;The provided credentials are incorrect.&#39;</span><span style="color: #24292E;">],</span></div><div class='line'><span style="color: #24292E;">        ]);</span></div><div class='line'><span style="color: #24292E;">    }</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">return</span><span style="color: #24292E;"> $user</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">createToken</span><span style="color: #24292E;">($request</span><span style="color: #D73A49;">-&gt;</span><span style="color: #24292E;">device_name)</span><span style="color: #D73A49;">-&gt;</span><span style="color: #24292E;">plainTextToken;</span></div><div class='line'><span style="color: #24292E;">}</span></div></code></pre>
+<p>Providing the username and password are valid, this will create a token, save it in the database, and return it to the client. To get this to work, we need to add the <code>HasApiTokens</code> trait to our <code>User</code> model. This gives us a <code>tokens</code> relationship, allowing us to create and fetch tokens for the user, and a <code>createToken</code> method. The token itself is a <code>sha256</code> hash of a 40-character random string: this string (unhashed) is returned to the client, which should save it to use with any future requests to the API. More precisely, the string returned to the client is composed of the token’s id, followed by a pipe character (<code>|</code>), followed by the plain text (unhashed) token.</p>
+<p>So now we have this endpoint in place, let’s update the app to use it. The <code>login</code> method will now have to post the <code>email</code>, <code>password</code>, and <code>device_name</code> to this endpoint, and if it gets a <code>200</code> response, save the token in the device’s storage. For <code>device_name</code>, I’m using the <a href="https://pub.dev/packages/device_info/">device_info package</a> to get the device’s unique ID, but in fact, this string is arbitrary.</p>
+<pre><code data-theme="github-light" data-lang="dart" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #D73A49;">final</span><span style="color: #24292E;"> response </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">await</span><span style="color: #24292E;"> http.</span><span style="color: #6F42C1;">post</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;$</span><span style="color: #005CC5;">API_URL</span><span style="color: #032F62;">/token&#39;</span><span style="color: #24292E;">, body</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> {</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #032F62;">&#39;email&#39;</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> email,</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #032F62;">&#39;password&#39;</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> password,</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #032F62;">&#39;device_name&#39;</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">await</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">getDeviceId</span><span style="color: #24292E;">(),</span></div><div class='line'><span style="color: #24292E;">}, headers</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> {</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #032F62;">&#39;Accept&#39;</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #032F62;">&#39;application/json&#39;</span><span style="color: #24292E;">,</span></div><div class='line'><span style="color: #24292E;">});</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #D73A49;">if</span><span style="color: #24292E;"> (response.statusCode </span><span style="color: #D73A49;">==</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">200</span><span style="color: #24292E;">) {</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #005CC5;">String</span><span style="color: #24292E;"> token </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> response.body;</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">await</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">saveToken</span><span style="color: #24292E;">(token);</span></div><div class='line'><span style="color: #24292E;">    _isAuthenticated </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">true</span><span style="color: #24292E;">;</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #6F42C1;">notifyListeners</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #24292E;">}</span></div></code></pre>
+<p>I use the <a href="https://pub.dev/packages/shared_preferences"><code>shared_preferences</code> package</a>, which allows for the storage of simple key-value pairs, to save the token:</p>
+<pre><code data-theme="github-light" data-lang="dart" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #6F42C1;">saveToken</span><span style="color: #24292E;">(</span><span style="color: #005CC5;">String</span><span style="color: #24292E;"> token) </span><span style="color: #D73A49;">async</span><span style="color: #24292E;"> {</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">final</span><span style="color: #24292E;"> prefs </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">await</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">SharedPreferences</span><span style="color: #24292E;">.</span><span style="color: #6F42C1;">getInstance</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">await</span><span style="color: #24292E;"> prefs.</span><span style="color: #6F42C1;">setString</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;token&#39;</span><span style="color: #24292E;">, token);</span></div><div class='line'><span style="color: #24292E;">}</span></div></code></pre>
+<p>So now we’ve got the app displaying the books page after a successful login. But of course, as things stand, the books are accessible with or without successful login. Try it out: <code>curl https://api.sanctum-mobile.test/api/book</code>. So now let’s protect the route:</p>
+<pre><code data-theme="github-light" data-lang="php" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #005CC5;">Route</span><span style="color: #D73A49;">::</span><span style="color: #24292E;">:</span><span style="color: #6F42C1;">middleware</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;auth:sanctum&#39;</span><span style="color: #24292E;">)</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">get</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;book&#39;</span><span style="color: #24292E;">, [</span><span style="color: #005CC5;">BookController</span><span style="color: #D73A49;">::class</span><span style="color: #24292E;">, </span><span style="color: #032F62;">&#39;index&#39;</span><span style="color: #24292E;">]);</span></div></code></pre>
+<p>Login again via the app, and this time you’ll get an error: “Problem loading books”. You are successfully authenticating, but because we don’t as yet send the API token with our request to fetch the books, the API is quite rightly not sending them. As in the previous tutorial, let’s look at the Sanctum <a href="https://github.com/laravel/sanctum/blob/2.x/src/Guard.php">guard</a> to see what it’s doing here:</p>
+<pre><code data-theme="github-light" data-lang="php" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #D73A49;">if</span><span style="color: #24292E;"> ($token </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> $request</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">bearerToken</span><span style="color: #24292E;">()) {</span></div><div class='line'><span style="color: #24292E;">    $model </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">Sanctum</span><span style="color: #D73A49;">::</span><span style="color: #24292E;">$personalAccessTokenModel;</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #24292E;">    $accessToken </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> $model</span><span style="color: #D73A49;">::</span><span style="color: #6F42C1;">findToken</span><span style="color: #24292E;">($token);</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">if</span><span style="color: #24292E;"> (</span><span style="color: #D73A49;">!</span><span style="color: #24292E;"> $accessToken </span><span style="color: #D73A49;">||</span></div><div class='line'><span style="color: #24292E;">        (</span><span style="color: #005CC5;">$this</span><span style="color: #D73A49;">-&gt;</span><span style="color: #24292E;">expiration </span><span style="color: #D73A49;">&amp;&amp;</span></div><div class='line'><span style="color: #24292E;">         $accessToken</span><span style="color: #D73A49;">-&gt;</span><span style="color: #24292E;">created_at</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">lte</span><span style="color: #24292E;">(</span><span style="color: #6F42C1;">now</span><span style="color: #24292E;">()</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">subMinutes</span><span style="color: #24292E;">(</span><span style="color: #005CC5;">$this</span><span style="color: #D73A49;">-&gt;</span><span style="color: #24292E;">expiration))) </span><span style="color: #D73A49;">||</span></div><div class='line'><span style="color: #24292E;">         </span><span style="color: #D73A49;">!</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">$this</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">hasValidProvider</span><span style="color: #24292E;">($accessToken</span><span style="color: #D73A49;">-&gt;</span><span style="color: #24292E;">tokenable)) {</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #D73A49;">return</span><span style="color: #24292E;">;</span></div><div class='line'><span style="color: #24292E;">    }</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">return</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">$this</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">supportsTokens</span><span style="color: #24292E;">($accessToken</span><span style="color: #D73A49;">-&gt;</span><span style="color: #24292E;">tokenable) </span><span style="color: #D73A49;">?</span><span style="color: #24292E;"> $accessToken</span><span style="color: #D73A49;">-&gt;</span><span style="color: #24292E;">tokenable</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">withAccessToken</span><span style="color: #24292E;">(</span></div><div class='line'><span style="color: #24292E;">        </span><span style="color: #6F42C1;">tap</span><span style="color: #24292E;">($accessToken</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">forceFill</span><span style="color: #24292E;">([</span><span style="color: #032F62;">&#39;last_used_at&#39;</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">=&gt;</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">now</span><span style="color: #24292E;">()]))</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">save</span><span style="color: #24292E;">()</span></div><div class='line'><span style="color: #24292E;">    ) </span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">null</span><span style="color: #24292E;">;</span></div><div class='line'><span style="color: #24292E;">}</span></div></code></pre>
+<p>The first condition is skipped since we aren’t using the web guard. Which leaves us with the above code. First, it only runs if the request has a “Bearer” token, i.e. if it contains an <code>Authorization</code> header which starts with the string “Bearer”. If it does, it will call the <a href="https://github.com/laravel/sanctum/blob/2.x/src/PersonalAccessToken.php#L56-L67"><code>findToken</code> method</a> on the <code>PersonalAccessToken</code> model:</p>
+<pre><code data-theme="github-light" data-lang="php" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #D73A49;">if</span><span style="color: #24292E;"> (</span><span style="color: #005CC5;">strpos</span><span style="color: #24292E;">($token, </span><span style="color: #032F62;">&#39;|&#39;</span><span style="color: #24292E;">) </span><span style="color: #D73A49;">===</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">false</span><span style="color: #24292E;">) {</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">return</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">static::</span><span style="color: #6F42C1;">where</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;token&#39;</span><span style="color: #24292E;">, </span><span style="color: #005CC5;">hash</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;sha256&#39;</span><span style="color: #24292E;">, $token))</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">first</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #24292E;">}</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #24292E;">[$id, $token] </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">explode</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;|&#39;</span><span style="color: #24292E;">, $token, </span><span style="color: #005CC5;">2</span><span style="color: #24292E;">);</span></div><div class='line'>&nbsp;</div><div class='line'><span style="color: #D73A49;">if</span><span style="color: #24292E;"> ($instance </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">static::</span><span style="color: #6F42C1;">find</span><span style="color: #24292E;">($id)) {</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">return</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">hash_equals</span><span style="color: #24292E;">($instance</span><span style="color: #D73A49;">-&gt;</span><span style="color: #24292E;">token, </span><span style="color: #005CC5;">hash</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;sha256&#39;</span><span style="color: #24292E;">, $token)) </span><span style="color: #D73A49;">?</span><span style="color: #24292E;"> $instance </span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">null</span><span style="color: #24292E;">;</span></div><div class='line'><span style="color: #24292E;">}</span></div></code></pre>
+<p>The first conditional checks to see whether the pipe character is in the token and, if not, to return the first model that matches the token. I assume this is to preserve backward compatibility with versions of Sanctum before 2.3, which <a href="https://github.com/laravel/sanctum/blob/1.x/src/HasApiTokens.php#L52">did not include the pipe character in the plain text token</a> when returning it to the user. (<a href="https://github.com/laravel/sanctum/pull/136">Here is the pull request</a>: the reason was to make the token lookup query more performant.) Anyway, assuming the pipe character <em>is</em> there, Sanctum grabs the model’s ID and the token itself, and checks to see if the hash matches with what is stored in the database. If it does, the model is returned.</p>
+<p>Back in <code>Guard</code>: if no token is returned, or if we’re considering expiring tokens (which we’re not in this case), return <code>null</code> (in which case authentication fails). Finally:</p>
+<pre><code data-theme="github-light" data-lang="php" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #D73A49;">return</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">$this</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">supportsTokens</span><span style="color: #24292E;">($accessToken</span><span style="color: #D73A49;">-&gt;</span><span style="color: #24292E;">tokenable) </span><span style="color: #D73A49;">?</span><span style="color: #24292E;"> $accessToken</span><span style="color: #D73A49;">-&gt;</span><span style="color: #24292E;">tokenable</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">withAccessToken</span><span style="color: #24292E;">(</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #6F42C1;">tap</span><span style="color: #24292E;">($accessToken</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">forceFill</span><span style="color: #24292E;">([</span><span style="color: #032F62;">&#39;last_used_at&#39;</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">=&gt;</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">now</span><span style="color: #24292E;">()]))</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">save</span><span style="color: #24292E;">()</span></div><div class='line'><span style="color: #24292E;">) </span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">null</span><span style="color: #24292E;">;</span></div></code></pre>
+<p>Check that the <code>tokenable</code> model (i.e., the <code>User</code> model) supports tokens (in other words, that it uses the <code>HasApiTokens</code> trait). If not, return <code>null</code> – authentication fails. If so, then return this:</p>
+<pre><code data-theme="github-light" data-lang="php" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #24292E;">$accessToken</span><span style="color: #D73A49;">-&gt;</span><span style="color: #24292E;">tokenable</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">withAccessToken</span><span style="color: #24292E;">(</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #6F42C1;">tap</span><span style="color: #24292E;">($accessToken</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">forceFill</span><span style="color: #24292E;">([</span><span style="color: #032F62;">&#39;last_used_at&#39;</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">=&gt;</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">now</span><span style="color: #24292E;">()]))</span><span style="color: #D73A49;">-&gt;</span><span style="color: #6F42C1;">save</span><span style="color: #24292E;">()</span></div><div class='line'><span style="color: #24292E;">)</span></div></code></pre>
+<p>The above example uses the single-argument version of the <a href="https://laravel.com/docs/8.x/helpers#method-tap"><code>tap</code></a> helper. This can be used to force an Eloquent method (in this case, <code>save</code>) to return the model itself. Here the access token model’s <code>last_used_at</code> timestamp is updated. The saved model is then passed as an argument to the <code>User</code> model’s <code>withAccessToken</code> method (which it gets from the <code>HasApiTokens</code> trait). This is a compact way of updating the token’s <code>last_used_at</code> timestamp and returning its associated <code>User</code> model. Which means authentication has been successful.</p>
+<p>So, back to the app. With this authentication in place, we need to update the app’s call to the <code>book</code> endpoint to pass the token in the request’s <code>Authorization</code> header. To do this, update the <code>fetchBooks</code> method to grab the token from the <code>Auth</code> provider, then add it to the header:</p>
+<pre><code data-theme="github-light" data-lang="dart" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #005CC5;">String</span><span style="color: #24292E;"> token </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">await</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">Provider</span><span style="color: #24292E;">.</span><span style="color: #6F42C1;">of</span><span style="color: #24292E;">&lt;</span><span style="color: #005CC5;">AuthProvider</span><span style="color: #D73A49;">&gt;</span><span style="color: #24292E;">(context, listen</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">false</span><span style="color: #24292E;">).</span><span style="color: #6F42C1;">getToken</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #D73A49;">final</span><span style="color: #24292E;"> response </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">await</span><span style="color: #24292E;"> http.</span><span style="color: #D73A49;">get</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;$</span><span style="color: #005CC5;">API_URL</span><span style="color: #032F62;">/book&#39;</span><span style="color: #24292E;">, headers</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> {</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #032F62;">&#39;Authorization&#39;</span><span style="color: #D73A49;">:</span><span style="color: #24292E;"> </span><span style="color: #032F62;">&#39;Bearer $</span><span style="color: #005CC5;">token</span><span style="color: #032F62;">&#39;</span><span style="color: #24292E;">,</span></div><div class='line'><span style="color: #24292E;">});</span></div></code></pre>
+<p>Don’t forget to add a <code>getToken</code> method to the <code>AuthProvider</code> class:</p>
+<pre><code data-theme="github-light" data-lang="dart" class='torchlight' style='background-color: #fff; --theme-selection-background: #e2e5e9;'><!-- Syntax highlighted by torchlight.dev --><div class='line'><span style="color: #005CC5;">Future</span><span style="color: #D73A49;">&lt;</span><span style="color: #005CC5;">String</span><span style="color: #D73A49;">&gt;</span><span style="color: #24292E;"> </span><span style="color: #6F42C1;">getToken</span><span style="color: #24292E;">() </span><span style="color: #D73A49;">async</span><span style="color: #24292E;"> {</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">final</span><span style="color: #24292E;"> prefs </span><span style="color: #D73A49;">=</span><span style="color: #24292E;"> </span><span style="color: #D73A49;">await</span><span style="color: #24292E;"> </span><span style="color: #005CC5;">SharedPreferences</span><span style="color: #24292E;">.</span><span style="color: #6F42C1;">getInstance</span><span style="color: #24292E;">();</span></div><div class='line'><span style="color: #24292E;">    </span><span style="color: #D73A49;">return</span><span style="color: #24292E;"> prefs.</span><span style="color: #6F42C1;">getString</span><span style="color: #24292E;">(</span><span style="color: #032F62;">&#39;token&#39;</span><span style="color: #24292E;">);</span></div><div class='line'><span style="color: #24292E;">}</span></div></code></pre>
+<p>Now try logging in again, and this time the books should be displayed.</p>
+<p>The final code for the API and app can be found here (including functionality for logging out):</p>
+<ul>
+<li>Backend: <a href="https://github.com/unlikenesses/sanctum-flutter-backend">unlikenesses/sanctum-flutter-backend</a>
+</li>
+<li>Flutter App: <a href="https://github.com/unlikenesses/sanctum-flutter-app">unlikenesses/sanctum-flutter-app</a>
+</li>
+</ul>
+            </div>
+            <div class="mt-10">
+                <div class="flex flex-col items-start space-y-4 sm:flex-row sm:space-x-6 sm:space-y-0">
+    <!--[if BLOCK]><![endif]-->        <img
+            class="h-20 w-20 rounded-lg object-cover"
+            src="https://www.gravatar.com/avatar/d16719aa27ad07ee0e1667b48398b2be"
+            alt="Alex Pestell photo"
+        />
+     <!--[if ENDBLOCK]><![endif]-->
+
+    <div>
+        <p class="font-display text-2xl font-bold leading-none text-black" itemprop="author">
+            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80" href="/@unlikenesses" rel="author"
+            wire:navigate.hover
+    >
+    Alex Pestell
+</a>
+        </p>
+        <div
+            class="prose prose-sm mt-2 text-gray-600 prose-a:text-red-600 prose-a:transition prose-a:hover:text-red-700"
+        >
+            <p>Full stack developer at fortrabbit in Berlin.</p>
+
+        </div>
+        <div class="mt-4 flex gap-2">
+            <!--[if BLOCK]><![endif]-->                <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 inline-flex h-5 w-5 items-center justify-center !rounded-full hover:opacity-80" href="https://twitter.com/@unlikenesses" target="_blank" rel="noopener noreferrer"
+    >
+    <img
+                        class="h-4 w-4"
+                        src="https://picperf.dev/https://laravel-news.com/images/x.svg"
+                        loading="lazy"
+                        alt="X"
+                    />
+                    <span class="sr-only">X</span>
+</a>
+             <!--[if ENDBLOCK]><![endif]-->
+
+            <!--[if BLOCK]><![endif]-->                <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 inline-flex h-5 w-5 items-center justify-center !rounded-full hover:opacity-80" href="https://github.com/unlikenesses" target="_blank" rel="noopener noreferrer"
+    >
+    <img
+                        class="h-4 w-4"
+                        src="https://picperf.dev/https://laravel-news.com/images/github.svg"
+                        loading="lazy"
+                        alt="GitHub"
+                    />
+                    <span class="sr-only">GitHub</span>
+</a>
+             <!--[if ENDBLOCK]><![endif]-->
+
+            <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+        </div>
+    </div>
+</div>
+            </div>
+            <div class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2">
+                <span class="text-gray-600">Filed in:</span>
+                <div class="flex flex-wrap items-center gap-x-2 gap-y-2">
+                    <!--[if BLOCK]><![endif]-->    <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 inline-flex !rounded-full px-4 py-2 text-xs font-bold leading-4 hover:opacity-80 focus-visible:ring-offset-1 bg-red-600 text-white" href="/category/news"
+            wire:navigate.hover
+    >
+    News
+</a>
+ <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+                </div>
+            </div>
+        </div>
+    </article>
+    <div class="mx-auto max-w-4xl px-6 pb-32 pt-10">
+        <div class="relative">
+    <img
+    delay="1500" class="absolute -top-10 right-16 z-10 lg:-top-6 lg:left-1/3 lg:right-auto"
+    x-data="{
+        initializeAnimation: false,
+        init() {
+            setTimeout(() => {
+                this.initializeAnimation = true;
+            }, 1500);
+        },
+    }"
+    :class="initializeAnimation ? 'animate-cube' : ''"
+    src="https://picperf.dev/https://laravel-news.com/images/cube.svg"
+    alt="Cube"
+/>
+    <div
+        class="relative flex flex-wrap items-center justify-between gap-8 overflow-hidden rounded-lg border border-gray-100 bg-white p-8 shadow-card lg:flex-nowrap"
+    >
+        <span class="absolute inset-y-0 left-0 w-1 bg-red-600"></span>
+        <div>
+            <h2 class="text-2xl font-bold sm:text-3xl">Laravel Newsletter</h2>
+            <p class="mt-1 text-gray-600">
+                Join 40k+ other developers and never miss out on new tips, tutorials, and more.
+            </p>
+        </div>
+        <div class="lg:shrink-0">
+            <div wire:snapshot="{&quot;data&quot;:{&quot;email&quot;:null,&quot;submitted&quot;:false,&quot;failed&quot;:false,&quot;location&quot;:&quot;article&quot;},&quot;memo&quot;:{&quot;id&quot;:&quot;0knrRWvcXzSrXTeHdEOu&quot;,&quot;name&quot;:&quot;newsletter-signup&quot;,&quot;path&quot;:&quot;using-sanctum-to-authenticate-a-mobile-app&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;f1c8defc4de86cf6730c5482503094362c1848bf9ec847f868ab5566283a8cfd&quot;}" wire:effects="[]" wire:id="0knrRWvcXzSrXTeHdEOu">
+    <!--[if BLOCK]><![endif]-->        <form wire:submit="submit">
+            <div class="flex w-full flex-wrap items-stretch gap-4">
+                <label class="relative flex min-w-[240px] flex-1 items-center bg-white">
+                    <span class="sr-only">Email</span>
+                    <img
+                        src="https://picperf.dev/https://laravel-news.com/images/icons/newsletter.svg"
+                        alt="Newsletter icon"
+                        class="pointer-events-none absolute left-3 top-3"
+                    />
+                    <input
+                        wire:model="email"
+                        type="text"
+                        class="w-full rounded-lg border-gray-100 bg-transparent px-12 py-3 text-gray-600 placeholder-gray-600/50 transition focus:border-gray-100 focus:bg-gray-100/40 focus:outline-none focus:ring-2 focus:ring-red-600/80 focus:ring-offset-2"
+                        placeholder="Email"
+                    />
+                </label>
+                <button
+    type="submit" class="inline-flex items-center justify-center leading-none bg-red-600 border border-transparent rounded-lg font-bold text-base text-white hover:bg-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 focus-visible:ring-offset-2 disabled:bg-red-600/50 disabled:cursor-not-allowed transition ease-in-out duration-300 px-6 py-4"
+>
+    Join free
+</button>
+            </div>
+            <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+
+            <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+        </form>
+     <!--[if ENDBLOCK]><![endif]-->
+</div>
+        </div>
+    </div>
+</div>
+        <div class="mt-10">
+            <div wire:snapshot="{&quot;data&quot;:[],&quot;memo&quot;:{&quot;id&quot;:&quot;g8IFu1zGv06lQy6Htrya&quot;,&quot;name&quot;:&quot;components.larajobs-card&quot;,&quot;path&quot;:&quot;using-sanctum-to-authenticate-a-mobile-app&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;ce615aa2846c4de01be881be01afed1c69cc99a93aadba80b357a480b4d88cb2&quot;}" wire:effects="[]" wire:id="g8IFu1zGv06lQy6Htrya" class="relative flex justify-between rounded-lg bg-white border border-gray-100 shadow-card">
+    <img
+    delay="0" class="absolute left-0 top-3 -translate-x-1/2"
+    x-data="{
+        initializeAnimation: false,
+        init() {
+            setTimeout(() => {
+                this.initializeAnimation = true;
+            }, 0);
+        },
+    }"
+    :class="initializeAnimation ? 'animate-cube' : ''"
+    src="https://picperf.dev/https://laravel-news.com/images/cube.svg"
+    alt="Cube"
+/>
+    <div class="px-8 py-12 lg:p-12">
+        <h2 class="text-3xl font-bold">Laravel Jobs</h2>
+        <p class="mt-2 text-gray-600">Explore hundreds of open positions today.</p>
+        <a href="https://larajobs.com" class="mt-6 inline-flex items-center px-6 py-4 leading-none bg-black border border-transparent rounded-lg font-bold text-base text-white hover:bg-gray-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 focus-visible:ring-offset-2 transition ease-in-out duration-300">
+            View all jobs
+        </a>
+    </div>
+    <div class="hidden flex-col gap-1 overflow-hidden py-2 sm:flex relative">
+        <!--[if BLOCK]><![endif]-->        <div
+            class="w-56 translate-x-6 rounded-lg border border-gray-100 px-4 py-3 text-xs font-bold shadow-sm truncate"
+        >
+
+            <a href="https://larajobs.com/job/3131?ref=laravelnews&utm_source=laravelnews&utm_medium=referral">
+                Mid &amp; Senior Laravel Developer (Full Stack)
+            </a>
+
+
+        </div>
+                <div
+            class="w-56 translate-x-6 rounded-lg border border-gray-100 px-4 py-3 text-xs font-bold shadow-sm truncate"
+        >
+
+            <a href="https://larajobs.com/job/3133?ref=laravelnews&utm_source=laravelnews&utm_medium=referral">
+                Laravel Backend Lead
+            </a>
+
+
+        </div>
+                <div
+            class="w-56 translate-x-6 rounded-lg border border-gray-100 px-4 py-3 text-xs font-bold shadow-sm truncate"
+        >
+
+            <a href="https://larajobs.com/job/3136?ref=laravelnews&utm_source=laravelnews&utm_medium=referral">
+                Solution architect / Back end developer
+            </a>
+
+
+        </div>
+                <div
+            class="w-56 translate-x-6 rounded-lg border border-gray-100 px-4 py-3 text-xs font-bold shadow-sm truncate"
+        >
+
+            <a href="https://larajobs.com/job/3137?ref=laravelnews&utm_source=laravelnews&utm_medium=referral">
+                Senior Software Engineer
+            </a>
+
+
+        </div>
+                <div
+            class="w-56 translate-x-6 rounded-lg border border-gray-100 px-4 py-3 text-xs font-bold shadow-sm truncate"
+        >
+
+            <a href="https://larajobs.com/job/3138?ref=laravelnews&utm_source=laravelnews&utm_medium=referral">
+                Senior full-stack developer
+            </a>
+
+
+        </div>
+         <!--[if ENDBLOCK]><![endif]-->
+    </div>
+</div>
+        </div>
+    </div>
+    <div class="mx-auto w-full max-w-4xl px-6 lg:max-w-7xl">
+        <hr class="border-gray-600/30" />
+    </div>
+    <div class="py-12">
+        <section wire:snapshot="{&quot;data&quot;:{&quot;except&quot;:[[2402],{&quot;s&quot;:&quot;arr&quot;}],&quot;limit&quot;:6},&quot;memo&quot;:{&quot;id&quot;:&quot;oidFVJ42MBSqmbGdQ791&quot;,&quot;name&quot;:&quot;latest-articles-section&quot;,&quot;path&quot;:&quot;using-sanctum-to-authenticate-a-mobile-app&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;3bb2b625b90cc51776bd4ee9377212d0736d8a77f82d55be9be4b17c01044834&quot;}" wire:effects="[]" wire:id="oidFVJ42MBSqmbGdQ791" class="py-20">
+    <div class="mx-auto w-full max-w-2xl px-6 lg:max-w-7xl">
+        <div class="flex flex-wrap items-center justify-between gap-x-8 gap-y-3">
+            <h2 class="text-3xl font-bold sm:text-4xl lg:text-[40px]">The latest</h2>
+            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 font-bold text-red-600 hover:text-red-700" href="/blog"
+            wire:navigate.hover
+    >
+    View all &rarr;
+</a>
+        </div>
+        <div class="mt-12 grid gap-x-8 gap-y-12 lg:grid-cols-3">
+            <!--[if BLOCK]><![endif]-->                <div class="group relative" wire:key="latest-how-to-remove-all-extra-spaces-in-a-string-with-laravel">
+    <!--[if BLOCK]><![endif]-->        <div
+            class="aspect-[2/1] w-full rounded-lg bg-gray-100 shadow-card transition group-hover:opacity-80"
+        >
+            <img
+                src="https://picperf.dev/https://laravelnews.s3.amazonaws.com/featured-images/squish-helper.jpg"
+                alt="How to remove all extra spaces in a string with Laravel image"
+                class="h-full w-full rounded-lg object-cover"
+                loading="lazy"
+            />
+        </div>
+
+        <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+
+        <h3 class="mt-4 text-xl font-bold transition group-hover:text-red-600 sm:text-2xl">
+            How to remove all extra spaces in a string with Laravel
+        </h3>
+
+        <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+     <!--[if ENDBLOCK]><![endif]-->
+    <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 absolute inset-0 !block h-full w-full !rounded-lg" href="https://laravel-news.com/how-to-remove-all-extra-spaces-in-a-string-with-laravel" onclick=""
+    >
+    <span class="sr-only">Read article</span>
+</a>
+</div>
+                            <div class="group relative" wire:key="latest-laravel-langcountry-localization">
+    <!--[if BLOCK]><![endif]-->        <div
+            class="aspect-[2/1] w-full rounded-lg bg-gray-100 shadow-card transition group-hover:opacity-80"
+        >
+            <img
+                src="https://picperf.dev/https://laravelnews.s3.amazonaws.com/featured-images/laravel-langcountry-featured.png"
+                alt="LangCountry is a Localization Package for Laravel image"
+                class="h-full w-full rounded-lg object-cover"
+                loading="lazy"
+            />
+        </div>
+
+        <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+
+        <h3 class="mt-4 text-xl font-bold transition group-hover:text-red-600 sm:text-2xl">
+            LangCountry is a Localization Package for Laravel
+        </h3>
+
+        <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+     <!--[if ENDBLOCK]><![endif]-->
+    <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 absolute inset-0 !block h-full w-full !rounded-lg" href="https://laravel-news.com/laravel-langcountry-localization" onclick=""
+    >
+    <span class="sr-only">Read article</span>
+</a>
+</div>
+                            <div class="group relative" wire:key="latest-how-to-add-a-confirmation-dialog-with-livewire">
+    <!--[if BLOCK]><![endif]-->        <div
+            class="aspect-[2/1] w-full rounded-lg bg-gray-100 shadow-card transition group-hover:opacity-80"
+        >
+            <img
+                src="https://picperf.dev/https://laravelnews.s3.amazonaws.com/featured-images/wire-confirm-featured.png"
+                alt="How to add a confirmation dialog with Livewire image"
+                class="h-full w-full rounded-lg object-cover"
+                loading="lazy"
+            />
+        </div>
+
+        <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+
+        <h3 class="mt-4 text-xl font-bold transition group-hover:text-red-600 sm:text-2xl">
+            How to add a confirmation dialog with Livewire
+        </h3>
+
+        <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+     <!--[if ENDBLOCK]><![endif]-->
+    <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 absolute inset-0 !block h-full w-full !rounded-lg" href="https://laravel-news.com/how-to-add-a-confirmation-dialog-with-livewire" onclick=""
+    >
+    <span class="sr-only">Read article</span>
+</a>
+</div>
+                            <div class="group relative" wire:key="latest-bolt-sql-fast-and-beautiful-database-client">
+    <!--[if BLOCK]><![endif]-->        <div
+            class="aspect-[2/1] w-full rounded-lg bg-gray-100 shadow-card transition group-hover:opacity-80"
+        >
+            <img
+                src="https://picperf.dev/https://laravelnews.s3.amazonaws.com/featured-images/bolt-sql-featured.jpg"
+                alt="Bolt SQL - Fast and beautiful database client image"
+                class="h-full w-full rounded-lg object-cover"
+                loading="lazy"
+            />
+        </div>
+
+        <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+
+        <h3 class="mt-4 text-xl font-bold transition group-hover:text-red-600 sm:text-2xl">
+            Bolt SQL - Fast and beautiful database client
+        </h3>
+
+        <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+     <!--[if ENDBLOCK]><![endif]-->
+    <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 absolute inset-0 !block h-full w-full !rounded-lg" href="https://laravel-news.com/bolt-sql-fast-and-beautiful-database-client" onclick=""
+    >
+    <span class="sr-only">Read article</span>
+</a>
+</div>
+                            <div class="group relative" wire:key="latest-pest-support-added-to-better-phpunit-vs-code-extension">
+    <!--[if BLOCK]><![endif]-->        <div
+            class="aspect-[2/1] w-full rounded-lg bg-gray-100 shadow-card transition group-hover:opacity-80"
+        >
+            <img
+                src="https://picperf.dev/https://laravelnews.s3.amazonaws.com/featured-images/pest-logo.webp"
+                alt="Run Pest Tests in VS Code with Better PHPUnit image"
+                class="h-full w-full rounded-lg object-cover"
+                loading="lazy"
+            />
+        </div>
+
+        <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+
+        <h3 class="mt-4 text-xl font-bold transition group-hover:text-red-600 sm:text-2xl">
+            Run Pest Tests in VS Code with Better PHPUnit
+        </h3>
+
+        <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+     <!--[if ENDBLOCK]><![endif]-->
+    <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 absolute inset-0 !block h-full w-full !rounded-lg" href="https://laravel-news.com/pest-support-added-to-better-phpunit-vs-code-extension" onclick=""
+    >
+    <span class="sr-only">Read article</span>
+</a>
+</div>
+                            <div class="group relative" wire:key="latest-component-caching-livewire">
+    <!--[if BLOCK]><![endif]-->        <div
+            class="aspect-[2/1] w-full rounded-lg bg-gray-100 shadow-card transition group-hover:opacity-80"
+        >
+            <img
+                src="https://picperf.dev/https://laravelnews.s3.amazonaws.com/featured-images/livewire-component-caching.jpg"
+                alt="Leveraging Component Caching with Computed Properties in Laravel Livewire image"
+                class="h-full w-full rounded-lg object-cover"
+                loading="lazy"
+            />
+        </div>
+
+        <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+
+        <h3 class="mt-4 text-xl font-bold transition group-hover:text-red-600 sm:text-2xl">
+            Leveraging Component Caching with Computed Properties in Laravel Livewire
+        </h3>
+
+        <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+     <!--[if ENDBLOCK]><![endif]-->
+    <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 absolute inset-0 !block h-full w-full !rounded-lg" href="https://laravel-news.com/component-caching-livewire" onclick=""
+    >
+    <span class="sr-only">Read article</span>
+</a>
+</div>
+             <!--[if ENDBLOCK]><![endif]-->
+        </div>
+    </div>
+</section>
+    </div>
+    <section wire:snapshot="{&quot;data&quot;:{&quot;limited&quot;:true,&quot;levels&quot;:[[&quot;Gold&quot;,&quot;Silver&quot;],{&quot;s&quot;:&quot;arr&quot;}]},&quot;memo&quot;:{&quot;id&quot;:&quot;AEGi4YBTxc6OSbId4svZ&quot;,&quot;name&quot;:&quot;partners-section&quot;,&quot;path&quot;:&quot;using-sanctum-to-authenticate-a-mobile-app&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;ff837d45d7bf8a37e08ebdf6f14c2ac93eb8d5991c78002accfdbaf47ca9cd7e&quot;}" wire:effects="[]" wire:id="AEGi4YBTxc6OSbId4svZ" class="bg-gradient-to-r from-gray-100 to-white py-24 sm:py-32">
+    <div class="mx-auto w-full max-w-2xl px-6 lg:max-w-7xl">
+        <div class="flex flex-wrap items-center justify-between gap-x-8 gap-y-3">
+            <h2 class="text-3xl font-bold sm:text-4xl lg:text-[40px]">
+                <a href="/partners" class="hover:text-red-600">Partners</a>
+            </h2>
+            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 font-bold text-red-600 hover:text-red-700" href="/partners"
+            wire:navigate.hover
+    >
+    View all &rarr;
+</a>
+        </div>
+        <div class="mt-12 grid gap-8 md:mt-16 md:grid-cols-2 lg:grid-cols-3">
+            <!--[if BLOCK]><![endif]-->                <div
+    class="group relative bg-white rounded-lg shadow-card border border-gray-100 p-8 w-full shrink-0 lg:p-12" partner="{&quot;id&quot;:5,&quot;user_id&quot;:63,&quot;title&quot;:&quot;Kirschbaum&quot;,&quot;slug&quot;:&quot;kirschbaum&quot;,&quot;url&quot;:&quot;http:\/\/kirschbaumdevelopment.com\/&quot;,&quot;primary&quot;:true,&quot;level&quot;:&quot;Silver&quot;,&quot;category&quot;:&quot;Agency&quot;,&quot;logo&quot;:&quot;partners\/Kirschbaum-dark.png&quot;,&quot;description&quot;:&quot;Providing innovation and stability to ensure your web application succeeds.&quot;,&quot;featured_image&quot;:null,&quot;content&quot;:&quot;&quot;,&quot;status&quot;:&quot;Published&quot;,&quot;ends_at&quot;:null,&quot;created_at&quot;:&quot;2021-01-07T20:57:34.000000Z&quot;,&quot;updated_at&quot;:&quot;2021-01-07T20:57:34.000000Z&quot;}" wire:key="partner-5"
+>
+    <img
+        src="https://picperf.dev/https://laravelnews.s3.amazonaws.com/partners/Kirschbaum-dark.png"
+        alt="Kirschbaum logo"
+        class="h-10 object-contain object-left-top transition group-hover:opacity-80"
+        height="40"
+        width="300px"
+        loading="lazy"
+    />
+
+    <h3 class="sr-only">
+        Kirschbaum
+    </h3>
+
+    <p class="mt-6 text-gray-600 group-hover:opacity-80">Providing innovation and stability to ensure your web application succeeds.</p>
+
+    <!--[if BLOCK]><![endif]-->        <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 absolute inset-0 !block h-full w-full !rounded-lg" href="http://kirschbaumdevelopment.com/" target="_blank"
+    >
+    <span class="sr-only">Visit partner's website</span>
+</a>
+     <!--[if ENDBLOCK]><![endif]-->
+
+</div>
+                            <div
+    class="group relative bg-white rounded-lg shadow-card border border-gray-100 p-8 w-full shrink-0 lg:p-12" partner="{&quot;id&quot;:15,&quot;user_id&quot;:3696,&quot;title&quot;:&quot;Bacancy&quot;,&quot;slug&quot;:&quot;bacancy&quot;,&quot;url&quot;:&quot;https:\/\/www.bacancytechnology.com\/hire-laravel-developer?utm_source=LaravelNews&amp;utm_medium=sponsored&amp;utm_campaign=Visit&quot;,&quot;primary&quot;:true,&quot;level&quot;:&quot;Silver&quot;,&quot;category&quot;:&quot;Agency&quot;,&quot;logo&quot;:&quot;partners\/Bacancy_logo_400x100.png&quot;,&quot;description&quot;:&quot;Supercharge your project with a seasoned Laravel developer with 4-6 years of experience for just $2500\/month. Get 160 hours of dedicated expertise &amp; a risk-free 15-day trial. Schedule a call now!&quot;,&quot;featured_image&quot;:&quot;partners\/featured_images\/VyrNyLB2PKo29Cvgt1da6MvaqFfLnFzWHZMJ5Kq6.png&quot;,&quot;content&quot;:&quot;&lt;h2&gt;Trusted Laravel Development Partner&lt;\/h2&gt;\n\nBacancy is a premier Laravel development company with over a decade of experience. We have a skilled pool of 1050+ developers with expertise in multiple technologies. From startups to Fortune 500 companies partnering with brands worldwide, we deliver fast, high-quality, cost-effective solutions at affordable rates. Get quick access to Laravel developers with 4-6 years of experience. Reach out today and secure your dedicated Laravel developer at &lt;b&gt;$2500\/month&lt;\/b&gt;.\n\n&lt;h2&gt;Hiring Engagement Models&lt;\/h2&gt;\n\n&lt;strong&gt;Hourly Basis&lt;\/strong&gt; - $18\/hour -\nWe\u2019ll provide a fully signed NDA for your Project\u2019s confidentiality.\n\n&lt;strong&gt;Monthly Basis&lt;\/strong&gt; - $2500\/month - 4+ Years of Exp. Sr. Laravel Developer - 160 hours.\n\n&lt;strong&gt;Fixed Based&lt;\/strong&gt; \u2013\nYou can share your requirements with our team. Our team will evaluate your requirements and then get back to you with the detailed estimation of your project along with time and cost as well as the roadmap of the project.\n\n&lt;blockquote&gt;\&quot;Join 200+ Fast-scaling Startups and Fortune 500 Companies That Have Hired Laravel Developers From us\&quot;&lt;\/blockquote&gt;\n&lt;blockquote&gt;&lt;strong style=\&quot;color: #f1821c;\&quot;&gt;Get Quote&lt;\/strong&gt; :- &lt;a href=\&quot;mailto:solutions@bacancy.com\&quot;&gt;solutions@bacancy.com&lt;\/a&gt;&lt;\/blockquote&gt;\n\n&lt;strong&gt;Our Skills &amp; Expertise&lt;\/strong&gt;\n- APIs\n- Code Review\n- Devops\n- Laravel\n- Laravel Upgrades\n- Quality Assurance\n- React\n- SEO\n- Staff Augmentation\n- Systems Integration\n- UX \/ UI Design\n- Vue\n\n&quot;,&quot;status&quot;:&quot;Published&quot;,&quot;ends_at&quot;:null,&quot;created_at&quot;:&quot;2022-02-02T20:57:34.000000Z&quot;,&quot;updated_at&quot;:&quot;2023-10-11T12:26:32.000000Z&quot;}" wire:key="partner-15"
+>
+    <img
+        src="https://picperf.dev/https://laravelnews.s3.amazonaws.com/partners/Bacancy_logo_400x100.png"
+        alt="Bacancy logo"
+        class="h-10 object-contain object-left-top transition group-hover:opacity-80"
+        height="40"
+        width="300px"
+        loading="lazy"
+    />
+
+    <h3 class="sr-only">
+        Bacancy
+    </h3>
+
+    <p class="mt-6 text-gray-600 group-hover:opacity-80">Supercharge your project with a seasoned Laravel developer with 4-6 years of experience for just $2500/month. Get 160 hours of dedicated expertise &amp; a risk-free 15-day trial. Schedule a call now!</p>
+
+    <!--[if BLOCK]><![endif]-->        <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 absolute inset-0 !block h-full w-full !rounded-lg" href="https://laravel-news.com/partner/bacancy"
+            wire:navigate.hover
+    >
+    <span class="sr-only">Visit partner's website</span>
+</a>
+     <!--[if ENDBLOCK]><![endif]-->
+
+</div>
+                            <div
+    class="group relative bg-white rounded-lg shadow-card border border-gray-100 p-8 w-full shrink-0 lg:p-12" partner="{&quot;id&quot;:21,&quot;user_id&quot;:3947,&quot;title&quot;:&quot;Lunar: Laravel E-Commerce&quot;,&quot;slug&quot;:&quot;lunar&quot;,&quot;url&quot;:&quot;https:\/\/lunarphp.io&quot;,&quot;primary&quot;:true,&quot;level&quot;:&quot;Silver&quot;,&quot;category&quot;:&quot;Developer Tools&quot;,&quot;logo&quot;:&quot;partners\/lunar-laravel-news.png&quot;,&quot;description&quot;:&quot;An open-source package that brings the power of modern headless e-commerce functionality to Laravel.&quot;,&quot;featured_image&quot;:&quot;partners\/featured_images\/b6EADqH6199MB9nNLZJ7PpFDyAhBMp-metabHVuYXItZmVhdHVyZWQtcGFydG5lci5qcGc=-.jpg&quot;,&quot;content&quot;:&quot;[Lunar PHP](https:\/\/lunarphp.io) is an open-source package that brings the power of modern headless e-commerce functionality to Laravel. Some of the features of Lunar include: \n\n**E-Commerce Engine**\n\nBased around Laravel Eloquent models, the e-commerce core provides all the functionality you need to create an online store.\n\n**Administration Hub**\n\nManage your catalogue, customers and orders in our modern and extendable admin area, built in Laravel Livewire.\n\n**Storefront API**\n\nPower your JavaScript storefront or mobile app via Lunar&#039;s RESTful JSON:API.\n\n-- \n\nLunar PHP is a solid toolkit with all the basic necessities to get your online store up and running with Laravel. While it already has of an impressive array of features, the future promises to bring even more enhancements to the table including an add-on store, API, and more.&quot;,&quot;status&quot;:&quot;Published&quot;,&quot;ends_at&quot;:null,&quot;created_at&quot;:&quot;2023-04-07T19:57:34.000000Z&quot;,&quot;updated_at&quot;:&quot;2023-10-03T02:51:20.000000Z&quot;}" wire:key="partner-21"
+>
+    <img
+        src="https://picperf.dev/https://laravelnews.s3.amazonaws.com/partners/lunar-laravel-news.png"
+        alt="Lunar: Laravel E-Commerce logo"
+        class="h-10 object-contain object-left-top transition group-hover:opacity-80"
+        height="40"
+        width="300px"
+        loading="lazy"
+    />
+
+    <h3 class="sr-only">
+        Lunar: Laravel E-Commerce
+    </h3>
+
+    <p class="mt-6 text-gray-600 group-hover:opacity-80">An open-source package that brings the power of modern headless e-commerce functionality to Laravel.</p>
+
+    <!--[if BLOCK]><![endif]-->        <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 absolute inset-0 !block h-full w-full !rounded-lg" href="https://laravel-news.com/partner/lunar"
+            wire:navigate.hover
+    >
+    <span class="sr-only">Visit partner's website</span>
+</a>
+     <!--[if ENDBLOCK]><![endif]-->
+
+</div>
+                            <div
+    class="group relative bg-white rounded-lg shadow-card border border-gray-100 p-8 w-full shrink-0 lg:p-12" partner="{&quot;id&quot;:16,&quot;user_id&quot;:3335,&quot;title&quot;:&quot;LoadForge&quot;,&quot;slug&quot;:&quot;loadforge&quot;,&quot;url&quot;:&quot;https:\/\/loadforge.com\/?utm_source=ln&quot;,&quot;primary&quot;:true,&quot;level&quot;:&quot;Silver&quot;,&quot;category&quot;:&quot;Developer Tools&quot;,&quot;logo&quot;:&quot;partners\/loadforge-400x100.png&quot;,&quot;description&quot;:&quot;Easy, affordable load testing and stress tests for websites, APIs and databases.&quot;,&quot;featured_image&quot;:null,&quot;content&quot;:null,&quot;status&quot;:&quot;Published&quot;,&quot;ends_at&quot;:null,&quot;created_at&quot;:&quot;2022-02-02T20:57:34.000000Z&quot;,&quot;updated_at&quot;:&quot;2022-02-02T20:57:34.000000Z&quot;}" wire:key="partner-16"
+>
+    <img
+        src="https://picperf.dev/https://laravelnews.s3.amazonaws.com/partners/loadforge-400x100.png"
+        alt="LoadForge logo"
+        class="h-10 object-contain object-left-top transition group-hover:opacity-80"
+        height="40"
+        width="300px"
+        loading="lazy"
+    />
+
+    <h3 class="sr-only">
+        LoadForge
+    </h3>
+
+    <p class="mt-6 text-gray-600 group-hover:opacity-80">Easy, affordable load testing and stress tests for websites, APIs and databases.</p>
+
+    <!--[if BLOCK]><![endif]-->        <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 absolute inset-0 !block h-full w-full !rounded-lg" href="https://loadforge.com/?utm_source=ln" target="_blank"
+    >
+    <span class="sr-only">Visit partner's website</span>
+</a>
+     <!--[if ENDBLOCK]><![endif]-->
+
+</div>
+                            <div
+    class="group relative bg-white rounded-lg shadow-card border border-gray-100 p-8 w-full shrink-0 lg:p-12" partner="{&quot;id&quot;:26,&quot;user_id&quot;:4401,&quot;title&quot;:&quot;Oh Dear&quot;,&quot;slug&quot;:&quot;oh-dear&quot;,&quot;url&quot;:&quot;https:\/\/ohdear.app?via=laravelnews&quot;,&quot;primary&quot;:true,&quot;level&quot;:&quot;Gold&quot;,&quot;category&quot;:&quot;Developer Tools&quot;,&quot;logo&quot;:&quot;partners\/logos\/ohdear-logov2.jpg&quot;,&quot;description&quot;:&quot;Oh Dear is the best all-in-one monitoring tool for all your Laravel apps.&quot;,&quot;featured_image&quot;:&quot;partners\/featured_images\/DODOmVlwuZTcFlVyWbPC9Lmw3xwvuo-metab2gtZGVhci1sYXJhdmVsLW5ld3MyLmpwZWc=-.jpg&quot;,&quot;content&quot;:&quot;[Oh Dear](https:\/\/ohdear.app?via=laravelnews) is the best all-in-one monitoring tool for your entire website. You can [try it out for free](https:\/\/ohdear.app\/register?via=laravelnews) using the 10-day trial.\n\nIf you run a website and your website is down, you know what would-be visitors do: they close the tab and move on to the next site. When\u2019s the last time you waited more than a few seconds for a site to load? If your site is monitored by Oh Dear, you\u2019ll find out right way when it\u2019s down, however you want to be notified\u2009\u2014\u2009through email, SMS, Slack, webhooks, or any of a bunch of other options.\n\nBut Oh Dear goes way beyond uptime checking. We crawl your entire website and notify you whenever one of your pages is down.\n\n## Make sure your scheduled tasks run correctly\n\nOh Dear can [check if all scheduled tasks of your Laravel app run correctly](https:\/\/ohdear.app\/docs\/features\/cron-job-monitoring?via=laravelnews). Syncing your schedule with Oh Dear is dead easy using [the spatie\/laravel-cron-monitor package](https:\/\/github.com\/spatie\/laravel-schedule-monitor#getting-notified-when-a-scheduled-task-doesnt-finish-in-time?via=laravelnews).\n\n## Monitor the health of your Laravel app\n\nOh Dear can notify you when Horizon is down, your cache is failing, your disk is almost full, and more? Using [our application health check](https:\/\/ohdear.app\/docs\/features\/application-health-monitoring?via=laravelnews).   Again, it is very easy for Laravel developers to get started with this check. Just use the [spatie\/laravel-health](https:\/\/spatie.be\/docs\/laravel-health\/v1\/configuring-notifications\/via-oh-dear?via=laravelnews) package, which offers tight integration with Oh Dear.\n\n## All the checks that Oh Dear can perform\n\nOh Dear consists of several checks to ensure your Laravel app runs smoothly. \n\n1. [Uptime](https:\/\/ohdear.app\/docs\/features\/uptime-monitoring?via=laravelnews): as soon as one of your sites is down, we can notify you.\n2. [Performance](https:\/\/ohdear.app\/docs\/features\/performance-monitoring?via=laravelnews): we keep an eye on the performance and sudden changes in performance characteristics of your sites.\n3. [SSL\/TLS health](https:\/\/ohdear.app\/docs\/features\/certificate-health-monitoring?via=laravelnews): if a certificate is due to expire, has missing certificates in its chains or uses SHA-1 hashing, we&#039;ll let you know.\n4. [Mixed content detection](https:\/\/ohdear.app\/docs\/features\/mixed-content-reporting?via=laravelnews): we crawl your sites and will notify you when we detected mixed content.\n5. [Broken links](https:\/\/ohdear.app\/docs\/features\/broken-links-detection?via=laravelnews): we crawl your site and will notify you when we detected a broken link.\n6. [Cron job monitoring](https:\/\/ohdear.app\/docs\/features\/cron-job-monitoring?via=laravelnews): as soon as one of your scheduled tasks doesn&#039;t report back to us, we&#039;ll send you a notification.\n7. [Application Health monitoring](https:\/\/ohdear.app\/docs\/features\/application-health-monitoring?via=laravelnews): we monitor critical parts of your server and application. We&#039;ll let you know when you&#039;re running low on disk space, when your queues are not running, when the API you depend on is down, and much more...\n8. [Lighthouse SEO monitoring](https:\/\/ohdear.app\/docs\/features\/lighthouse-seo-monitoring?via=laravelnews): using Google Lighthouse, we monitor key performance metrics of your site and can notify you of SEO issues.\n8. [DNS record monitoring](https:\/\/ohdear.app\/docs\/features\/dns-monitoring?via=laravelnews): get notified whenever any of your DNS records change\n9. [Domain monitoring](https:\/\/ohdear.app\/docs\/features\/domain-monitoring?via=laravelnews): we let you know if your domain expires soon\n10. [Certificate transparency reporting](https:\/\/ohdear.app\/docs\/features\/certificate-transparency-reporting?via=laravelnews): we&#039;ll notify you as soon a new certificate is issued for your site.\n\nYou can [try out all these checks](https:\/\/ohdear.app\/register?via=laravelnews) using the free 10-day trial.\n&quot;,&quot;status&quot;:&quot;Published&quot;,&quot;ends_at&quot;:null,&quot;created_at&quot;:&quot;2023-09-30T00:07:38.000000Z&quot;,&quot;updated_at&quot;:&quot;2023-09-30T00:38:20.000000Z&quot;}" wire:key="partner-26"
+>
+    <img
+        src="https://picperf.dev/https://laravelnews.s3.amazonaws.com/partners/logos/ohdear-logov2.jpg"
+        alt="Oh Dear logo"
+        class="h-10 object-contain object-left-top transition group-hover:opacity-80"
+        height="40"
+        width="300px"
+        loading="lazy"
+    />
+
+    <h3 class="sr-only">
+        Oh Dear
+    </h3>
+
+    <p class="mt-6 text-gray-600 group-hover:opacity-80">Oh Dear is the best all-in-one monitoring tool for all your Laravel apps.</p>
+
+    <!--[if BLOCK]><![endif]-->        <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 absolute inset-0 !block h-full w-full !rounded-lg" href="https://laravel-news.com/partner/oh-dear"
+            wire:navigate.hover
+    >
+    <span class="sr-only">Visit partner's website</span>
+</a>
+     <!--[if ENDBLOCK]><![endif]-->
+
+</div>
+                            <div
+    class="group relative bg-white rounded-lg shadow-card border border-gray-100 p-8 w-full shrink-0 lg:p-12" partner="{&quot;id&quot;:27,&quot;user_id&quot;:376,&quot;title&quot;:&quot;Tinkerwell&quot;,&quot;slug&quot;:&quot;tinkerwell&quot;,&quot;url&quot;:&quot;https:\/\/tinkerwell.app\/?utm_source=laravel-news&amp;utm_medium=partner-page&amp;utm_campaign=gold-partner&quot;,&quot;primary&quot;:true,&quot;level&quot;:&quot;Gold&quot;,&quot;category&quot;:&quot;Developer Tools&quot;,&quot;logo&quot;:&quot;partners\/logos\/tinkerwell-partner-logo.png&quot;,&quot;description&quot;:&quot;The must-have code runner for Laravel developers. Tinker with AI, autocompletion and instant feedback on local and production environments.&quot;,&quot;featured_image&quot;:&quot;featured-images\/tinkerwell-3.png&quot;,&quot;content&quot;:&quot;## php artisan tinker on steroids\n\nThe code editor for Laravel that lets you write and run code snippets within the context of your applications, locally, via SSH, in Docker containers and even on Laravel Vapor.\n\n### The best-in-class autocompletion and editor experience\n\nTinkerwell provides an outstanding code completion experience that is optimized for Laravel applications, but also works with all other frameworks.\n&quot;,&quot;status&quot;:&quot;Published&quot;,&quot;ends_at&quot;:null,&quot;created_at&quot;:&quot;2023-10-01T08:04:48.000000Z&quot;,&quot;updated_at&quot;:&quot;2023-10-01T08:08:34.000000Z&quot;}" wire:key="partner-27"
+>
+    <img
+        src="https://picperf.dev/https://laravelnews.s3.amazonaws.com/partners/logos/tinkerwell-partner-logo.png"
+        alt="Tinkerwell logo"
+        class="h-10 object-contain object-left-top transition group-hover:opacity-80"
+        height="40"
+        width="300px"
+        loading="lazy"
+    />
+
+    <h3 class="sr-only">
+        Tinkerwell
+    </h3>
+
+    <p class="mt-6 text-gray-600 group-hover:opacity-80">The must-have code runner for Laravel developers. Tinker with AI, autocompletion and instant feedback on local and production environments.</p>
+
+    <!--[if BLOCK]><![endif]-->        <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 absolute inset-0 !block h-full w-full !rounded-lg" href="https://laravel-news.com/partner/tinkerwell"
+            wire:navigate.hover
+    >
+    <span class="sr-only">Visit partner's website</span>
+</a>
+     <!--[if ENDBLOCK]><![endif]-->
+
+</div>
+             <!--[if ENDBLOCK]><![endif]-->
+        </div>
+    </div>
+</section>
+</div>
+        </div>
+
+        <div x-persist="footer">
+            <footer class="relative overflow-hidden py-24 sm:py-32">
+    
+    <svg
+        class="absolute bottom-0 right-0"
+        width="603"
+        height="419"
+        viewBox="0 0 603 419"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <g opacity=".2" filter="url(#filter0_f_4_553)">
+            <circle cx="462" cy="462" r="258" fill="#F9332B" />
+        </g>
+        <defs>
+            <filter
+                id="filter0_f_4_553"
+                x="0"
+                y="0"
+                width="924"
+                height="924"
+                filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB"
+            >
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                <feGaussianBlur stdDeviation="102" result="effect1_foregroundBlur_4_553" />
+            </filter>
+        </defs>
+    </svg>
+    <div
+        class="relative mx-auto flex w-full max-w-2xl flex-col items-start justify-between gap-x-16 gap-y-12 px-6 lg:max-w-7xl lg:flex-row"
+    >
+        <div class="lg:w-1/2">
+            <h2 class="text-2xl font-bold lg:text-[28px]">Subscribe to our newsletter</h2>
+            <div class="relative mt-10">
+                <img
+    delay="1500" class="absolute -top-10 right-48 z-10"
+    x-data="{
+        initializeAnimation: false,
+        init() {
+            setTimeout(() => {
+                this.initializeAnimation = true;
+            }, 1500);
+        },
+    }"
+    :class="initializeAnimation ? 'animate-cube' : ''"
+    src="https://picperf.dev/https://laravel-news.com/images/cube.svg"
+    alt="Cube"
+/>
+                <div
+                    class="relative overflow-hidden rounded-lg border border-gray-100 bg-white p-8 shadow-card"
+                >
+                    <span class="absolute inset-y-0 left-0 w-1 bg-red-600"></span>
+                    <div wire:snapshot="{&quot;data&quot;:{&quot;email&quot;:null,&quot;submitted&quot;:false,&quot;failed&quot;:false,&quot;location&quot;:&quot;footer&quot;},&quot;memo&quot;:{&quot;id&quot;:&quot;pswMpVTKV9m64Zd9dVgs&quot;,&quot;name&quot;:&quot;newsletter-signup&quot;,&quot;path&quot;:&quot;using-sanctum-to-authenticate-a-mobile-app&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;children&quot;:[],&quot;errors&quot;:[],&quot;locale&quot;:&quot;en&quot;},&quot;checksum&quot;:&quot;5f30f9dbe3cb1e43aff2af2f5997cf9afb6ba49d144ea89806bbda8574c7e0a0&quot;}" wire:effects="[]" wire:id="pswMpVTKV9m64Zd9dVgs">
+    <!--[if BLOCK]><![endif]-->        <form wire:submit="submit">
+            <div class="flex w-full flex-wrap items-stretch gap-4">
+                <label class="relative flex min-w-[240px] flex-1 items-center bg-white">
+                    <span class="sr-only">Email</span>
+                    <img
+                        src="https://picperf.dev/https://laravel-news.com/images/icons/newsletter.svg"
+                        alt="Newsletter icon"
+                        class="pointer-events-none absolute left-3 top-3"
+                    />
+                    <input
+                        wire:model="email"
+                        type="text"
+                        class="w-full rounded-lg border-gray-100 bg-transparent px-12 py-3 text-gray-600 placeholder-gray-600/50 transition focus:border-gray-100 focus:bg-gray-100/40 focus:outline-none focus:ring-2 focus:ring-red-600/80 focus:ring-offset-2"
+                        placeholder="Email"
+                    />
+                </label>
+                <button
+    type="submit" class="inline-flex items-center justify-center leading-none bg-red-600 border border-transparent rounded-lg font-bold text-base text-white hover:bg-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 focus-visible:ring-offset-2 disabled:bg-red-600/50 disabled:cursor-not-allowed transition ease-in-out duration-300 px-6 py-4"
+>
+    Join free
+</button>
+            </div>
+            <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+
+            <!--[if BLOCK]><![endif]--> <!--[if ENDBLOCK]><![endif]-->
+        </form>
+     <!--[if ENDBLOCK]><![endif]-->
+</div>
+                </div>
+            </div>
+            <div class="mt-10 flex flex-wrap items-center gap-8">
+                <p class="font-bold">and follow us on</p>
+                <div class="flex flex-wrap items-center gap-2 sm:flex-nowrap">
+                    <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 h-12 w-12 items-center justify-center !rounded-lg border border-gray-100 bg-white !shadow-sm hover:opacity-60" href="https://www.facebook.com/laravelnews" target="_blank"
+    >
+    <img
+                            loading="lazy"
+                            src="https://picperf.dev/https://laravel-news.com/images/facebook.svg"
+                            alt="Facebook"
+                            class="h-6 w-6 object-contain"
+                            rel="nofollow"
+                        />
+                        <span class="sr-only">Facebook</span>
+</a>
+                    <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 h-12 w-12 items-center justify-center !rounded-lg border border-gray-100 bg-white !shadow-sm hover:opacity-60" href="https://instagram.com/laravelnews"
+    >
+    <img
+                            loading="lazy"
+                            src="https://picperf.dev/https://laravel-news.com/images/instagram.svg"
+                            alt="Instagram"
+                            class="h-6 w-6 object-contain"
+                            rel="nofollow"
+                        />
+                        <span class="sr-only">Instagram</span>
+</a>
+                    <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 h-12 w-12 items-center justify-center !rounded-lg border border-gray-100 bg-white !shadow-sm hover:opacity-60" href="https://twitter.com/laravelnews"
+    >
+    <img
+                            loading="lazy"
+                            src="https://picperf.dev/https://laravel-news.com/images/x.svg"
+                            alt="X"
+                            class="h-6 w-6 object-contain"
+                            rel="nofollow"
+                        />
+                        <span class="sr-only">X</span>
+</a>
+                    <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 h-12 w-12 items-center justify-center !rounded-lg border border-gray-100 bg-white !shadow-sm hover:opacity-60" href="https://www.linkedin.com/company/laravel-news"
+    >
+    <img
+                            loading="lazy"
+                            src="https://picperf.dev/https://laravel-news.com/images/linkedin.svg"
+                            alt="Linkedin"
+                            class="h-6 w-6 object-contain"
+                            rel="nofollow"
+                        />
+                        <span class="sr-only">Linkedin</span>
+</a>
+                    <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 h-12 w-12 items-center justify-center !rounded-lg border border-gray-100 bg-white !shadow-sm hover:opacity-60" href="https://t.me/laravelnews"
+    >
+    <img
+                            loading="lazy"
+                            src="https://picperf.dev/https://laravel-news.com/images/telegram.svg"
+                            alt="Telegram"
+                            class="h-6 w-6 object-contain"
+                            rel="nofollow"
+                        />
+                        <span class="sr-only">Telegram</span>
+</a>
+                    <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 h-12 w-12 items-center justify-center !rounded-lg border border-gray-100 bg-white !shadow-sm hover:opacity-60" href="https://www.youtube.com/c/Laravel-news"
+    >
+    <img
+                            loading="lazy"
+                            src="https://picperf.dev/https://laravel-news.com/images/youtube.svg"
+                            alt="Youtube"
+                            class="h-6 w-6 object-contain"
+                            rel="nofollow"
+                        />
+                        <span class="sr-only">Youtube</span>
+</a>
+                    <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 h-12 w-12 items-center justify-center !rounded-lg border border-gray-100 bg-white !shadow-sm hover:opacity-60" href="https://www.threads.net/@laravelnews"
+    >
+    <img
+                            loading="lazy"
+                            src="https://picperf.dev/https://laravel-news.com/images/threads.svg"
+                            alt="Threads"
+                            class="h-6 w-6 object-contain"
+                            rel="nofollow"
+                        />
+                        <span class="sr-only">Threads</span>
+</a>
+                </div>
+            </div>
+        </div>
+        <div class="grid w-full max-w-sm gap-x-12 gap-y-4 sm:grid-cols-2">
+            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 font-bold hover:text-gray-600" href="/newsletter"
+            wire:navigate.hover
+    >
+    Laravel Newsletter
+</a>
+            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 font-bold hover:text-gray-600" href="/links"
+            wire:navigate.hover
+    >
+    Laravel Links
+</a>
+            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 font-bold hover:text-gray-600" href="/category/packages"
+            wire:navigate.hover
+    >
+    Laravel Packages
+</a>
+            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 font-bold hover:text-gray-600" href="/category/tutorials"
+            wire:navigate.hover
+    >
+    Laravel Tutorials
+</a>
+            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 font-bold hover:text-gray-600" href="https://laravel-news.com/popular-laravel-packages"
+            wire:navigate.hover
+    >
+    Popular Packages
+</a>
+            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 font-bold hover:text-gray-600" href="/partners"
+            wire:navigate.hover
+    >
+    Partners
+</a>
+            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 font-bold hover:text-gray-600" href="/advertising"
+            wire:navigate.hover
+    >
+    Advertising
+</a>
+            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 font-bold hover:text-gray-600" href="https://larajobs.com"
+    >
+    Laravel Jobs
+</a>
+            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 font-bold hover:text-gray-600" href="/contact"
+            wire:navigate.hover
+    >
+    Contact Us
+</a>
+            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 p-1 font-bold hover:text-gray-600" href="/login"
+            wire:navigate.hover
+    >
+    Your account
+</a>
+        </div>
+    </div>
+    <div
+        class="relative mx-auto mt-20 flex w-full max-w-2xl flex-wrap justify-between gap-x-16 gap-y-12 px-6 lg:max-w-7xl"
+    >
+        <p class="text-sm text-gray-600">
+            &copy; 2012 - 2023 Laravel News
+            <br />
+            A division of dotdev inc.
+        </p>
+        <p class="text-sm text-gray-600">
+            <a
+    class="inline-flex rounded-sm transition duration-300 leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600/80 text-black hover:text-red-600" href="/about"
+            wire:navigate.hover
+    >
+    Colophon / About
+</a>
+        </p>
+    </div>
+</footer>
+        </div>
+
+        <script data-navigate-once="true">window.livewireScriptConfig = {"csrf":"nEonK4dvimaS0AsUDFmnN4DtNRYAMj9Ct8pzqsHS","uri":"\/livewire\/update","progressBar":true};</script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon='{"rayId":"815f9a5d3cf3489d","token":"036ae43092b6429fbf4c640fd73dc0e2","version":"2023.8.0","si":100}' crossorigin="anonymous"></script>
+</body>
+</html>
