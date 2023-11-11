@@ -7,10 +7,9 @@
 		<meta name="description" content="">
 		<meta name="keywords" content="">
 		<meta name="author" content="Codescandy">
-		<script>
-			// Render blocking JS:if (localStorage.theme) document.documentElement.setAttribute("data-theme", localStorage.theme);
-		</script>
+
 		<!-- Favicon icon-->
+        <script src="https://cdn.tiny.cloud/1/ewnwdlukikfd20zuefy426z7slixkeng4g2wsxxikjsyfa5k/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 		<link rel="shortcut icon" type="image/x-icon" href="../../assets/images/favicon/favicon.ico">
 		<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -94,17 +93,17 @@
 		<script src="{{asset('admin/libs/simplebar/dist/simplebar.min.js')}}"></script>
 		<!-- Theme JS -->
 		<script src="{{asset('admin/js/theme.min.js')}}"></script>
-		<script src="../../assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-		<script src="../../assets/js/vendors/chart.js"></script>
 		<script src="{{asset('admin/libs/flatpickr/dist/flatpickr.min.js')}}"></script>
 		<script src="{{asset('admin/js/vendors/flatpickr.js')}}"></script>
 		<script src="{{ asset('admin/js/surmenote.min.js')}}"></script>
 		<script>
-			ClassicEditor.create( document.querySelector( '#editor' ) ).catch( error => {
-				console.error( error );
-			}
-			 );
-		</script>
+
+            tinymce.init({
+            selector: 'textarea#basic-example',
+            height:300
+            });
+
+            </script>
 
 	</body>
 </html>

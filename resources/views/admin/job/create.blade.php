@@ -120,7 +120,10 @@
                             <small class="text-danger">{{$message}}</small>
 
                         @enderror   </label>
-                        <textarea class="form-control" id="editor"  name="description" rows="3" > {{ old('description') }}</textarea>
+                        <textarea class="form-control" id="basic-example"  name="description" rows="3" >
+                                
+
+                            {{ old('description') }}</textarea>
                     </div>
                   </div>
                     <div class="col-12">
