@@ -66,7 +66,7 @@
                   <th class="sorting">Titre </th>
                   <th class="sorting">Catégorie</th>
                   <th class="sorting">Description Minimale</th>
-                  <th class="sorting">Statut</th>
+
                   <th class="sorting">Action</th>
                 </tr>
                 </thead>
@@ -79,30 +79,14 @@
 
                   <td>{{$value->category->name }}</td>
                   <td>{{Str::limit($value->mini_description,60) }}</td>
-
                   <td>
-                    @if($value->publish_at == 1)
-                    <span class="badge bg-success">publié</span>
-
-                  @elseif($value->publish_at == 0)
-                  <span class="badge bg-warning">En attante</span>
-                  @endif
-                </td>
-
-                  <td>
-                  <a href="{{ route('blogs.edit', $value->id)}}" class="text-dark"> <i class="fa fa-edit"></i></a>
+                  <a href="{{ route('blogs.edit', $value->id)}}" class="text-dark">Edition</a>
                   <form action="{{route('blogs.destroy', $value->id)}}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" onclick="return confirm('Voulez-vous vraiment supprimer ?')"><i class="fa fa-trash"></i></button>
+                    <button type="submit" onclick="return confirm('Voulez-vous vraiment supprimer ?')">Supprimer</button>
                 </form>
-
-
-
-                  <a href="{{ route('blogs.show', $value->id)}}" class="text-dark"> <i class="fa fa-eye"></i></a>
-
-
-
+                  <a href="{{ route('blogs.show', $value->id)}}" class="text-dark">Detail</a>
                   </td>
                 </tr>
 

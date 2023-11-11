@@ -76,11 +76,11 @@
 
 
                   <td>
-                  <a href="{{ route('contrat.edit', $value->id)}}" class="text-dark"> <i class="fa fa-edit"></i></a>
+                  <a href="{{ route('contrat.edit', $value->id)}}" class="text-dark">Edition</a>
                   <form action="{{route('contrat.destroy', $value->id)}}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" onclick="return confirm('Voulez-vous vraiment supprimer ?')"><i class="fa fa-trash"></i></button>
+                    <button type="submit" onclick="return confirm('Voulez-vous vraiment supprimer ?')">Supprimer</button>
                 </form>
 
                   </td>

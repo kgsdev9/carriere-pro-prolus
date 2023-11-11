@@ -15,15 +15,15 @@
                             <li class="breadcrumb-item">
                                 <a href="admin-dashboard.html">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item"><a href="#">CMS</a></li>
+                            <li class="breadcrumb-item"><a href="#">Accueil</a></li>
                             <li class="breadcrumb-item active" aria-current="page">
-                                All Post
+                               Emploi
                             </li>
                         </ol>
                     </nav>
                 </div>
                 <div>
-                    <a href="#" class="btn btn-primary">New Post</a>
+                    <a href="#" class="btn btn-primary">Nouveau job</a>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
                         <span class="position-absolute ps-3 search-icon">
                             <i class="fe fe-search"></i>
                         </span>
-                        <input type="search" class="form-control ps-6" placeholder="Search Post">
+                        <input type="search" class="form-control ps-6" placeholder="Rechercher ....">
                     </form>
                 </div>
                 <div>
@@ -53,7 +53,6 @@
                                     <!-- Table Head -->
                                     <thead class="table-light">
                                         <tr>
-
                                             <th scope="col">Titre</th>
                                             <th scope="col">Lieu</th>
                                             <th scope="col">Catégorie</th>
@@ -64,9 +63,8 @@
                                     </thead>
                                     <tbody>
                                         <!-- Table body -->
-                                        @foreach ($job as $job)
+                                        @foreach ($jobALl as $job)
                                         <tr>
-
                                             <td>
                                                 <h5 class="mb-0">
                                                     <a href="#" class="text-inherit">
@@ -94,12 +92,13 @@
                                                     <i class="fe fe-more-vertical"></i>
                                                   </a>
                                                   <span class="dropdown-menu" aria-labelledby="orderDropdownOne" style="">
-                                                    <span class="dropdown-header">Settings</span>
+                                                    <span class="dropdown-header">Action</span>
                                                     <a class="dropdown-item" href="{{route('job.show', $job->id)}}"><i class="fe fe-edit dropdown-item-icon"></i>Voir</a>
                                                     <a class="dropdown-item" href="{{route('job.edit', $job->id)}}"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-                                                    <a class="dropdown-item" href="#"><i class="fe fe-mail dropdown-item-icon"></i>Invite</a>
-
-                                                    <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Delete</a>
+                                                    <form action="{{route('job.store', $job->id)}}" method="POST">
+                                                     @csrf
+                                                     <button type="submit" class="btn btn-danger">Supprimer</button>
+                                                    </form>
                                                   </span>
                                                 </span>
                                               </td>
@@ -119,21 +118,7 @@
                 <div class="card-footer">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center mb-0">
-                            <li class="page-item disabled">
-                                <a class="page-link mx-1 rounded" href="#" tabindex="-1" aria-disabled="true"><i class="mdi mdi-chevron-left"></i></a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link mx-1 rounded" href="#">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link mx-1 rounded" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link mx-1 rounded" href="#">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link mx-1 rounded" href="#"><i class="mdi mdi-chevron-right"></i></a>
-                            </li>
+                          {{$jobALl->links()}}
                         </ul>
                     </nav>
                 </div>

@@ -29,7 +29,7 @@ class JobRepository
 
 
  public function all() {
-    return $this->job->all();
+    return $this->job->paginate(20);
  }
 
  public function search(Request $request) {

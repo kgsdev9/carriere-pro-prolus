@@ -40,7 +40,7 @@ class JobController extends Controller
     public function index() {
 
         return view('admin.job.liste',[
-            'job' => Job::orderByDesc('created_at')->paginate(13)
+            'jobALl' => Job::orderByDesc('created_at')->paginate(13)
         ]);
     }
 
