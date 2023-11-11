@@ -121,7 +121,7 @@
 
                         @enderror   </label>
                         <textarea class="form-control" id="basic-example"  name="description" rows="3" >
-                                
+
 
                             {{ old('description') }}</textarea>
                     </div>
@@ -150,14 +150,20 @@
     </section>
     <!-- =======================
     Main contain END -->
-
     </main>
-
-
   </div>
 
 
+@push('javascript')
+<script>
 
+    tinymce.init({
+    selector: 'textarea#basic-example',
+    height:300
+    });
+
+    </script>
+@endpush
 @endsection
 
 

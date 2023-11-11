@@ -68,7 +68,7 @@
 
 
                   </label>
-                     <textarea name="mini_description" class="form-control" id="" cols="30" rows="2"></textarea>
+                     <textarea name="mini_description" class="form-control" id="blog" cols="30" rows="2"></textarea>
                 </div>
               </div>
 
@@ -83,7 +83,7 @@
 
 
                   </label>
-                     <textarea name="description" class="form-control" id="editor" cols="30" rows="10"></textarea>
+                     <textarea name="description" class="form-control" id="#basic-example" cols="30" rows="10"></textarea>
                 </div>
               </div>
 
@@ -104,5 +104,17 @@
     </form>
     </div>
   </div>
+
+
+  @push('javascript')
+  <script>
+
+      tinymce.init({
+      selector: 'textarea#blog',
+      height:300
+      });
+
+      </script>
+  @endpush
 
 @endsection

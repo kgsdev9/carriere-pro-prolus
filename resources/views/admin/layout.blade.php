@@ -96,15 +96,7 @@
 		<script src="{{asset('admin/libs/flatpickr/dist/flatpickr.min.js')}}"></script>
 		<script src="{{asset('admin/js/vendors/flatpickr.js')}}"></script>
 		<script src="{{ asset('admin/js/surmenote.min.js')}}"></script>
-		<script>
-
-            tinymce.init({
-            selector: 'textarea#basic-example',
-            height:300
-            });
-
-            </script>
-
+        @stack('javascript')
 	</body>
 </html>
 

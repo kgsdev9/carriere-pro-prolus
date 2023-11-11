@@ -76,7 +76,6 @@
             </div>
           </div>
 
-
           <div class="col-md-12">
             <div class="form-group">
               <label class="form-control-label" for="example4cols1Input">
@@ -84,14 +83,10 @@
                   @error('category_id')
                   <small class="text-danger">{{$message}}</small>
                   @enderror
-
-
               </label>
-                 <textarea name="description" class="form-control" id="summernote" cols="30" rows="10">{{$ressource->description}}</textarea>
+                 <textarea name="description" class="form-control" id="#blog" cols="30" rows="10">{{$ressource->description}}</textarea>
             </div>
           </div>
-
-
         </div>
         <div class="row">
           <div class="col-md-6">
@@ -106,3 +101,7 @@
   </div>
 
 @endsection
+
+
+
+

@@ -100,7 +100,7 @@
                     <div class="col-12">
                         <div class="mb-3">
                             <label class="form-label">Description  complete de l'offre   </label>
-                            <textarea class="form-control" name="description" rows="3" id="editor"> {{ old('description') ?? $ressource->description }}</textarea>
+                            <textarea class="form-control" name="description" rows="3" id="#basic-example"> {{ old('description') ?? $ressource->description }}</textarea>
                         </div>
                       </div>
 
