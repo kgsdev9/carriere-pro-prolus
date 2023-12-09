@@ -1,5 +1,4 @@
 @extends('admin.layout')
-
 @section('admin')
 <div class="content-wrapper" style="min-height: 2080.12px;">
     <div class="card mb-4">
@@ -26,7 +25,6 @@
               <input type="text" class="form-control" name="title" id="example3cols1Input" placeholder="Titre du cv" value="{{$ressource->title}}">
             </div>
           </div>
-
           <div class="col-md-6">
             <div class="form-group">
               <label class="form-control-label" for="example3cols3Input">Image de  l'article  @error('image')
@@ -40,7 +38,6 @@
 
 
         <div class="row">
-
             <div class="col-md-12">
                 <div class="form-group">
                   <label class="form-control-label" for="example4cols1Input">
@@ -48,16 +45,12 @@
                       @error('category_id')
                       <small class="text-danger">{{$message}}</small>
                       @enderror
-
-
                   </label>
                       <select name="category_id" id="" class="form-control">
                           <option value="{{$ressource->category->id}}">{{$ressource->category->name}}</option>
                       </select>
                 </div>
               </div>
-
-
           </div>
 
 

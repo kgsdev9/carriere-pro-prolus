@@ -81,7 +81,6 @@ class JobRepository
 
 
  public function CreateJob(JobRequest $request) {
-    $request->input('description');
    $job =  $this->job->create([
       'title'  =>   $request->input('title'),
       'slug'  => Str::slug($request->input('title')),

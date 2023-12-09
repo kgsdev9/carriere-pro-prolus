@@ -1,328 +1,811 @@
-@extends('layout.app')
-@section('title', 'Bienvenue sur carriere pro plus ')
-@section('content')
-        <!-- Start Hero -->
-        <section class="relative flex py-36 md:h-screen h-auto items-center bg-[url('../../assets/images/hero/bg6.html')] bg-top bg-no-repeat bg-cover">
-            <div class="absolute top-0 start-0 w-full h-full z-0 pointer-events-none overflow-hidden">
-                <iframe src="https://player.vimeo.com/video/354421650?background=1&amp;autoplay=1&amp;loop=1&amp;byline=0&amp;title=0" class="absolute top-1/2 start-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2  -translate-y-1/2 w-screen h-[56.25vw] min-h-screen min-w-[177.77vw]"></iframe>
-            </div>
-            <div class="absolute inset-0 bg-emerald-900/80"></div>
-            <div class="container z-1">
-                <div class="grid grid-cols-1 text-center mt-10 relative">
-                    <h4 class="lg:leading-normal leading-normal text-4xl lg:text-5xl mb-5 font-bold text-white"> Bienvenue Sur Carriere Pro Plus</h4>
-                    <p class="text-white/50 text-lg max-w-xl mx-auto">À la recherche d'un nouveau Job, Stage, Formation , Conseil Pro, Curriculum vitæ , Lettre de motivation,vous êtes à la bonne adresse Carrière proplus vous accompagne vers vos objectifs de vie..</p>
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="Codescandy" />
+
+<!-- Favicon icon-->
+<link rel="shortcut icon" type="image/x-icon" href="{{asset('images/logocarrierepro.jpg')}}" />
+
+<!-- darkmode js -->
+<script src="{{asset('assets/js/vendors/darkMode.js')}}"></script>
+
+<!-- Libs CSS -->
+<link href="../../assets/fonts/feather/feather.css" rel="stylesheet" />
+<link href="../../assets/libs/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+<link href="../../assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet" />
+
+<!-- Theme CSS -->
+<link rel="stylesheet" href="../../assets/css/theme.min.css">
+
+        <link rel="canonical" href="landing-job.html">
+        <title>Bienvenue sur carriere proplus </title>
+    </head>
+
+    <body class="bg-white">
+        <nav class="navbar navbar-expand-lg">
+    <div class="container px-0">
+        <a class="navbar-brand" href="#"><img src="{{asset('images/logocarrierepro.jpg')}}" style="height:40px;"  alt="Geeks" /></a>
+        <div class="d-flex align-items-center order-lg-3 ms-lg-3">
+
+            <button
+                class="navbar-toggler collapsed ms-2 ms-lg-0"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbar-default"
+                aria-controls="navbar-default"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="icon-bar top-bar mt-0"></span>
+                <span class="icon-bar middle-bar"></span>
+                <span class="icon-bar bottom-bar"></span>
+            </button>
+        </div>
+        <!-- Button -->
+
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="navbar-default">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="landing-job.html">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Emploi</a>
+
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarPages" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nos Conseils </a>
+                    <ul class="dropdown-menu dropdown-menu-arrow dropdown-menu-end" aria-labelledby="navbarPages">
+                        <li>
+                            <a class="dropdown-item" href="https://geeksui.codescandy.com/geeks/pages/jobs/company-list.html">Lettre de motivation </a>
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item" href="https://geeksui.codescandy.com/geeks/pages/jobs/post-job.html">Curriculum vitæ</a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://geeksui.codescandy.com/geeks/index.html">Formations</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="https://geeksui.codescandy.com/geeks/index.html">Formations</a>
+                </li>
 
 
 
+            </ul>
+        </div>
+    </div>
+</nav>
 
-                </div><!--end grid-->
-            </div><!--end container-->
-        </section><!--end section-->
-        <!-- End Hero -->
 
-        <!-- Start -->
-        <section class="relative md:py-24 py-16">
-            <div class="container">
-                <div class="grid grid-cols-1 pb-8 text-center">
-                    <h3 class="mb-4 md:text-[26px] md:leading-normal text-2xl leading-normal font-semibold">Comment ça marche ?</h3>
+        <!-- Page Content -->
+        <main>
+            <section class="bg-light py-8 bg-cover">
+                <!-- container -->
+                <div class="container">
+                    <!-- row -->
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-12">
+                            <div>
+                                <div class="text-center text-md-start">
+                                    <!-- heading -->
+                                    <h1 class="display-2 fw-bold mb-3">Bienvenue sur carriereproplus.</h1>
+                                    <!-- lead -->
+                                    <p class="lead">À la recherche d'un nouveau Job, Stage, Formation , Conseil Pro, Curriculum vitæ , Lettre de motivation,vous êtes à la bonne adresse Carrière proplus vous accompagne vers vos objectifs de vie..
+                                        .</p>
+                                </div>
+                                <div class="mt-8">
+                                    <!-- card -->
+                                    <div class="bg-white rounded-md-pill shadow rounded-3 mb-4">
+                                        <!-- card body -->
+                                        <div class="p-md-2 p-4">
+                                            <!-- form -->
+                                            <form class="row g-1">
+                                                <div class="col-12 col-md-5">
+                                                    <!-- input -->
+                                                    <div class="input-group mb-2 mb-md-0 border-md-0 border rounded-pill">
+                                                        <!-- input group -->
+                                                        <span class="input-group-text bg-transparent border-0 pe-0 ps-md-3 ps-md-0" id="searchJob">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z">
+                                                            </svg>
+                                                        </span>
+                                                        <!-- search -->
+                                                        <input
+                                                            type="search"
+                                                            class="form-control rounded-pill border-0 ps-3 form-focus-none"
+                                                            placeholder="Développeur fullstack"
+                                                            aria-label="Job Title"
+                                                            aria-describedby="searchJob">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <!-- inpt group -->
+                                                    <div class="input-group mb-3 mb-md-0 border-md-0 border rounded-pill">
+                                                        <span class="input-group-text bg-transparent border-0 pe-0 ps-md-0" id="location">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z">
+                                                                <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z">
+                                                            </svg>
+                                                        </span>
+                                                        <!-- search -->
+                                                        <input
+                                                            type="search"
+                                                            class="form-control rounded-pill border-0 ps-3 form-focus-none"
+                                                            placeholder="Abidjan"
+                                                            aria-label="Abidjan"
+                                                            aria-describedby="location">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-3 text-end d-grid">
+                                                    <!-- button -->
+                                                    <button type="submit" class="btn btn-primary rounded-pill">Trouver</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
 
-                    <p class="text-slate-400 max-w-xl mx-auto">Avec carriere proplus plus besoin de vous fatiguer, postuler rapidement à des offres sans plus attendre</p>
-                </div><!--end grid-->
-
-                <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 mt-6 gap-[30px]">
-                    <div class="p-6 hover:shadow-xl hover:shadow-gray-100 dark:hover:shadow-gray-800 transition duration-500 rounded-2xl mt-6 text-center">
-                        <div class="w-14 h-14 bg-emerald-600/5 text-emerald-600 rounded-xl text-2xl flex align-middle justify-center items-center mx-auto shadow-sm dark:shadow-gray-800">
-                            <i class="uil uil-airplay"></i>
-                        </div>
-
-                        <div class="content mt-7">
-                            <a href="#" class="title h5 text-lg font-semibold hover:text-emerald-600">Créer votre compte </a>
-                            <p class="text-slate-400 mt-3">Inscrivez vous et recevez en live les dernieres offre d'emploi  </p>
-
-                            <div class="mt-5">
-                                <a href="#" class="btn btn-link text-emerald-600 hover:text-emerald-600 after:bg-emerald-600 duration-500 ease-in-out">Commencer <i class="uil uil-arrow-right"></i></a>
+                                    <!-- text -->
+                                    <span class="fs-4"> Fabriquez votre emploi, fabriquez votre joie</span>
+                                </div>
                             </div>
                         </div>
-                    </div><!--end content-->
+                        <div class="offset-lg-1 col-lg-5 col-12 text-center">
+                            <div class="position-relative d-none d-lg-block">
+                                <img src="../../assets/images/job/png/job-hero-section.png" class="img-fluid" alt="img">
 
-                    <div class="p-6 shadow-xl shadow-gray-100 dark:shadow-gray-800 transition duration-500 rounded-2xl mt-6 text-center">
-                        <div class="w-14 h-14 bg-emerald-600/5 text-emerald-600 rounded-xl text-2xl flex align-middle justify-center items-center mx-auto shadow-sm dark:shadow-gray-800">
-                            <i class="uil uil-shutter"></i>
-                        </div>
 
-                        <div class="content mt-7">
-                            <a href="#" class="title h5 text-lg font-semibold hover:text-emerald-600">Completer votre profil </a>
-                            <p class="text-slate-400 mt-3">Actualiser votre profil et partager votre profile cv au recruteur potentiel </p>
 
-                            <div class="mt-5">
-                                <a href="#" class="btn btn-link text-emerald-600 hover:text-emerald-600 after:bg-emerald-600 duration-500 ease-in-out">Je Complete mon profil  <i class="uil uil-arrow-right"></i></a>
                             </div>
                         </div>
-                    </div><!--end content-->
-
-                    <div class="p-6 hover:shadow-xl hover:shadow-gray-100 dark:hover:shadow-gray-800 transition duration-500 rounded-2xl mt-6 text-center">
-                        <div class="w-14 h-14 bg-emerald-600/5 text-emerald-600 rounded-xl text-2xl flex align-middle justify-center items-center mx-auto shadow-sm dark:shadow-gray-800">
-                            <i class="uil uil-camera-plus"></i>
-                        </div>
-
-                        <div class="content mt-7">
-                            <a href="#" class="title h5 text-lg font-semibold hover:text-emerald-600">Postuler à un job  </a>
-                            <p class="text-slate-400 mt-3">Créer un cv moderne et une lettre de motivation grace à nos cvs  postuler</p>
-
-                            <div class="mt-5">
-                                <a href="#" class="btn btn-link text-emerald-600 hover:text-emerald-600 after:bg-emerald-600 duration-500 ease-in-out">Me faire assister<i class="uil uil-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div><!--end content-->
-                </div><!--end grid-->
-            </div><!--end container-->
-
-            <div class="container md:mt-24 mt-16">
-                <div class="grid md:grid-cols-12 grid-cols-1 pb-8 items-end">
-                    <div class="lg:col-span-8 md:col-span-6 ltr:md:text-left rtl:md:text-right text-center">
-                        <h3 class="mb-4 md:text-[26px] md:leading-normal text-2xl leading-normal font-semibold">Emploi par  Categories</h3>
-                        <p class="text-slate-400 max-w-xl">Recherchez les opportuinités en fonction de votre domaine de compétences </p>
-                    </div>
-
-                    <div class="lg:col-span-4 md:col-span-6 ltr:md:text-right rtl:md:text-left hidden md:block">
-                        <a href="#" class="btn btn-link text-slate-400 hover:text-emerald-600 after:bg-emerald-600 duration-500 ease-in-out">Toutes les catégories <i class="uil uil-arrow-right align-middle"></i></a>
                     </div>
                 </div>
+            </section>
 
-                <div class="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
-                    @foreach ($jobcategory as $categorie)
-                    <div class="group p-4 rounded-md shadow dark:shadow-gray-700 bg-slate-50 dark:bg-slate-800 hover:bg-emerald-600 dark:hover:bg-emerald-600 transition-all duration-500">
-                        <h5 class="text-lg font-semibold group-hover:text-white">{{Str::limit($categorie->name, 10)}}</h5>
-                        <span class="block text-slate-400 group-hover:text-white/50 text-sm mt-1">{{count($categorie->jobs)}} Disponible</span>
-
-                        <div class="mt-2">
-                            <a href="{{route('categorie.job', $categorie->id)}}" class="text-emerald-600 dark:text-white/80 group-hover:text-white font-medium">Explorer <i class="uil uil-arrow-right"></i></a>
-                        </div>
-                    </div><!--end content-->
-                    @endforeach
-
-
-                </div><!--end grid-->
-
-
-            </div><!--end container-->
-        </section><!--end section-->
-        <!-- End -->
-
-        <section class="relative bg-slate-50 dark:bg-slate-800 md:py-24 py-16">
-            <div class="container">
-                <div class="grid grid-cols-1 pb-8 text-center">
-                    <h3 class="mb-4 md:text-[26px] md:leading-normal text-2xl leading-normal font-semibold">Emploi récents </h3>
-
-                    <p class="text-slate-400 max-w-xl mx-auto">Liste des emplois recemments ajoutés </p>
-                </div><!--end grid-->
-
-
-                <div class="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
-                    @foreach ($joball as  $job)
-                    <div class="group relative overflow-hidden bg-white dark:bg-slate-900 shadow hover:shadow-md dark:shadow-gray-700 dark:hover:shadow-gray-700 hover:-mt-2 rounded-md transition-all duration-500 h-fit">
-                        <div class="p-6">
-                            <div class="flex items-center">
-                                <div class="w-14 h-14 min-w-[56px] flex items-center justify-center bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-md">
-                                    <img src="{{asset('images/offre-emploo.jpg')}}" class="h-8 w-8" alt="">
+            <section class="py-8">
+                <!-- container -->
+                <div class="container">
+                    <div class="row">
+                        <div class="offset-xl-1 col-xl-10 col-md-12 col-12">
+                            <!-- row -->
+                            <div class="row text-center">
+                                <!-- col -->
+                                <div class="col">
+                                    <div class="mb-3 mt-3">
+                                        <img src="{{asset('jeuneemploi.png')}}" style="height:50px;" alt="logo">
+                                    </div>
                                 </div>
+                                <!-- col -->
+                                <div class="col">
+                                    <div class="mb-3 mt-3">
+                                        <img src="{{asset('educarriere.jpg')}}" style="height:50px;" alt="logo">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3 mt-3">
+                                        <img src="{{asset('ministerejeunesse.jpeg')}}" style="height:70px;" alt="logo">
+                                    </div>
+                                </div>
+                                <!-- col -->
 
-                                <div class="ms-3">
-                                    <a href="{{route('detail.emploi', $job->slug)}}" class="inline-block text-[16px] font-semibold hover:text-emerald-600 transition-all duration-500 me-1">{{$job->title}}</a>
-                                    <span class="inline-block text-sm text-slate-400">{{$job->created_at->diffForHumans()}}</span>
+                                <!-- col -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-lg-8 py-6">
+                <div class="container my-lg-8">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12 col-12">
+                            <div class="mb-6 mb-lg-8">
+                                <h2 class="h1 text-center">
+                                    Job par catégorie
+
+                                </h2>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @foreach ($jobcategory as $category)
+                        <div class="col-xl-3 col-md-6 col-12">
+                            <div class="card mb-4 card-hover border">
+
+                                <div class="card-body">
+                                    <h4 class="mb-3">
+                                        <a href="#!" class="text-inherit">{{$category->name}}</a>
+                                    </h4>
+                                    <div class="d-flex align-items-center mb-5 lh-1">
+                                        <div>
+                                            <span class="text-inherit fw-semibold me-1">8</span>
+                                           Job disponible 4
+                                        </div>
+                                    </div>
+                                    <a href="#!">
+                                        Consulter
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"></path>
+                                            </svg>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+
+
+
+
+
+
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-lg-8 pb-8">
+                <!-- container -->
+                <div class="container">
+                    <!-- row -->
+                    <div class="row">
+                        <div class="offset-xl-2 col-xl-8 col-md-12 col-12">
+                            <div class="text-center mb-8">
+                                <!-- col -->
+                                <!-- text -->
+                                <span class="text-uppercase text-primary fw-semibold ls-md">Job Disponible</span>
+                                <!-- heading -->
+                                <h2 class="h1 fw-bold mt-3">Emploi recemments publiés .</h2>
+                            </div>
+                            <!-- row -->
+
+                            <div class="card card-bordered mb-4 card-hover cursor-pointer">
+                                <!-- card body -->
+                                <div class="card-body">
                                     <div>
-                                        <span class="bg-emerald-600/10 inline-block text-emerald-600 text-xs px-2.5 py-0.5 font-semibold rounded-full me-1">{{$job->contrat->name}}</span>
-                                        <span class="text-sm font-medium inline-block me-1">Employeur: <span class="text-slate-400">{{$job->employeur}}</span></span>
+                                        <div class="d-md-flex">
+                                            <div class="mb-3 mb-md-0">
+                                                <!-- Img -->
+                                                <img src="https://geeksui.codescandy.com/geeks/assets/images/job/job-brand-logo/job-list-logo-1.svg" alt="Geeks UI - Bootstrap 5 Template" class="icon-shape border rounded-circle">
+                                            </div>
+                                            <!-- text -->
+                                            <div class="ms-md-3 w-100 mt-3 mt-xl-1">
+                                                <div class="d-flex justify-content-between mb-5">
+                                                    <div>
+                                                        <!-- heading -->
+                                                        <h3 class="mb-1 fs-4">
+                                                            <a href="https://geeksui.codescandy.com/geeks/pages/jobs/job-single.html" class="text-inherit">Software Engineer (Web3/Crypto)</a>
+                                                            <span class="badge bg-danger-soft ms-2">Featured Job</span>
+                                                        </h3>
+
+                                                        <div>
+                                                            <span>at HelpDesk</span>
+                                                            <!-- star -->
+                                                            <span class="text-dark ms-2 fw-medium">
+                                                                4.5
+                                                                <svg
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    width="10"
+                                                                    height="10"
+                                                                    fill="currentColor"
+                                                                    class="bi bi-star-fill text-warning align-baseline"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </svg>
+                                                            </span>
+                                                            <span class="ms-0">(131 Reviews)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <!-- bookmark -->
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark bookmark" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z">
+                                                        </svg>
+                                                    </div>
+                                                </div>
+
+                                                <div class="d-md-flex justify-content-between">
+                                                    <div class="mb-2 mb-md-0">
+                                                        <!-- year -->
+                                                        <span class="me-2">
+                                                            <i class="fe fe-briefcase"></i>
+                                                            <span class="ms-1">1 - 5 years</span>
+                                                        </span>
+                                                        <!-- salary -->
+
+                                                        <span class="me-2">
+                                                            <i class="fe fe-dollar-sign"></i>
+                                                            <span class="ms-1">12k - 18k</span>
+                                                        </span>
+                                                        <!-- location -->
+                                                        <span class="me-2">
+                                                            <i class="fe fe-map-pin"></i>
+                                                            <span class="ms-1">Ahmedabad, Gujarat</span>
+                                                        </span>
+                                                    </div>
+                                                    <!-- time -->
+                                                    <div>
+                                                        <i class="fe fe-clock"></i>
+                                                        <span>21 hours ago</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- card -->
+                            <div class="card card-bordered mb-4 card-hover cursor-pointer">
+                                <!-- card body -->
+                                <div class="card-body">
+                                    <div>
+                                        <div class="d-md-flex">
+                                            <div class="mb-3 mb-md-0">
+                                                <!-- Img -->
 
-                            <p class="text-slate-400 py-3">{{$job->mini_description}}</p>
+                                                <img src="https://geeksui.codescandy.com/geeks/assets/images/job/job-brand-logo/job-list-logo-2.svg" alt="Geeks Bootstrap 5 Template" class="icon-shape border rounded-circle">
+                                            </div>
+                                            <!-- text -->
+                                            <div class="ms-md-3 w-100 mt-3 mt-xl-1">
+                                                <div class="d-flex justify-content-between mb-4">
+                                                    <div>
+                                                        <h3 class="mb-1 fs-4"><a href="https://geeksui.codescandy.com/geeks/pages/jobs/job-single.html" class="text-inherit">Senior React Developer</a></h3>
+                                                        <div>
+                                                            <span>at Airtable</span>
+                                                            <!-- icon -->
+                                                            <span class="text-dark ms-2 fw-medium">
+                                                                5.0
+                                                                <svg
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    width="10"
+                                                                    height="10"
+                                                                    fill="currentColor"
+                                                                    class="bi bi-star-fill text-warning align-baseline"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </svg>
+                                                            </span>
+                                                            <span class="ms-0">(324 Reviews)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark bookmark" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z">
+                                                        </svg>
+                                                    </div>
+                                                </div>
 
-                            {{-- <div>
-                                <span class="bg-slate-100 dark:bg-slate-800 inline-block text-slate-900 dark:text-slate-300 text-xs px-2.5 py-0.5 font-semibold rounded-full me-1">HTML</span>
-                                <span class="bg-slate-100 dark:bg-slate-800 inline-block text-slate-900 dark:text-slate-300 text-xs px-2.5 py-0.5 font-semibold rounded-full me-1">CSS</span>
-                                <span class="bg-slate-100 dark:bg-slate-800 inline-block text-slate-900 dark:text-slate-300 text-xs px-2.5 py-0.5 font-semibold rounded-full me-1">SASS</span>
-                                <span class="bg-slate-100 dark:bg-slate-800 inline-block text-slate-900 dark:text-slate-300 text-xs px-2.5 py-0.5 font-semibold rounded-full me-1">SCSS</span>
-                                <span class="bg-slate-100 dark:bg-slate-800 inline-block text-slate-900 dark:text-slate-300 text-xs px-2.5 py-0.5 font-semibold rounded-full me-1">Photoshop</span>
-                                <span class="bg-slate-100 dark:bg-slate-800 inline-block text-slate-900 dark:text-slate-300 text-xs px-2.5 py-0.5 font-semibold rounded-full me-1">Graphics</span>
-                                <span class="bg-slate-100 dark:bg-slate-800 inline-block text-slate-900 dark:text-slate-300 text-xs px-2.5 py-0.5 font-semibold rounded-full me-1">Bootstrap</span>
-                            </div> --}}
-                        </div>
-
-                        <div class="px-6 py-2 bg-slate-50 dark:bg-slate-800 lg:flex justify-between items-center">
-                            <div class="lg:inline-block flex justify-between">
-                                <span class="inline-block me-1 font-semibold"><i class="mdi mdi-check-decagram mdi-18px text-blue-500 me-1"></i>Vérifiée</span>
-
-                                <span class="inline-block me-1 text-slate-400"><i class="uil uil-map-marker text-[18px] text-slate-900 dark:text-white me-1"></i>{{$job->lieu->name}}</span>
-
-                                <span class="inline-block me-1 text-slate-400"><i class="uil uil-eye"></i> {{$job->view}}</span>
+                                                <div class="d-md-flex justify-content-between">
+                                                    <div class="mb-2 mb-lg-0">
+                                                        <!-- year -->
+                                                        <span class="me-2">
+                                                            <i class="fe fe-briefcase"></i>
+                                                            <span class="ms-1">0 - 5 years</span>
+                                                        </span>
+                                                        <!-- salary -->
+                                                        <span class="me-2">
+                                                            <i class="fe fe-dollar-sign"></i>
+                                                            <span class="ms-1">5k - 8k</span>
+                                                        </span>
+                                                        <!-- location -->
+                                                        <span class="me-2">
+                                                            <i class="fe fe-map-pin"></i>
+                                                            <span class="ms-1">Jaipur, Rajasthan</span>
+                                                        </span>
+                                                    </div>
+                                                    <!-- day -->
+                                                    <div>
+                                                        <i class="fe fe-clock"></i>
+                                                        <span>1 day ago</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- card -->
+                            <div class="card card-bordered mb-4 card-hover cursor-pointer">
+                                <!-- card body -->
+                                <div class="card-body">
+                                    <div>
+                                        <div class="d-md-flex">
+                                            <div class="mb-3 mb-md-0">
+                                                <!-- Img -->
 
-                            <a href="{{route('detail.emploi', $job->slug)}}" class="btn btn-sm rounded-md bg-emerald-600 hover:bg-emerald-700 border-emerald-600 hover:border-emerald-700 text-white md:ms-2 w-full lg:w-auto lg:mt-0 mt-4">Consulter</a>
-                        </div>
-
-                        <a href="{{route('detail.emploi', $job->slug)}}" class="btn btn-icon rounded-full bg-emerald-600/5 hover:bg-emerald-600 border-emerald-600/10 hover:border-emerald-600 text-emerald-600 hover:text-white absolute top-0 end-0 m-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bookmark h-4 w-4"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg></a>
-                    </div><!--end content-->
-                    @endforeach
-
-                </div><!--end grid-->
-
-                <div class="grid md:grid-cols-12 grid-cols-1 mt-8">
-                    <div class="md:col-span-12 text-center">
-                        <a href="{{route('home.job')}}" class="btn btn-link text-slate-400 hover:text-emerald-600 after:bg-emerald-600 duration-500 ease-in-out">Consulter plus  <i class="uil uil-arrow-right align-middle"></i></a>
-                    </div>
-                </div><!--end grid-->
-            </div><!--end container-->
-        </section>
-
-            @livewire('home.candidature')
-
-
-        <div class="container md:mt-24 mt-16">
-            <div class="grid grid-cols-1 pb-8 text-center">
-                <h3 class="mb-4 md:text-[26px] md:leading-normal text-2xl leading-normal font-semibold">D'autres conténus sur carriere pro plus </h3>
-
-                <p class="text-slate-400 max-w-xl mx-auto">Besoin de relookage de cv , une lettre de motivation , une assisante prenez contact avec l'équipe carriere pro plus.</p>
-            </div><!--end grid-->
-
-            <div class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
-                <div class="group p-6 shadow dark:shadow-gray-700 rounded-md bg-white hover:bg-emerald-600/5 dark:bg-slate-900 dark:hover:bg-emerald-600/10 text-center transition-all duration-500">
-                    <div class="w-16 h-16 flex items-center justify-center mx-auto bg-emerald-600/5 group-hover:bg-emerald-600 dark:bg-emerald-600/10 dark:group-hover:bg-emerald-600 shadow dark:shadow-gray-700 rounded-lg transition-all duration-500">
-                        <i class="uil uil-phone text-[30px] text-emerald-600 group-hover:text-white"></i>
-                    </div>
-
-                    <div class="mt-4">
-                        <a href="#" class="text-lg font-semibold hover:text-emerald-600 transition-all duration-500">24/7 Support</a>
-
-                        <p class="text-slate-400 mt-3 mb-2">Besoin d'une assistante personnelle contactez-nous.</p>
-
-                        <a href="#" class="hover:text-emerald-600 font-medium transition-all duration-500">Contact <i class="uil uil-arrow-right"></i></a>
-                    </div>
-                </div><!--end content-->
-
-                <div class="group p-6 shadow dark:shadow-gray-700 rounded-md bg-white hover:bg-emerald-600/5 dark:bg-slate-900 dark:hover:bg-emerald-600/10 text-center transition-all duration-500">
-                    <div class="w-16 h-16 flex items-center justify-center mx-auto bg-emerald-600/5 group-hover:bg-emerald-600 dark:bg-emerald-600/10 dark:group-hover:bg-emerald-600 shadow dark:shadow-gray-700 rounded-lg transition-all duration-500">
-                        <i class="uil uil-atom text-[30px] text-emerald-600 group-hover:text-white"></i>
-                    </div>
-
-                    <div class="mt-4">
-                        <a href="#" class="text-lg font-semibold hover:text-emerald-600 transition-all duration-500">Rubrique Cvs</a>
-
-                        <p class="text-slate-400 mt-3 mb-2">Consulter nos  catalogue de cvs gratuits.</p>
-
-                        <a href="#" class="hover:text-emerald-600 font-medium transition-all duration-500">Consulter <i class="uil uil-arrow-right"></i></a>
-                    </div>
-                </div><!--end content-->
-
-                <div class="group p-6 shadow dark:shadow-gray-700 rounded-md bg-white hover:bg-emerald-600/5 dark:bg-slate-900 dark:hover:bg-emerald-600/10 text-center transition-all duration-500">
-                    <div class="w-16 h-16 flex items-center justify-center mx-auto bg-emerald-600/5 group-hover:bg-emerald-600 dark:bg-emerald-600/10 dark:group-hover:bg-emerald-600 shadow dark:shadow-gray-700 rounded-lg transition-all duration-500">
-                        <i class="uil uil-user-arrows text-[30px] text-emerald-600 group-hover:text-white"></i>
-                    </div>
-
-                    <div class="mt-4">
-                        <a href="#" class="text-lg font-semibold hover:text-emerald-600 transition-all duration-500">Rubriques lettre de motivation </a>
-
-                        <p class="text-slate-400 mt-3 mb-2">Consulter nos lettre de motivation prés à emploi .</p>
-
-                        <a href="#" class="hover:text-emerald-600 font-medium transition-all duration-500">Consulter <i class="uil uil-arrow-right"></i></a>
-                    </div>
-                </div><!--end content-->
-
-                <div class="group p-6 shadow dark:shadow-gray-700 rounded-md bg-white hover:bg-emerald-600/5 dark:bg-slate-900 dark:hover:bg-emerald-600/10 text-center transition-all duration-500">
-                    <div class="w-16 h-16 flex items-center justify-center mx-auto bg-emerald-600/5 group-hover:bg-emerald-600 dark:bg-emerald-600/10 dark:group-hover:bg-emerald-600 shadow dark:shadow-gray-700 rounded-lg transition-all duration-500">
-                        <i class="uil uil-hourglass text-[30px] text-emerald-600 group-hover:text-white"></i>
-                    </div>
-
-                    <div class="mt-4">
-                        <a href="#" class="text-lg font-semibold hover:text-emerald-600 transition-all duration-500">Nos Formations</a>
-
-                        <p class="text-slate-400 mt-3 mb-2">Consulter nos formations en informatique, bureautique et à venir  .</p>
-
-                        <a href="#" class="hover:text-emerald-600 font-medium transition-all duration-500">Consulter<i class="uil uil-arrow-right"></i></a>
-                    </div>
-                </div><!--end content-->
-            </div><!--end grid-->
-        </div>
-
-        <div class="container md:mt-24 mt-16">
-            <div class="grid grid-cols-1 pb-8 text-center">
-                <h3 class="mb-4 md:text-[26px] md:leading-normal text-2xl leading-normal font-semibold">Consuler nos article, conseils... </h3>
-
-                <p class="text-slate-400 max-w-xl mx-auto">Restez informer des dernieres actualités sur les emplois, concours, conseils professionnels .</p>
-            </div><!--end grid-->
-
-            <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
-
-               @foreach ($articleRessource as $article)
-
-
-                <div class="group relative overflow-hidden bg-white dark:bg-slate-900 rounded-md shadow dark:shadow-gray-700">
-                    <div class="relative overflow-hidden">
-                        <img src="{{asset('blog/images/'.$article->image)}}" class="scale-110 group-hover:scale-100 transition-all duration-500" alt="">
-                    </div>
-
-                    <div class="relative p-6">
-                        <div class="absolute start-6 -top-4">
-                            <span class="bg-emerald-600 text-white text-[12px] px-2.5 py-1 font-semibold rounded-full h-5">{{$article->category->name}}</span>
-                        </div>
-
-                        <div class="">
-                            <div class="flex mb-4">
-                                <span class="text-slate-400 text-sm"><i class="uil uil-calendar-alt text-slate-900 dark:text-white me-2"></i>{{$article->created_at->diffForHumans()}}</span>
-                                <span class="text-slate-400 text-sm ms-3"><i class="uil uil-clock text-slate-900 dark:text-white me-2"></i>4 minutes de lecture</span>
+                                                <img src="https://geeksui.codescandy.com/geeks/assets/images/job/job-brand-logo/job-list-logo-3.svg" alt class="icon-shape border rounded-circle">
+                                            </div>
+                                            <!-- text -->
+                                            <div class="ms-md-3 w-100 mt-3 mt-xl-1">
+                                                <div class="d-flex justify-content-between mb-4">
+                                                    <div>
+                                                        <!-- heading -->
+                                                        <h3 class="mb-1 fs-4"><a href="https://geeksui.codescandy.com/geeks/pages/jobs/job-single.html" class="text-inherit">Software Engineer (Web3/Crypto)</a></h3>
+                                                        <div>
+                                                            <span>at Square</span>
+                                                            <!-- icon -->
+                                                            <span class="text-dark ms-2 fw-medium">
+                                                                3.9
+                                                                <svg
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    width="10"
+                                                                    height="10"
+                                                                    fill="currentColor"
+                                                                    class="bi bi-star-fill text-warning align-baseline"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </svg>
+                                                            </span>
+                                                            <span class="ms-0">(424 Reviews)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <!-- icon -->
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark bookmark" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z">
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="d-md-flex justify-content-between">
+                                                        <div class="mb-2 mb-md-0">
+                                                            <!-- year -->
+                                                            <span class="me-2">
+                                                                <i class="fe fe-briefcase"></i>
+                                                                <span class="ms-1">2 - 6 years</span>
+                                                            </span>
+                                                            <!-- year -->
+                                                            <span class="me-2">
+                                                                <i class="fe fe-dollar-sign"></i>
+                                                                <span class="ms-1">Not discloses</span>
+                                                            </span>
+                                                            <!-- location -->
+                                                            <span class="me-2">
+                                                                <i class="fe fe-map-pin"></i>
+                                                                <span class="ms-1">Hastsal, Delhi</span>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <!-- icon -->
+                                                            <i class="fe fe-clock"></i>
+                                                            <span>1 day ago</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- card -->
+                            <div class="card card-bordered mb-4 card-hover cursor-pointer">
+                                <!-- card body -->
+                                <div class="card-body">
+                                    <div>
+                                        <div class="d-md-flex">
+                                            <div class="mb-3 mb-md-0">
+                                                <!-- Img -->
 
-                            <a href="{{route('detail.article', $article->slug)}}" class="title text-lg font-semibold hover:text-emerald-600 duration-500 ease-in-out">{{Str::limit($article->title, 100)}}</a>
+                                                <img src="https://geeksui.codescandy.com/geeks/assets/images/job/job-brand-logo/job-list-logo-4.svg" alt class="icon-shape border rounded-circle">
+                                            </div>
+                                            <!-- text -->
+                                            <div class="ms-md-3 w-100 mt-3 mt-xl-1">
+                                                <div class="d-flex justify-content-between mb-4">
+                                                    <div>
+                                                        <!-- heading -->
+                                                        <h3 class="mb-1 fs-4"><a href="https://geeksui.codescandy.com/geeks/pages/jobs/job-single.html" class="text-inherit">Lead Software Engineer</a></h3>
+                                                        <div>
+                                                            <span>at Dot</span>
+                                                            <!-- star -->
+                                                            <span class="text-dark ms-2 fw-medium">
+                                                                3.9
+                                                                <svg
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    width="10"
+                                                                    height="10"
+                                                                    fill="currentColor"
+                                                                    class="bi bi-star-fill text-warning align-baseline"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </svg>
+                                                                <!-- reviews -->
+                                                            </span>
+                                                            <span class="ms-0">(523 Reviews)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark bookmark" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z">
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="d-md-flex justify-content-between">
+                                                        <div class="mb-2 mb-md-0">
+                                                            <!-- year -->
+                                                            <span class="me-2">
+                                                                <i class="fe fe-briefcase"></i>
+                                                                <span class="ms-1">0 - 2 years</span>
+                                                            </span>
+                                                            <span class="me-2">
+                                                                <!-- salary -->
+                                                                <i class="fe fe-dollar-sign"></i>
+                                                                <span class="ms-1">Not discloses</span>
+                                                            </span>
+                                                            <span class="me-2">
+                                                                <!-- location -->
+                                                                <i class="fe fe-map-pin"></i>
+                                                                <span class="ms-1">Pune, Chennai</span>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <!-- time -->
+                                                            <i class="fe fe-clock"></i>
+                                                            <span>1 Month ago</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- card -->
+                            <div class="card card-bordered mb-4 card-hover cursor-pointer">
+                                <!-- card body -->
+                                <div class="card-body">
+                                    <div>
+                                        <div class="d-md-flex">
+                                            <div class="mb-3 mb-md-0">
+                                                <!-- Img -->
 
-                            <div class="flex justify-between items-center mt-3">
-                                <a href="{{route('detail.article', $article->slug)}}" class="btn btn-link hover:text-emerald-600 after:bg-emerald-600 duration-500 ease-in-out">Consulter <i class="uil uil-arrow-right"></i></a>
-                                <span class="text-slate-400 text-sm"><a href="#" class="text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-600 font-medium">by carriereproplus</a></span>
+                                                <img src="https://geeksui.codescandy.com/geeks/assets/images/job/job-brand-logo/job-list-logo-5.svg" alt class="icon-shape border rounded-circle">
+                                            </div>
+                                            <!-- text -->
+                                            <div class="ms-md-3 w-100 mt-3 mt-xl-1">
+                                                <div class="d-flex justify-content-between mb-4">
+                                                    <div>
+                                                        <!-- heading -->
+                                                        <h3 class="mb-1 fs-4"><a href="https://geeksui.codescandy.com/geeks/pages/jobs/job-single.html" class="text-inherit">Senior Full Stack Engineer</a></h3>
+                                                        <div>
+                                                            <span>at Toggle</span>
+                                                            <span class="text-dark ms-2 fw-medium">
+                                                                4.9
+                                                                <svg
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    width="10"
+                                                                    height="10"
+                                                                    fill="currentColor"
+                                                                    class="bi bi-star-fill text-warning align-baseline"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                                </svg>
+                                                            </span>
+                                                            <span class="ms-0">(923 Reviews)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <!-- icon -->
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark bookmark" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z">
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="d-md-flex justify-content-between">
+                                                        <div class="mb-2 mb-md-0">
+                                                            <!-- year -->
+                                                            <span class="me-2">
+                                                                <i class="fe fe-briefcase"></i>
+                                                                <span class="ms-1">2 - 6 years</span>
+                                                            </span>
+                                                            <!-- salary -->
+                                                            <span class="me-2">
+                                                                <i class="fe fe-dollar-sign"></i>
+                                                                <span class="ms-1">Not discloses</span>
+                                                            </span>
+                                                            <!-- location -->
+                                                            <span class="me-2">
+                                                                <i class="fe fe-map-pin"></i>
+                                                                <span class="ms-1">Ahmedabad, Gujarat</span>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <!-- time -->
+                                                            <i class="fe fe-clock"></i>
+                                                            <span>2 Month ago</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- card -->
+
+                            <!-- button -->
+                            <div class="mt-6 text-center">
+                                <a href="#!" class="btn btn-outline-primary">Browse All Jobs Postings</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endforeach
+            </section>
+
+            <section class="pb-8">
+                <div class="container">
+                  <div class="row">
+
+                    @foreach ($articleRandom as $article)
 
 
-            </div><!--end grid-->
-        </div>
-
-
-        <div class="container-fluid md:mt-24 mt-16">
-            <div class="container">
-                <div class="grid grid-cols-1">
-                    <div class="relative overflow-hidden lg:px-8 px-6 py-10 rounded-xl shadow-lg dark:shadow-gray-700">
-                        <div class="grid md:grid-cols-12 grid-cols-1 items-center gap-[30px]">
-                            <div class="lg:col-span-8 md:col-span-7">
-                                <div class="ltr:md:text-left rtl:md:text-right text-center relative z-1">
-                                    <h3 class="text-2xl font-semibold text-black dark:text-white mb-4">Consulter Plus d'offre</h3>
-                                    <p class="text-slate-400 max-w-xl">Avec carriereproplus decrochez votre premier job, stage, consultance, contrat en freelance.</p>
-                                </div>
-                            </div><!--end col-->
-
-                            <div class="lg:col-span-4 md:col-span-5">
-                                <div class="ltr:text-right rtl:text-left relative z-1">
-                                    <a href="{{route('home.job')}}" class="btn bg-emerald-600 hover:bg-emerald-700 border-emerald-600 dark:border-emerald-600 text-white rounded-md">Consulter</a>
-                                    <a href="#" class="btn bg-emerald-600/5 hover:bg-emerald-600 border-emerald-600/10 hover:border-emerald-600 text-emerald-600 hover:text-white rounded-md ms-2">Se faire assister</a>
-                                </div>
-                            </div><!--end col-->
-                        </div><!--end grid-->
-
-                        <div class="absolute -top-5 -start-5">
-                            <div class="uil uil-envelope lg:text-[150px] text-7xl text-black/5 dark:text-white/5 ltr:-rotate-45 rtl:rotate-45"></div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-12">
+                      <!-- Card -->
+                      <div class="card mb-4 shadow-lg card-lift">
+                        <a href="blog-single.html">
+                          <!-- Img  -->
+                          <img src="{{asset('blog/images/'.$article->image)}}" class="card-img-top" alt="blogpost ">
+                        </a>
+                        <!-- Card body -->
+                        <div class="card-body">
+                          <a href="#" class="fs-5 mb-2 fw-semibold d-block text-success">Courses</a>
+                          <h3><a href="blog-single.html" class="text-inherit">{{$article->title}}</a></h3>
+                          <p>{{$article->mini_description}}</p>
+                          <!-- Media content -->
+                          <div class="row align-items-center g-0 mt-4">
+                            <div class="col-auto">
+                              <img src="../assets/images/avatar/avatar-7.jpg" alt="avatar" class="rounded-circle avatar-sm me-2">
+                            </div>
+                            <div class="col lh-1">
+                              <h5 class="mb-1">Admin</h5>
+                              <p class="fs-6 mb-0">{{$article->created_at}}</p>
+                            </div>
+                            <div class="col-auto">
+                              <p class="fs-6 mb-0">04 Minute de lecture </p>
+                            </div>
+                          </div>
                         </div>
+                      </div>
+                    </div>
+                    @endforeach
 
-                        <div class="absolute -bottom-5 -end-5">
-                            <div class="uil uil-pen lg:text-[150px] text-7xl text-black/5 dark:text-white/5 rtl:-rotate-90"></div>
+
+                    <!-- Buttom -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-12 text-center mt-4">
+                      <a href="#" class="btn btn-primary">
+                        <div class="spinner-border spinner-border-sm me-2" role="status">
+                          <span class="visually-hidden">Consulter...</span>
+                        </div>
+                        Consulter plus
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+
+        </main>
+        <!-- footer -->
+        <!-- footer -->
+        <footer class="pt-5 pb-3">
+            <div class="container">
+                <div class="row justify-content-center text-center align-items-center">
+                    <div class="col-12 col-md-12 col-xxl-6 px-0">
+                        <div class="mb-4">
+                            <a href="#">
+                                <img src="{{asset('images/logocarrierepro.jpg')}}" alt="Geeks" style="height:50px;" class="mb-4 logo-inverse">
+                            </a>
+                            <p class="lead">Carriereproplus est une plateforme de rélais, de publication d 'offre d'emploi, de formation professionelle.</p>
+                        </div>
+                        <nav class="nav nav-footer justify-content-center">
+                            <a class="nav-link" href="#">Accueil</a>
+                            <span class="my-2 vr opacity-50"></span>
+                            <a class="nav-link" href="#">Emploi</a>
+                            <span class="my-2 vr opacity-50"></span>
+                            <a class="nav-link" href="#">Cvs</a>
+                            <span class="my-2 vr opacity-50"></span>
+                            <a class="nav-link" href="#">Lettre de motivation </a>
+                            <span class="my-2 vr opacity-50"></span>
+                            <a class="nav-link" href="#">Formations</a>
+                            <span class="my-2 vr opacity-50"></span>
+                            <a class="nav-link" href="#">Actualites</a>
+
+                        </nav>
+                    </div>
+                </div>
+                <!-- Desc -->
+                <hr class="mt-6 mb-3">
+                <div class="row align-items-center">
+                    <!-- Desc -->
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <span>
+                            ©
+                            <span id="copyright4">
+                                <script>
+                                    document.getElementById("copyright4").appendChild(document.createTextNode(new Date().getFullYear()));
+                                </script>
+                            </span>
+                            Tous droits réservés
+                        </span>
+                    </div>
+
+                    <!-- Links -->
+                    <div class="col-12 col-md-6 col-lg-7 d-lg-flex justify-content-center">
+                        <nav class="nav nav-footer">
+
+
+                            <a class="nav-link" href="kgsinformatique.tech">Une conception  de KGS informatique </a>
+                        </nav>
+                    </div>
+                    <div class="col-lg-2 col-md-12 col-12 d-lg-flex justify-content-end">
+                        <div>
+                            <!--Facebook-->
+                            <a href="#" class="me-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"></path>
+                                </svg>
+                            </a>
+                            <!--Twitter-->
+                            <a href="#" class="me-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+                                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"></path>
+                                </svg>
+                            </a>
+
+
+
                         </div>
                     </div>
-                </div><!--end grid-->
-            </div><!--end container-->
-        </div>
+                </div>
+
+                <!-- Links -->
+            </div>
+        </footer>
 
 
+        <!-- Scroll top -->
+        <div class="btn-scroll-top">
+    <svg class="progress-square svg-content" width="100%" height="100%" viewBox="0 0 40 40">
+        <path d="M8 1H32C35.866 1 39 4.13401 39 8V32C39 35.866 35.866 39 32 39H8C4.13401 39 1 35.866 1 32V8C1 4.13401 4.13401 1 8 1Z" />
+    </svg>
+</div>
+
+        <!-- Scripts -->
+        <!-- Libs JS -->
+<script src="../../assets/libs/%40popperjs/core/dist/umd/popper.min.js"></script>
+<script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../../assets/libs/simplebar/dist/simplebar.min.js"></script>
+
+<!-- Theme JS -->
+<script src="../../assets/js/theme.min.js"></script>
 
 
+        <script src="../../assets/libs/tippy.js/dist/tippy-bundle.umd.min.js"></script>
 
-     @endsection
+        <script src="../../assets/js/vendors/tooltip.js"></script>
+    </body>
+</html>

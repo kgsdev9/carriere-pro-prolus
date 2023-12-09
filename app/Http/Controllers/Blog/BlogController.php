@@ -20,7 +20,7 @@ class BlogController extends Controller
         $this->middleware('auth');
     }
 
-    
+
 
     /**
      * Display a listing of the resource.
@@ -71,7 +71,7 @@ class BlogController extends Controller
             "image"  => $filename,
             "category_id" =>$request->input('category_id'),
             "event" =>$request->input('event'),
-            "mini_description" =>$request->input('mini_description'),
+            "mini_description" =>$request->input('mini_description') ?? 'teste',
             "description" =>$request->input('description'),
         ]);
 

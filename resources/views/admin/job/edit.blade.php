@@ -71,20 +71,11 @@
                       <!-- Post name -->
                       <div class="mb-3">
                         <label class="form-label">Description minimale de l'offre  </label>
-                        <textarea class="form-control" name="mini_description" id="" cols="30" rows="3" maxlength="120"> {{ old('mini_description') ?? $ressource->mini_description }}</textarea>
+                        <input type="text" class="form-control" value="{{$ressource->mini_description}}">
                         <small>le title ne doit pas exceller 120 caracteres </small>
                       </div>
                     </div>
-
-                    <div class="col-lg-7">
-                      <!-- Tags -->
-                      <div class="mb-3">
-                        <label class="form-label">Image de l'offre  </label>
-                        <input class="form-control stretched-link" type="file" name="logo" id="image" accept="image/gif, image/jpeg, image/png">
-                        <small>Maximum de 14 mots clés. Les mots clés doivent tous être en minuscules et séparés par des virgules. par exemple. javascript, réagir, marketing.</small>
-                      </div>
-                    </div>
-                    <div class="col-lg-5">
+                    <div class="col-lg-12">
                       <!-- Message -->
                       <div class="mb-3">
                         <label class="form-label">Catégorie </label>
@@ -92,11 +83,9 @@
                           @foreach ($categoryjob as $value)
                           <option value="{{$value->id}}" {{$value->id ==$ressource->family_id? 'selected': ''}}>{{$value->name }}</option>
                           @endforeach
-
                         </select>
                       </div>
                     </div>
-
                     <div class="col-12">
                         <div class="mb-3">
                             <label class="form-label">Description  complete de l'offre   </label>
@@ -133,5 +122,6 @@
 
 
   </div>
+
 
 @endsection

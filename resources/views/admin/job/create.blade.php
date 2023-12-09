@@ -91,10 +91,11 @@
                         <label class="form-label">Description minimale de l'offre @error('mini_description')
                             <small class="text-danger">{{$message}}</small>
                         @enderror  </label>
-                          <textarea name="mini_description"  class="form-control" cols="30" rows="2"></textarea>
-
+                        <input type="text" class="form-control" name="mini_description" cols="30" rows="2" value="{{old('mini_description')}}">
                       </div>
                     </div>
+
+                    <br>
 
                     <div class="col-lg-12">
                       <!-- Message -->
@@ -120,7 +121,7 @@
                             <small class="text-danger">{{$message}}</small>
 
                         @enderror   </label>
-                        <textarea class="form-control" id="basic-example"  name="description" rows="3" >
+                        <textarea class="form-control" id="summernote"  name="description" rows="3" >
 
 
                             {{ old('description') }}</textarea>
@@ -153,17 +154,6 @@
     </main>
   </div>
 
-
-@push('javascript')
-<script>
-
-    tinymce.init({
-    selector: 'textarea#basic-example',
-    height:300
-    });
-
-    </script>
-@endpush
 @endsection
 
 

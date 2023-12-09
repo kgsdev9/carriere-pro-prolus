@@ -66,7 +66,6 @@
                       <small class="text-danger">{{$message}}</small>
                       @enderror
 
-
                   </label>
                      <textarea name="mini_description" class="form-control" id="blog" cols="30" rows="2"></textarea>
                 </div>
@@ -80,15 +79,10 @@
                       @error('category_id')
                       <small class="text-danger">{{$message}}</small>
                       @enderror
-
-
                   </label>
                      <textarea name="description" class="form-control" id="#basic-example" cols="30" rows="10"></textarea>
                 </div>
               </div>
-
-
-
           </div>
 
 
@@ -105,16 +99,5 @@
     </div>
   </div>
 
-
-  @push('javascript')
-  <script>
-
-      tinymce.init({
-      selector: 'textarea#blog',
-      height:300
-      });
-
-      </script>
-  @endpush
 
 @endsection
