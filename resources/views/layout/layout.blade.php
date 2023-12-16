@@ -59,20 +59,15 @@
 
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarPages" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nos Conseils </a>
-                    <ul class="dropdown-menu dropdown-menu-arrow dropdown-menu-end" aria-labelledby="navbarPages">
-                        <li>
-                            <a class="dropdown-item" href="#" hx-boost="true">Lettre de motivation </a>
-                        </li>
+                    <a class="nav-link dropdown-toggle" href="{{route('home.cv')}}" id="navbarPages">Cv Pro </a>
 
-                        <li>
-                            <a class="dropdown-item" href="#" hx-boost="true">Curriculum vitæ</a>
-                        </li>
-
-                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" hx-boost="true">Formations</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('home.actualy')}}" hx-boost="true">Actualités</a>
                 </li>
 
                 <li class="nav-item">
