@@ -11,13 +11,11 @@ class JobListe extends Component
 
     public $search = "";
 
-    public $mode = false  ;
-
-    use WithPagination;
+    public $mode = true  ;
 
 
-    public function activeMode() {
-        $this->mode = true ;
+    public function displayForm() {
+        $this->mode = false ;
     }
 
 
@@ -25,7 +23,7 @@ class JobListe extends Component
     public function render()
     {
         return view('livewire.admin.job-liste', [
-            'allJobs'=> Job::where('title', 'like', '%'.$this->search.'%')->orderByDesc('created_at')->paginate(10)
+            'jobALl'=> Job::where('title', 'like', '%'.$this->search.'%')->orderByDesc('created_at')->paginate(10)
         ]);
     }
 }
