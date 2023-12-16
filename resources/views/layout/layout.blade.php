@@ -76,7 +76,12 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#" hx-boost="true">Formations</a>
+                    @guest
+                    <a class="btn btn-outline-primary mx-2 d-none d-md-block" href="{{route('login')}}" hx-boost="true">Connexion</a>
+                    @else
+                    <a class="btn btn-outline-primary mx-2 d-none d-md-block" href="#" hx-boost="true">Mon Compte </a>
+                    @endguest
+
                 </li>
 
 

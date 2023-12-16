@@ -18,12 +18,13 @@
                             </span>
                         </div>
                         <!-- Form -->
-                        <form class="needs-validation" novalidate="">
+                        <form class="needs-validation"  action="{{route('login.users')}}" method="POST">
+                            @csrf
 
                             <!-- Email -->
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" id="email" class="form-control" name="email" placeholder="Email address here" required="">
+                                <input type="email" id="email" class="form-control" name="email" placeholder="kgsdev8@gmail.com" required="">
 
                             </div>
                             <!-- Password -->
@@ -73,7 +74,7 @@
             </div>
         </div>
     </section>
-    
+
 </main>
 
 @endsection

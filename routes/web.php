@@ -94,7 +94,7 @@ Route::get('/annuaire-application' , [HomeController::class, 'homeApplication'])
 
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
-
+Route::post('/fr/auth/true', [AuthController::class, 'loginUser'])->name('login.users');
 
 
 Route::get('/auth/{provider}/redirect', [ProviderController::class, 'redirect']);
