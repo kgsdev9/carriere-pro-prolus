@@ -121,9 +121,7 @@
                             <small class="text-danger">{{$message}}</small>
 
                         @enderror   </label>
-                        <textarea class="form-control" id="summernote"  name="description" rows="3" >
-
-
+                        <textarea class="form-control" id="editor"  name="description" rows="3" >
                             {{ old('description') }}</textarea>
                     </div>
                   </div>

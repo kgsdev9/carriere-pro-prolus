@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="{{asset('admin/libs/simplebar/dist/simplebar.min.css')}}">
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="{{asset('admin/css/theme.min.css')}}">
-        <script src="https://cdn.tiny.cloud/1/ewnwdlukikfd20zuefy426z7slixkeng4g2wsxxikjsyfa5k/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+        <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
 		<title>@yield('title')</title>
 	</head>
 	<body>
@@ -90,12 +90,12 @@
 		<script src="{{asset('admin/js/vendors/flatpickr.js')}}"></script>
 
         <script>
-            tinymce.init({
-              selector: 'textarea',
-              plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-              toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-            });
-          </script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
 
 	</body>
 </html>
