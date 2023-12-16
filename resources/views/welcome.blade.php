@@ -126,7 +126,6 @@
                     <div class="mb-6 mb-lg-8">
                         <h2 class="h1 text-center">
                             Job par catégorie
-
                         </h2>
 
                     </div>
@@ -143,11 +142,11 @@
                             </h4>
                             <div class="d-flex align-items-center mb-5 lh-1">
                                 <div>
-                                    <span class="text-inherit fw-semibold me-1">8</span>
-                                   Job disponible 4
+
+                                   Emploi  disponible  {{count($category->jobs)}}
                                 </div>
                             </div>
-                            <a href="#!">
+                            <a href="{{route('categorie.job', $category->id)}}" hx-boost="true" >
                                 Consulter
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
@@ -199,13 +198,13 @@
                 <div class="col-md-3 box-shadow">
                     <div class="card mb-4 box-shadow">
                       <div class="card-body">
-                          <h5>{{$job->title}}</h5>
-                        <p class="card-text">deux plateaux angré.</p>
+                          <h5>{{Str::limit($job->title, 60)}}</h5>
+                        <p class="card-text">{{Str::limit($job->mini_description, 60)}}.</p>
                         <div class="d-flex justify-content-between align-items-center">
                           <div class="btn-group">
                             <a href="{{route('detail.emploi', $job->slug)}}" hx-boost="true" class="btn btn-sm btn-outline-secondary">Consulter</a>
                           </div>
-                          <small class="text-muted">{{$job->created_at}}</small>
+                          <small class="text-muted">{{$job->created_at->diffForHumans()}}</small>
                         </div>
                       </div>
                     </div>

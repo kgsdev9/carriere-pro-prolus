@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.layout')
 @section('content')
 
 
@@ -38,7 +38,7 @@
             <div class="px-6 py-2 bg-slate-50 dark:bg-slate-800 lg:flex justify-between items-center">
                 <div class="lg:inline-block flex justify-between">
                     <span class="inline-block me-1 font-semibold"><i class="mdi mdi-check-decagram mdi-18px text-blue-500 me-1"></i>Verified</span>
-                  
+
                     <span class="inline-block me-1 text-slate-400"><i class="uil uil-map-marker text-[18px] text-slate-900 dark:text-white me-1"></i>{{$jobcarriere->lieu->name}}</span>
                 </div>
 

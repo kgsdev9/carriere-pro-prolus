@@ -1,314 +1,68 @@
-@extends('layout.app')
+@extends('layout.layout')
 @section('title', $detailArticle->title)
 @section('content')
 
-<section class="page-title gray">
+<section class="py-7 py-lg-8">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12">
-
-                <div class="breadcrumbs-wrap">
-                    <h2 class="mb-0 ft-medium">Let' Start New Design in Adobe Photoshop</h2>
-                    <nav class="transparent">
-                        <ol class="breadcrumb p-0">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active theme-cl" aria-current="page">Blog Detail</li>
-                        </ol>
-                    </nav>
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-lg-8 col-md-12 col-12 mb-2">
+                <div class="text-center mb-4">
+                    <a href="#" class="fs-5 fw-semibold d-block mb-4 text-primary">{{$detailArticle->category->name}}</a>
+                    <h1 class="display-3 fw-bold mb-4">{{$detailArticle->title}}</h1>
+                    <span class="mb-3 d-inline-block">4 minute de  lecture </span>
                 </div>
+                <!-- Media -->
+
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-lg-8 col-md-12 col-12 mb-2">
+                <!-- Descriptions -->
+                <div>
+                    <div class="mb-4">
+
+                        <p>
+                            {!!$detailArticle->description!!}
+                        </p>
+                        <p>
+
+                    </div>
+
+
+                </div>
+
+                <!-- Media -->
+                <hr class="mt-8 mb-5 ">
+                <div class="d-flex justify-content-between align-items-center mb-5">
+
+                    <div>
+                        <span class="ms-2">Partager</span>
+                        <a href="#" class="ms-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z ">
+                            </path></svg>
+                        </a>
+                        <a href="#" class="ms-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+                                <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z ">
+                            </path></svg>
+                        </a>
+                        <a href="#" class="ms-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z ">
+                            </path></svg>
+                        </a>
+                    </div>
+                </div>
+                <!-- Subscribe to Newsletter -->
 
             </div>
         </div>
     </div>
+    <!-- Container -->
 
 </section>
-
-
-
-<br>
-
-<div class="container">
-
-    <!-- row Start -->
-    <div class="row">
-
-        <!-- Blog Detail -->
-        <div class="col-lg-8 col-md-12 col-sm-12 col-12">
-            <div class="article_detail_wrapss single_article_wrap format-standard">
-                <div class="article_body_wrap">
-
-                    <div class="article_featured_image">
-                        <img class="img-fluid" src="https://via.placeholder.com/1200x800" alt="">
-                    </div>
-
-                    <div class="article_top_info">
-                        <ul class="article_middle_info">
-                            <li><a href="#"><span class="icons"><i class="ti-user"></i></span>by Rosalina Doe</a></li>
-                            <li><a href="#"><span class="icons"><i class="ti-comment-alt"></i></span>45 Comments</a></li>
-                        </ul>
-                    </div>
-                    <h2 class="post-title">Lorem ipsum dolor sit amet, cons pisicing elit, sed do.</h2>
-
-                    <p>{!! $detailArticle->description !!}</p>
-
-
-                </div>
-            </div>
-
-            <!-- Author Detail -->
-            <div class="article_detail_wrapss single_article_wrap format-standard">
-
-                <div class="article_posts_thumb">
-                    <span class="img"><img class="img-fluid" src="https://via.placeholder.com/500x500" alt=""></span>
-                    <h3 class="pa-name">Rosalina William</h3>
-                    <ul class="social-links">
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-behance"></i></a></li>
-                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                    </ul>
-                    <p class="pa-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
-                </div>
-
-            </div>
-
-            <!-- Blog Comment -->
-            <div class="article_detail_wrapss single_article_wrap format-standard">
-
-                <div class="comment-area">
-                    <div class="all-comments">
-                        <h3 class="comments-title">05 Comments</h3>
-                        <div class="comment-list">
-                            <ul>
-                                <li class="article_comments_wrap">
-                                    <article>
-                                        <div class="article_comments_thumb">
-                                            <img src="https://via.placeholder.com/500x500" alt="">
-                                        </div>
-                                        <div class="comment-details">
-                                            <div class="comment-meta">
-                                                <div class="comment-left-meta">
-                                                    <h4 class="author-name">Rosalina Kelian <span class="selected"><i class="fas fa-bookmark"></i></span></h4>
-                                                    <div class="comment-date">19th May 2018</div>
-                                                </div>
-                                                <div class="comment-reply">
-                                                    <a href="#" class="reply"><span class="icona"><i class="ti-back-left"></i></span> Reply</a>
-                                                </div>
-                                            </div>
-                                            <div class="comment-text">
-                                                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim laborumab.
-                                                    perspiciatis unde omnis iste natus error.</p>
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <ul class="children">
-                                        <li class="article_comments_wrap">
-                                            <article>
-                                                <div class="article_comments_thumb">
-                                                    <img src="https://via.placeholder.com/500x500" alt="">
-                                                </div>
-                                                <div class="comment-details">
-                                                    <div class="comment-meta">
-                                                        <div class="comment-left-meta">
-                                                            <h4 class="author-name">Rosalina Kelian</h4>
-                                                            <div class="comment-date">19th May 2018</div>
-                                                        </div>
-                                                        <div class="comment-reply">
-                                                            <a href="#" class="reply"><span class="icons"><i class="ti-back-left"></i></span> Reply</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="comment-text">
-                                                        <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim laborumab.
-                                                            perspiciatis unde omnis iste natus error.</p>
-                                                    </div>
-                                                </div>
-                                            </article>
-                                            <ul class="children">
-                                                <li class="article_comments_wrap">
-                                                    <article>
-                                                        <div class="article_comments_thumb">
-                                                            <img src="https://via.placeholder.com/500x500" alt="">
-                                                        </div>
-                                                        <div class="comment-details">
-                                                            <div class="comment-meta">
-                                                                <div class="comment-left-meta">
-                                                                    <h4 class="author-name">Rosalina Kelian</h4>
-                                                                    <div class="comment-date">19th May 2018</div>
-                                                                </div>
-                                                                <div class="comment-reply">
-                                                                    <a href="#" class="reply"><span class="icons"><i class="ti-back-left"></i></span> Reply</a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="comment-text">
-                                                                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim laborumab.
-                                                                    perspiciatis unde omnis iste natus error.</p>
-                                                            </div>
-                                                        </div>
-                                                    </article>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="article_comments_wrap">
-                                    <article>
-                                        <div class="article_comments_thumb">
-                                            <img src="https://via.placeholder.com/500x500" alt="">
-                                        </div>
-                                        <div class="comment-details">
-                                            <div class="comment-meta">
-                                                <div class="comment-left-meta">
-                                                    <h4 class="author-name">Rosalina Kelian</h4>
-                                                    <div class="comment-date">19th May 2018</div>
-                                                </div>
-                                                <div class="comment-reply">
-                                                    <a href="#" class="reply"><span class="icons"><i class="ti-back-left"></i></span> Reply</a>
-                                                </div>
-                                            </div>
-                                            <div class="comment-text">
-                                                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim laborumab.
-                                                    perspiciatis unde omnis iste natus error.</p>
-                                            </div>
-                                        </div>
-                                    </article>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="comment-box submit-form">
-                        <h3 class="reply-title">Post Comment</h3>
-                        <div class="comment-form">
-                            <form action="#">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Your Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Your Email">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <textarea name="comment" class="form-control" cols="30" rows="6" placeholder="Type your comments...."></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div class="form-group">
-                                            <a href="#" class="btn theme-bg text-white">Submit Now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
-        </div>
-
-        <!-- Single blog Grid -->
-        <div class="col-lg-4 col-md-12 col-sm-12 col-12">
-
-            <!-- Searchbard -->
-            <div class="single_widgets widget_search">
-                <h4 class="title">Search</h4>
-                <form action="#" class="sidebar-search-form">
-                    <input type="search" name="search" placeholder="Search..">
-                    <button type="submit"><i class="ti-search"></i></button>
-                </form>
-            </div>
-
-            <!-- Categories -->
-            <div class="single_widgets widget_category">
-                <h4 class="title">Categories</h4>
-                <ul>
-                    <li><a href="#">Lifestyle <span>09</span></a></li>
-                    <li><a href="#">Travel <span>12</span></a></li>
-                    <li><a href="#">Fashion <span>19</span></a>
-                    </li><li><a href="#">Branding <span>17</span></a></li>
-                    <li><a href="#">Music <span>10</span></a></li>
-                </ul>
-            </div>
-
-            <!-- Trending Posts -->
-            <div class="single_widgets widget_thumb_post">
-                <h4 class="title">Trending Posts</h4>
-                <ul>
-                    <li>
-                        <span class="left">
-                            <img src="https://via.placeholder.com/1200x800" alt="" class="">
-                        </span>
-                        <span class="right">
-                            <a class="feed-title" href="#">Alonso Kelina Falao Asiano Pero</a>
-                            <span class="post-date"><i class="ti-calendar"></i>10 Min ago</span>
-                        </span>
-                    </li>
-                    <li>
-                        <span class="left">
-                            <img src="https://via.placeholder.com/1200x800" alt="" class="">
-                        </span>
-                        <span class="right">
-                            <a class="feed-title" href="#">It is a long established fact that a reader</a>
-                            <span class="post-date"><i class="ti-calendar"></i>2 Hours ago</span>
-                        </span>
-                    </li>
-                    <li>
-                        <span class="left">
-                            <img src="https://via.placeholder.com/1200x800" alt="" class="">
-                        </span>
-                        <span class="right">
-                            <a class="feed-title" href="#">Many desktop publish packages and web</a>
-                            <span class="post-date"><i class="ti-calendar"></i>4 Hours ago</span>
-                        </span>
-                    </li>
-                    <li>
-                        <span class="left">
-                            <img src="https://via.placeholder.com/1200x800" alt="" class="">
-                        </span>
-                        <span class="right">
-                            <a class="feed-title" href="#">Various versions have evolved over the years</a>
-                            <span class="post-date"><i class="ti-calendar"></i>7 Hours ago</span>
-                        </span>
-                    </li>
-                    <li>
-                        <span class="left">
-                            <img src="https://via.placeholder.com/1200x800" alt="" class="">
-                        </span>
-                        <span class="right">
-                            <a class="feed-title" href="#">Photo booth anim 8-bit PBR 3 wolf moon.</a>
-                            <span class="post-date"><i class="ti-calendar"></i>3 Days ago</span>
-                        </span>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Tags Cloud -->
-            <div class="single_widgets widget_tags">
-                <h4 class="title">Tags Cloud</h4>
-                <ul>
-                    <li><a href="#">Lifestyle</a></li>
-                    <li><a href="#">Travel</a></li>
-                    <li><a href="#">Fashion</a></li>
-                    <li><a href="#">Branding</a></li>
-                    <li><a href="#">Music</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-    </div>
-    <!-- /row -->
-
-</div>
-
 
 
 
