@@ -17,7 +17,7 @@ class HomeController extends Controller
 {
 
     use CompteurDeVue;
-
+   
     protected $jobService ;
     protected $familyService;
     protected $employeurService ;

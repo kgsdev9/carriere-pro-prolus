@@ -53,10 +53,10 @@
 												</div>
 												<div class="ms-3 lh-1">
 													<h5 class="mb-1">
-														{{Auth::user()->name}}
+                                                        sss
 													</h5>
 													<p class="mb-0 text-muted">
-														{{Auth::user()->email}}
+													sss
 													</p>
 												</div>
 											</div>

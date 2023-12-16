@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.layout')
 
 @section('title' , 'Annuaire Des Curriculum vitæ')
 
