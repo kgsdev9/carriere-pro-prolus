@@ -78,10 +78,9 @@
             </li>
             <!-- Nav item -->
             <li class="nav-item">
-                <a class="nav-link  collapsed " href="#"
-                    data-bs-toggle="collapse" data-bs-target="#navecommerce" aria-expanded="false"
-                    aria-controls="navecommerce">
-                    <i class="nav-icon fe fe-shopping-bag me-2"></i> Formations
+                <a class="nav-link  collapsed " href="{{route('cvs.index')}}"
+                    >
+                    <i class="nav-icon fe fe-shopping-bag me-2"></i> Annuaire cvs
                 </a>
 
             </li>

@@ -3,126 +3,90 @@
 @section('admin')
 
 <div class="content-wrapper" style="min-height: 2080.12px;">
-  <!-- Content Header (Page header) -->
-  <section class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1>Annuaire des ciriculum vatea   </h1>
-        </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Accueil </a></li>
-            <li class="breadcrumb-item active">CV</li>
-          </ol>
-        </div>
-      </div>
-    </div><!-- /.container-fluid -->
-  </section>
+    <section class="container-fluid p-4">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <!-- Page Header -->
+                <div class="border-bottom pb-3 mb-3 d-md-flex align-items-center justify-content-between">
+                    <div class="mb-3 mb-md-0">
+                        <h1 class="mb-1 h2 fw-bold">Annuaire des Cvs</h1>
+                        <!-- Breadcrumb -->
 
-  <!-- Main content -->
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-
-
-
-          <div class="card">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-10">
-                        <h3 class="card-title">Liste des CVs </h3>
                     </div>
-
-                    <div class="col-md-2">
+                    <div>
                         <a href="{{route('cvs.create')}}" class="btn btn-primary">Nouveau cv </a>
                     </div>
-
                 </div>
-
             </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12">
+                <!-- Card -->
+                <div class="card rounded-3">
+                    <div>
+                        <!-- Table -->
+                        <div class="tab-content" id="tabContent">
+                            <!--Tab pane -->
+                            <div class="tab-pane fade show active" id="courses" role="tabpanel" aria-labelledby="courses-tab">
+                                <div class="table-responsive border-0 overflow-y-hidden">
+                                    <table class="table mb-0 text-nowrap table-centered table-hover">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Image</th>
+                                                <th>Prix</th>
+                                                <th>ACTION</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($cv as  $value)
 
-            <!-- /.card-header -->
-            <div class="card-body">
-              <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6">
-                <div class="dt-buttons btn-group flex-wrap">
-                       </div>
+                                            <tr>
+                                                <td>
+                                                    <a href="#" class="text-inherit">
+                                                        <div class="d-flex align-items-center">
+                                                            <div>
+                                                                <img src="{{asset('cv/images/'.$value->image)}}" alt="" class="img-4by3-lg rounded">
+                                                            </div>
+                                                            <div class="ms-3">
+                                                                <h4 class="mb-1 text-primary-hover">{{ $value->title }}</h4>
 
-                      </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
 
-                      <div class="col-sm-12 col-md-6">
-                        <div id="example1_filter" class="dataTables_filter">
+                                                        <h5 class="mb-0">{{ $value->prix ?? 'Gratuit' }}</h5>
+                                                    </div>
+                                                </td>
 
-                              </div>
+                                                <td>
+                                                    <form action="{{route('cvs.destroy', $value->id)}}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer ?')">Suppression</button>
+                                                    </form>
+                                                    <br>
+                                                    <a href="{{ route('cvs.edit', $value->id)}}" class="btn btn-success btn-sm">Edition</a>
+                                                </td>
+
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                          </div>
-                          <div class="row">
-                       <div class="col-sm-12">
-
-                <table id="example" class="table table-bordered table-striped dataTable dtr-inline collapsed">
-                <thead>
-
-                <tr>
-                  <th class="sorting">Titre </th>
-                  <th class="sorting">Prix</th>
-                  <th class="sorting">Image</th>
-                  <th class="sorting">Document</th>
-                  <th class="sorting">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                  @foreach ($cv as  $value)
-
-
-                <tr class="odd">
-                  <td class="dtr-control sorting_1" tabindex="0">{{ $value->title }}</td>
-                  <td>{{ $value->prix ?? 'Gratuit' }}</td>
-                  <td>
-                    <img src="{{asset('cv/images/'.$value->image)}}" target="_blank" style="height:60px; width:80px;">
-                  </td>
-                  <td>
-                    <a href="{{ asset('cv/document/'.$value->document) }}" target="_blank">Consulter Docs </a>
-                  </td>
-                  <td>
-                  <a href="{{ route('cvs.edit', $value->id)}}" class="text-dark"> <i class="fa fa-edit"></i></a>
-                  <form action="{{route('cvs.destroy', $value->id)}}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" onclick="return confirm('Voulez-vous vraiment supprimer ?')"><i class="fa fa-trash"></i></button>
-                </form>
-
-
-
-
-
-                  </td>
-                </tr>
-
-                @endforeach
-               </tbody>
-
-              </table>
-
+                        </div>
+                    </div>
+                    <!-- Card Footer -->
+                  
+                </div>
             </div>
-
-          </div>
-
-
-
         </div>
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
-  </section>
-  <!-- /.content -->
+    </section>
+
 </div>
 
 
