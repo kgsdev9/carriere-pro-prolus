@@ -69,7 +69,7 @@
                                                         <button type="submit" class="btn btn-danger" onclick="return confirm('Voulez-vous vraiment supprimer ?')">Suppression</button>
                                                     </form>
                                                     <br>
-                                                    <a href="{{ route('cvs.edit', $value->id)}}" class="btn btn-success btn-sm">Edition</a>
+                                                   
                                                 </td>
 
                                             </tr>
@@ -81,7 +81,7 @@
                         </div>
                     </div>
                     <!-- Card Footer -->
-                  
+
                 </div>
             </div>
         </div>

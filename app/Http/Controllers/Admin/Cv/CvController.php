@@ -64,29 +64,16 @@ class CvController extends Controller
             $file->move('cv/images/' , $image);
          }
 
-
-         if($request->hasfile('document')) {
-            $file = $request->file('document');
-            $extention  = $file->getClientOriginalExtension();
-            $document = time().'.'.$extention;
-            $file->move('cv/document/' , $document);
-         }
-
-
-            $user = Cv::create([
+            Cv::create([
                 'title'  =>   $request->input('title'),
                 'slug'  =>   $request->input('title'),
                 'image'  =>   $image,
-                'document'  =>   $document,
-                'url'    =>  $request->input('url'),
+                'document'  =>   "ssss",
                 'price'  =>   $request->input('price'),
-                'category_id'  =>$request->input('category_id'),
+                'category_id'  => 1,
                 'description'  =>   $request->input('description'),
             ]);
-
             return redirect()->route('cvs.index');
-
-
          }
 
 

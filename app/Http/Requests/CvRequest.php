@@ -23,8 +23,6 @@ class CvRequest extends FormRequest
     {
         return [
             'title' => 'required|max:255',
-            'document' =>'nullable',
-            'category_id'   =>'required',
             'description' =>'required',
             'image' => 'nullable',
         ];

@@ -2,122 +2,99 @@
 
 @section('admin')
 <div class="content-wrapper" style="min-height: 2080.12px;">
-    <div class="card mb-4">
-      <!-- Card header -->
-      <div class="card-header">
-        <h3 class="mb-0">Nouveau CV</h3>
-      </div>
-      <!-- Card body -->
-        <form action="{{route('cvs.store')}}" method="post" enctype="multipart/form-data">
-            @csrf
-      <div class="card-body">
-        <!-- Form groups used in grid -->
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
+    <main>
 
-              <label class="form-control-label" for="example3cols1Input">Libellé du modéle
-                @error('title')
-                <small class="text-danger">{{$message}}</small>
-
-                @enderror
-              </label>
-              <input type="text" class="form-control" name="title" id="example3cols1Input" placeholder="Titre du cv" value="{{old('title')}}">
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="form-control-label" for="example3cols3Input">Image du modéle(Png, Jpg, Jpeg) @error('image')
-                <small class="text-danger">{{$message}}</small>
-
-                @enderror</label>
-              <input type="file" name="image" class="form-control" id="example3cols3Input" >
-            </div>
-          </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-
-                <label class="form-control-label" for="example3cols1Input">
-                    @error('price')
-                    <small>{{$message}}</small>
-
-                    @enderror
-
-                    Prix (Ne rien marquer si le cv est gratuit)</label>
-                <input type="number" class="form-control" name="price" id="example3cols1Input" placeholder="Prix du cv" value="{{old('price')}}">
+        <!-- =======================
+        Main contain START -->
+        <section class="">
+          <div class="container">
+            <div class="row pb-4">
+              <div class="col-12">
+                <!-- Title -->
+                  <h1 class="mb-0 h2">Nouvelle Cv </h1>
               </div>
             </div>
+            <div class="row">
+              <div class="col-12">
+                <!-- Chart START -->
+                <div class="card border">
+                  <!-- Card body -->
+                  <div class="card-body">
+                    <!-- Form START -->
+                    <form action="{{route('cvs.store')}}" method="post" enctype="multipart/form-data">
 
-            <div class="col-md-6">
-                <div class="form-group">
-                  <label class="form-control-label" for="example4cols1Input">
-                      Catégorie du cv
-                      @error('category_id')
-                      <small class="text-danger">{{$message}}</small>
-                      @enderror
+                      @csrf
+                      <!-- Main form -->
 
 
-                  </label>
-                      <select name="category_id" id="" class="form-control">
-                          <option value="">----------</option>
-                          @foreach ($category as $value )
-                          <option value="{{$value->id}}">{{$value->name}}</option>
-                          @endforeach
+                      <div class="row">
+                        <div class="col-12">
+                          <!-- Post name -->
+                          <div class="mb-3">
+                            <label class="form-label">Libellé du modéle @error('title')
+                                <small class="text-danger">{{$message}}</small>
 
-                      </select>
+                            @enderror </label>
+                            <input type="text" class="form-control" name="title" id="example3cols1Input" placeholder="Titre du cv" value="{{old('title')}}">
+
+                          </div>
+
+                          <div class="mb-3">
+                            <label class="form-label">Prix @error('price')
+                                <small class="text-danger">{{$message}}</small>
+
+                            @enderror </label>
+                            <input type="number" class="form-control" name="price"  placeholder="Prix du cv" value="{{old('price')}}">
+
+                          </div>
+
+
+                           <!-- Post name -->
+                           <div class="mb-3">
+                            <label class="form-label">Employeur  Image du modéle(Png, Jpg, Jpeg) @error('image')
+                                <small class="text-danger">{{$message}}</small>
+
+                            @enderror </label>
+                            <input type="file" name="image" class="form-control" id="example3cols3Input" >
+
+                          </div>
+
+
+
+
+                        </div>
+
+                        <div class="col-12">
+                          <!-- Post name -->
+                          <div class="mb-3">
+                            <label class="form-label">Déscription du cv @error('description')
+                                <small class="text-danger">{{$message}}</small>
+                            @enderror  </label>
+                            <textarea name="description" id="" cols="30" rows="10" class="form-control">
+                                {{old('description')}}
+                            </textarea>
+                          </div>
+                        </div>
+
+                        <br>
+                        <!-- Create post button -->
+                        <div class="col-md-12 text-start">
+                          <button class="btn btn-primary w-100" type="submit">Créer le l'offre </button>
+                        </div>
+                      </div>
+                    </form>
+                    <!-- Form END -->
+                  </div>
                 </div>
+                <!-- Chart END -->
               </div>
-
-
-          </div>
-
-          <div class="row">
-
-
-            <div class="col-sm-12 col-md-12">
-                <div class="form-group">
-                  <label class="form-control-label" for="example4cols1Input">
-                    Téleverser le cv (Docs, docx, pdf)
-                    @error('document')
-                    <small class="text-danger">{{$message}}</small>
-                    @enderror
-                </label>
-                        <input type="file" name="document">
-                </div>
-              </div>
-
-
-          </div>
-        <div class="row">
-          <div class="col-sm-12 col-md-12">
-            <div class="form-group">
-              <label class="form-control-label" for="example4cols1Input"> Déscription du cv
-                @error('description')
-                <small class="text-danger">{{$message}}</small>
-                @enderror
-
-              </label>
-                <textarea name="description" id="" cols="30" rows="10" class="form-control">
-                    {{old('description')}}
-                </textarea>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-                <button class="btn btn-primary">Enregister le cv  </button>
-            </div>
-          </div>
-        </div>
+        </section>
+        <!-- =======================
+        Main contain END -->
+        </main>
       </div>
-    </form>
-    </div>
   </div>
 
 @endsection
