@@ -45,7 +45,7 @@
 
 
                                 <div class="col-auto">
-                                   <button class="btn btn-warning">Consulter</button>
+                                   <a class="btn btn-warning" href="https://wa.me/+2250708375478?text=Ce%20Modele%20de%20CvMinteresse" target="_blank">Consulter</a>
                                 </div>
                             </div>
                         </div>

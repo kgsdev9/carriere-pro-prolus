@@ -79,3 +79,7 @@ function setLocationCoordinates(key, lat, lng) {
     latitudeField.value = lat;
     longitudeField.value = lng;
 }
+
+
+
+<a class="btn btn-warning" href="https://wa.me/+225070837547?text=Ce %20Modele%20de%20Cv M'interesse%20https://carriereproplus/annonce/voitures/honda-cr-v-2021-4469161" target="_blank">Consulter</a>
