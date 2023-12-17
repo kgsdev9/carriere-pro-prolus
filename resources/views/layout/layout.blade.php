@@ -12,9 +12,6 @@
 <!-- Favicon icon-->
 <link rel="shortcut icon" type="image/x-icon" href="{{asset('images/logocarrierepro.jpg')}}" />
 
-<!-- darkmode js -->
-<script src="{{asset('assets/js/vendors/darkMode.js')}}"></script>
-
 <!-- Libs CSS -->
 <link href="{{asset('assets/fonts/feather/feather.css" rel="stylesheet')}}" />
 <link href="{{asset('assets/libs/bootstrap-icons/font/bootstrap-icons.min.css')}}" rel="stylesheet" />
@@ -181,7 +178,6 @@
 <script src="{{asset('assets/libs/simplebar/dist/simplebar.min.js')}}"></script>
 
 <!-- Theme JS -->
-<script src="{{asset('assets/js/theme.min.js')}}"></script>
  <script src="{{asset('assets/libs/tippy.js/dist/tippy-bundle.umd.min.js')}}"></script>
  <script src="{{asset('assets/js/vendors/tooltip.js')}}"></script>
  @livewireScripts

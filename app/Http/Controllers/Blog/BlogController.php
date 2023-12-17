@@ -27,7 +27,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $article = Article::all();
+        $article = Article::paginate();
         return view('admin.blog.liste', compact('article'));
     }
 
@@ -81,10 +81,6 @@ class BlogController extends Controller
     }
 
 
-    public function liste(){
-        $blog = Article::orderByDesc('created_at')->paginate(20);
-        return view('admin.blog.liste', compact('blog'));
-    }
 
     /**
      * Display the specified resource.
