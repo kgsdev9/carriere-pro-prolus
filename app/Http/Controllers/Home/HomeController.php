@@ -17,7 +17,7 @@ class HomeController extends Controller
 {
 
     use CompteurDeVue;
-   
+
     protected $jobService ;
     protected $familyService;
     protected $employeurService ;
@@ -33,6 +33,7 @@ class HomeController extends Controller
         $this->articleService =$articleService ;
         $this->cvService = $cvService ;
         $this->letterMotivationService= $letterMotivationService;
+        
     }
 
     public function index(){

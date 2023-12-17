@@ -16,18 +16,12 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        // if(Auth::user()->role =="admin") {
-        //     dd('mercisss');
-        //     return redirect()->route('admin');
-        //   // return redirect()->route('admin');
-        //     return $next($request);
-        // } elseif(Auth::user()->role =="user") {
-        //     dd("user");
-        //     return redirect()->route('home');
-        // }
-
-        // return $next($request);
-
-
+        {
+            if ($request->user() && $request->user()->role->name != "admin")
+            {
+                return redirect()->route('home');
+            }
+            return $next($request);
+        }
     }
 }

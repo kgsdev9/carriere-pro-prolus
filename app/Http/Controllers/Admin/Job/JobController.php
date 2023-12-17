@@ -25,7 +25,7 @@ class JobController extends Controller
         $this->familyService = $familyService ;
         $this->contratService = $contratService ;
         $this->lieuService = $lieuService ;
-       
+        $this->middleware(['admin', 'auth']);
     }
 
 

@@ -14,7 +14,7 @@ class EmployeurController extends Controller
     public function __construct(EmployeurService $employeurService)
     {
         $this->employeurService= $employeurService ;
-        $this->middleware('auth');
+        $this->middleware(['admin', 'auth']);
     }
 
     public function index()

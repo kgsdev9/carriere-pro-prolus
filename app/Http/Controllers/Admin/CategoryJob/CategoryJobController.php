@@ -13,7 +13,7 @@ class CategoryJobController extends Controller
     public function  __construct(FamilyService $categoryJobRessource)
     {
     $this->categoryJobService = $categoryJobRessource ;
-    $this->middleware('auth');
+    $this->middleware(['admin', 'auth']);
 
     }
 

@@ -21,7 +21,7 @@ class ProviderController extends Controller
     {
         $githubUser = Socialite::drivert($provider)->user();
 
-        dd($githubUser);
+
 
         $user = User::updateOrCreate([
             'provider_id' => $githubUser->id,
